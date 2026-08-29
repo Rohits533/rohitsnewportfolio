@@ -57,10 +57,8 @@
         }
         
         /* ==============================================
-           ULTIMATE DEEP GLASS EFFECTS - Apple Killer
+           ULTIMATE DEEP GLASS EFFECTS
            ============================================== */
-        
-        /* Glass that actually looks like real glass */
         .glass-ultimate {
             position: relative;
             background: rgba(255, 255, 255, 0.02);
@@ -77,7 +75,6 @@
             overflow: hidden;
         }
         
-        /* Glass reflection - the secret sauce */
         .glass-ultimate::before {
             content: '';
             position: absolute;
@@ -112,7 +109,6 @@
             }
         }
         
-        /* Glass shine - the Apple killer */
         .glass-ultimate::after {
             content: '';
             position: absolute;
@@ -143,7 +139,6 @@
             }
         }
         
-        /* Glass border glow - ultra premium */
         .glass-ultimate .glass-border-glow {
             position: absolute;
             top: -1px;
@@ -172,7 +167,6 @@
             50% { opacity: 1; }
         }
         
-        /* Hover state - ultimate glass experience */
         .glass-ultimate:hover {
             transform: translateY(-8px) scale(1.01);
             background: rgba(255, 255, 255, 0.03);
@@ -181,88 +175,6 @@
                 0 0 0 1px rgba(255, 255, 255, 0.04) inset,
                 0 0 80px rgba(0, 255, 65, 0.06),
                 0 8px 40px rgba(0, 0, 0, 0.5);
-            border-color: rgba(0, 255, 65, 0.08);
-        }
-        
-        /* Glass with frosted effect */
-        .glass-frosted {
-            background: rgba(255, 255, 255, 0.015);
-            backdrop-filter: blur(60px) saturate(2);
-            -webkit-backdrop-filter: blur(60px) saturate(2);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 28px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.01) inset,
-                0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .glass-frosted::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 50% 0%, 
-                    rgba(255, 255, 255, 0.02) 0%, 
-                    transparent 70%);
-            pointer-events: none;
-            border-radius: 28px;
-        }
-        
-        .glass-frosted:hover {
-            transform: translateY(-6px);
-            border-color: rgba(0, 255, 65, 0.06);
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.6),
-                0 0 0 1px rgba(255, 255, 255, 0.02) inset,
-                0 0 60px rgba(0, 255, 65, 0.04);
-        }
-        
-        /* Glass with prism effect */
-        .glass-prism {
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(50px) saturate(1.5);
-            -webkit-backdrop-filter: blur(50px) saturate(1.5);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            border-radius: 30px;
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.01) inset;
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .glass-prism::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                conic-gradient(from 0deg at 50% 50%, 
-                    rgba(0, 255, 65, 0.02), 
-                    rgba(255, 215, 0, 0.01),
-                    rgba(255, 0, 255, 0.01),
-                    rgba(0, 212, 255, 0.01),
-                    rgba(0, 255, 65, 0.02)
-                );
-            animation: prismRotate 20s linear infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes prismRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .glass-prism:hover {
-            transform: translateY(-8px);
             border-color: rgba(0, 255, 65, 0.08);
         }
         
@@ -373,7 +285,7 @@
         }
         
         /* ==============================================
-           MUSIC PLAYER - Dark Ambient
+           MUSIC PLAYER - DARK VIBE
            ============================================== */
         .music-player {
             position: fixed;
@@ -433,6 +345,7 @@
         .music-player .music-info {
             display: flex;
             flex-direction: column;
+            min-width: 120px;
         }
         
         .music-player .music-title {
@@ -465,32 +378,33 @@
             height: 100%;
             background: #00FF41;
             border-radius: 2px;
-            animation: waveBounce 1s ease-in-out infinite;
+            animation: waveBounce 0.8s ease-in-out infinite;
         }
         
-        .music-player .music-wave .bar:nth-child(1) { animation-delay: 0.1s; height: 40%; }
-        .music-player .music-wave .bar:nth-child(2) { animation-delay: 0.3s; height: 70%; }
-        .music-player .music-wave .bar:nth-child(3) { animation-delay: 0.5s; height: 50%; }
-        .music-player .music-wave .bar:nth-child(4) { animation-delay: 0.7s; height: 90%; }
-        .music-player .music-wave .bar:nth-child(5) { animation-delay: 0.9s; height: 30%; }
-        .music-player .music-wave .bar:nth-child(6) { animation-delay: 0.2s; height: 60%; }
-        .music-player .music-wave .bar:nth-child(7) { animation-delay: 0.4s; height: 80%; }
-        .music-player .music-wave .bar:nth-child(8) { animation-delay: 0.6s; height: 45%; }
-        .music-player .music-wave .bar:nth-child(9) { animation-delay: 0.8s; height: 75%; }
-        .music-player .music-wave .bar:nth-child(10) { animation-delay: 0.0s; height: 55%; }
+        .music-player .music-wave .bar:nth-child(1) { animation-delay: 0.0s; height: 30%; }
+        .music-player .music-wave .bar:nth-child(2) { animation-delay: 0.1s; height: 60%; }
+        .music-player .music-wave .bar:nth-child(3) { animation-delay: 0.2s; height: 45%; }
+        .music-player .music-wave .bar:nth-child(4) { animation-delay: 0.3s; height: 80%; }
+        .music-player .music-wave .bar:nth-child(5) { animation-delay: 0.4s; height: 35%; }
+        .music-player .music-wave .bar:nth-child(6) { animation-delay: 0.5s; height: 70%; }
+        .music-player .music-wave .bar:nth-child(7) { animation-delay: 0.6s; height: 50%; }
+        .music-player .music-wave .bar:nth-child(8) { animation-delay: 0.7s; height: 90%; }
+        .music-player .music-wave .bar:nth-child(9) { animation-delay: 0.8s; height: 40%; }
+        .music-player .music-wave .bar:nth-child(10) { animation-delay: 0.9s; height: 65%; }
         
         .music-player .music-wave.paused .bar {
             animation-play-state: paused;
             height: 20%;
+            opacity: 0.3;
         }
         
         @keyframes waveBounce {
-            0%, 100% { transform: scaleY(0.3); }
+            0%, 100% { transform: scaleY(0.4); }
             50% { transform: scaleY(1); }
         }
         
         /* ==============================================
-           ORIGINAL ENTRY PAGE - RESTORED
+           ORIGINAL ENTRY PAGE
            ============================================== */
         #entryPage {
             position: fixed;
@@ -850,7 +764,7 @@
         }
         
         /* ==============================================
-           MAIN CONTENT
+           MAIN CONTENT - QUICK REFERENCE
            ============================================== */
         #mainContent {
             display: none;
@@ -1453,21 +1367,6 @@
             box-shadow: 0 0 40px rgba(0, 255, 65, 0.2);
         }
         
-        body.ai-mode .glass-ultimate {
-            border-color: rgba(0, 212, 255, 0.2);
-        }
-        
-        body.ai-mode .glass-ultimate:hover {
-            border-color: rgba(0, 212, 255, 0.4);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(0, 212, 255, 0.1);
-        }
-        
-        body.ai-mode .stat-number,
-        body.ai-mode .panel-label,
-        body.ai-mode .nav-link:hover {
-            color: #00D4FF;
-        }
-        
         /* ==============================================
            SKILLS GRID
            ============================================== */
@@ -1713,6 +1612,10 @@
                 left: 20px;
                 padding: 10px 16px;
             }
+            
+            .music-player .music-info {
+                min-width: 80px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1817,14 +1720,14 @@
 <body>
 
     <!-- ============================================== -->
-    <!-- DARK AMBIENT MUSIC PLAYER -->
+    <!-- DARK VIBE MUSIC PLAYER - FIXED! -->
     <!-- ============================================== -->
     <div class="music-player" id="musicPlayer">
         <div class="music-icon playing" id="musicToggle">
             <i class="fas fa-music"></i>
         </div>
         <div class="music-info">
-            <span class="music-title">🌙 <span>Dark Ambient</span> · 432Hz</span>
+            <span class="music-title">🌙 <span>Dark Vibe</span> · Cinematic</span>
             <span class="music-status" id="musicStatus">● Playing</span>
         </div>
         <div class="music-wave" id="musicWave">
@@ -1922,7 +1825,6 @@
                         <span class="pulse-dot" style="margin-left:5px;"></span>
                     </div>
                     
-                    <!-- LIVE STATUS BADGE -->
                     <div class="live-status">
                         <span class="pulse"></span>
                         <span>🚀 Building </span>
@@ -1941,7 +1843,6 @@
                         <span class="highlight-text">✦ Innovation Enthusiast</span>
                     </p>
                     
-                    <!-- CURRENTLY WORKING ON with ULTIMATE GLASS -->
                     <div class="currently-working glass-ultimate">
                         <div class="glass-border-glow"></div>
                         <div style="display:flex;align-items:center;gap:15px;position:relative;z-index:1;">
@@ -1985,7 +1886,6 @@
                     </div>
                 </div>
                 
-                <!-- 3D PARALLAX -->
                 <div class="hero-visual">
                     <span class="parallax-icon">
                         <i class="fas fa-brain"></i>
@@ -1994,7 +1894,7 @@
             </div>
         </section>
 
-        <!-- ===== JOURNEY SECTION with ULTIMATE GLASS ===== -->
+        <!-- ===== JOURNEY SECTION ===== -->
         <section id="journey" class="split-section" data-section="journey">
             <div class="split-line"></div>
             <div class="split-glow"></div>
@@ -2164,7 +2064,6 @@
                 <div class="split-panel split-panel-right">
                     <div class="split-content split-content-right">
                         <div style="display:grid;grid-template-columns:1fr;gap:20px;width:100%;">
-                            <!-- PROJECT 1 -->
                             <a href="https://rohits533.github.io" target="_blank" class="project-card glass-ultimate" style="padding:20px;">
                                 <div class="glass-border-glow"></div>
                                 <div class="project-preview">
@@ -2177,7 +2076,6 @@
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
                             
-                            <!-- PROJECT 2 -->
                             <a href="https://rohit-ai-chatbot-2026.streamlit.app" target="_blank" class="project-card glass-ultimate" style="padding:20px;">
                                 <div class="glass-border-glow"></div>
                                 <div class="project-preview">
@@ -2190,7 +2088,6 @@
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
                             
-                            <!-- PROJECT 3 -->
                             <a href="https://ai-code-reviewer-js.vercel.app" target="_blank" class="project-card glass-ultimate" style="padding:20px;">
                                 <div class="glass-border-glow"></div>
                                 <div class="project-preview">
@@ -2300,18 +2197,19 @@
     <!-- ============================================== -->
     <script>
         // ==============================================
-        // DARK AMBIENT MUSIC PLAYER - ULTIMATE VIBE
+        // DARK VIBE MUSIC PLAYER - FIXED!
         // ==============================================
-        class AmbientMusicPlayer {
+        class DarkVibeMusicPlayer {
             constructor() {
                 this.audioContext = null;
                 this.isPlaying = false;
                 this.oscillators = [];
                 this.gains = [];
+                this.delayNode = null;
+                this.reverbNode = null;
                 this.toggleBtn = document.getElementById('musicToggle');
                 this.statusEl = document.getElementById('musicStatus');
                 this.waveEl = document.getElementById('musicWave');
-                this.musicPlayer = document.getElementById('musicPlayer');
                 
                 this.init();
             }
@@ -2320,17 +2218,16 @@
                 this.toggleBtn.addEventListener('click', () => this.toggle());
                 
                 // Auto-play on any user interaction
-                document.addEventListener('click', () => {
+                const playOnInteraction = () => {
                     if (!this.audioContext) {
                         this.startMusic();
                     }
-                }, { once: true });
+                    document.removeEventListener('click', playOnInteraction);
+                    document.removeEventListener('keydown', playOnInteraction);
+                };
                 
-                document.addEventListener('keydown', () => {
-                    if (!this.audioContext) {
-                        this.startMusic();
-                    }
-                }, { once: true });
+                document.addEventListener('click', playOnInteraction);
+                document.addEventListener('keydown', playOnInteraction);
             }
             
             startMusic() {
@@ -2338,27 +2235,62 @@
                     this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
                     this.isPlaying = true;
                     
-                    // Create ambient layers
-                    this.createAmbientLayer(0.3, 432, 'sine', 0.15);
-                    this.createAmbientLayer(0.2, 540, 'sine', 0.1);
-                    this.createAmbientLayer(0.15, 324, 'sine', 0.08);
-                    this.createAmbientLayer(0.1, 648, 'sine', 0.05);
-                    this.createAmbientLayer(0.2, 486, 'triangle', 0.06);
+                    // Create delay for depth
+                    this.delayNode = this.audioContext.createDelay(1.5);
+                    this.delayNode.delayTime.setValueAtTime(0.3, this.audioContext.currentTime);
                     
-                    // Low drone
-                    this.createDroneLayer(0.25, 108, 'sawtooth', 0.12);
-                    this.createDroneLayer(0.15, 216, 'sawtooth', 0.08);
+                    // Create reverb-like effect using convolver
+                    this.createReverb();
+                    
+                    // Create dark vibe layers
+                    this.createVibeLayer(0.25, 440, 'sine', 0.3, 'left');
+                    this.createVibeLayer(0.2, 587.33, 'sine', 0.2, 'right');
+                    this.createVibeLayer(0.15, 329.63, 'sine', 0.15, 'center');
+                    this.createVibeLayer(0.2, 659.25, 'triangle', 0.1, 'left');
+                    this.createVibeLayer(0.15, 493.88, 'sawtooth', 0.08, 'right');
+                    
+                    // Bass pulse for vibe
+                    this.createBassPulse(0.2, 82.41, 'sawtooth');
+                    this.createBassPulse(0.15, 110, 'square');
+                    
+                    // Melodic arpeggio-like layer
+                    this.createArpeggioLayer(0.1, [523.25, 587.33, 659.25, 783.99], 'sine');
+                    
+                    // Pad layer for atmosphere
+                    this.createPadLayer(0.12, 220, 'sine');
+                    this.createPadLayer(0.08, 330, 'sine');
                     
                     this.updateUI(true);
                     
-                    console.log('🌙 Dark Ambient Music started at 432Hz');
+                    console.log('🎵 Dark Vibe Music started!');
                 } catch (e) {
                     console.warn('⚠️ Audio not supported:', e);
                     this.updateUI(false);
                 }
             }
             
-            createAmbientLayer(volume, frequency, type, panValue) {
+            createReverb() {
+                try {
+                    const convolver = this.audioContext.createConvolver();
+                    const length = 2;
+                    const sampleRate = this.audioContext.sampleRate;
+                    const impulse = this.audioContext.createBuffer(2, sampleRate * length, sampleRate);
+                    
+                    for (let channel = 0; channel < 2; channel++) {
+                        const channelData = impulse.getChannelData(channel);
+                        for (let i = 0; i < channelData.length; i++) {
+                            channelData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (sampleRate * 0.8));
+                        }
+                    }
+                    
+                    convolver.buffer = impulse;
+                    this.reverbNode = convolver;
+                } catch (e) {
+                    // Silent fail
+                }
+            }
+            
+            createVibeLayer(volume, frequency, type, panValue, position) {
                 try {
                     const osc = this.audioContext.createOscillator();
                     const gain = this.audioContext.createGain();
@@ -2367,88 +2299,169 @@
                     osc.type = type;
                     osc.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
                     
-                    // Slow modulation for depth
-                    const modulator = this.audioContext.createOscillator();
-                    const modGain = this.audioContext.createGain();
-                    modulator.frequency.setValueAtTime(0.3, this.audioContext.currentTime);
-                    modGain.gain.setValueAtTime(8, this.audioContext.currentTime);
+                    // Add vibrato for organic feel
+                    const vibrato = this.audioContext.createOscillator();
+                    const vibratoGain = this.audioContext.createGain();
+                    vibrato.frequency.setValueAtTime(5 + Math.random() * 2, this.audioContext.currentTime);
+                    vibratoGain.gain.setValueAtTime(4, this.audioContext.currentTime);
                     
-                    modulator.connect(modGain);
-                    modGain.connect(osc.frequency);
+                    vibrato.connect(vibratoGain);
+                    vibratoGain.connect(osc.frequency);
                     
+                    // Volume envelope
                     gain.gain.setValueAtTime(0, this.audioContext.currentTime);
-                    gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 4);
+                    gain.gain.linearRampToValueAtTime(volume * 0.5, this.audioContext.currentTime + 1);
+                    gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 3);
                     
-                    // Gentle LFO for volume
+                    // Slow LFO for volume
                     const lfo = this.audioContext.createOscillator();
                     const lfoGain = this.audioContext.createGain();
-                    lfo.frequency.setValueAtTime(0.1 + Math.random() * 0.05, this.audioContext.currentTime);
+                    lfo.frequency.setValueAtTime(0.2 + Math.random() * 0.1, this.audioContext.currentTime);
                     lfoGain.gain.setValueAtTime(volume * 0.3, this.audioContext.currentTime);
                     
                     lfo.connect(lfoGain);
                     lfoGain.connect(gain.gain);
                     
-                    panner.pan.setValueAtTime(panValue || 0, this.audioContext.currentTime);
+                    // Position
+                    const pan = panValue || 0;
+                    if (position === 'left') panner.pan.setValueAtTime(-0.7, this.audioContext.currentTime);
+                    else if (position === 'right') panner.pan.setValueAtTime(0.7, this.audioContext.currentTime);
+                    else panner.pan.setValueAtTime(0, this.audioContext.currentTime);
                     
-                    osc.connect(gain);
-                    gain.connect(panner);
-                    panner.connect(this.audioContext.destination);
+                    // Connect with reverb if available
+                    if (this.reverbNode) {
+                        const sendGain = this.audioContext.createGain();
+                        sendGain.gain.setValueAtTime(0.15, this.audioContext.currentTime);
+                        osc.connect(gain);
+                        gain.connect(panner);
+                        panner.connect(this.audioContext.destination);
+                        
+                        // Send to reverb
+                        const reverbSend = this.audioContext.createGain();
+                        reverbSend.gain.setValueAtTime(0.2, this.audioContext.currentTime);
+                        gain.connect(reverbSend);
+                        reverbSend.connect(this.reverbNode);
+                        this.reverbNode.connect(this.audioContext.destination);
+                    } else {
+                        osc.connect(gain);
+                        gain.connect(panner);
+                        panner.connect(this.audioContext.destination);
+                    }
                     
                     osc.start(this.audioContext.currentTime);
-                    modulator.start(this.audioContext.currentTime);
+                    vibrato.start(this.audioContext.currentTime);
                     lfo.start(this.audioContext.currentTime);
                     
-                    this.oscillators.push({ osc, modulator, lfo });
+                    this.oscillators.push({ osc, vibrato, lfo });
                     this.gains.push(gain);
-                    
-                    // Slow fade out after 30 seconds, then restart
-                    setTimeout(() => {
-                        if (this.isPlaying) {
-                            gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 3);
-                            setTimeout(() => {
-                                if (this.isPlaying) {
-                                    gain.gain.linearRampToValueAtTime(volume * 0.7, this.audioContext.currentTime + 5);
-                                }
-                            }, 5000);
-                        }
-                    }, 20000);
                     
                 } catch (e) {
                     // Silent fail
                 }
             }
             
-            createDroneLayer(volume, frequency, type, panValue) {
+            createBassPulse(volume, frequency, type) {
                 try {
                     const osc = this.audioContext.createOscillator();
                     const gain = this.audioContext.createGain();
-                    const panner = this.audioContext.createStereoPanner();
                     
                     osc.type = type;
                     osc.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
                     
-                    // Very slow modulation
-                    const modulator = this.audioContext.createOscillator();
-                    const modGain = this.audioContext.createGain();
-                    modulator.frequency.setValueAtTime(0.05, this.audioContext.currentTime);
-                    modGain.gain.setValueAtTime(3, this.audioContext.currentTime);
-                    
-                    modulator.connect(modGain);
-                    modGain.connect(osc.frequency);
-                    
                     gain.gain.setValueAtTime(0, this.audioContext.currentTime);
-                    gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 6);
+                    gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 2);
                     
-                    panner.pan.setValueAtTime(panValue || 0, this.audioContext.currentTime);
+                    // Bass pulse modulation
+                    const pulseLFO = this.audioContext.createOscillator();
+                    const pulseGain = this.audioContext.createGain();
+                    pulseLFO.frequency.setValueAtTime(0.5, this.audioContext.currentTime);
+                    pulseGain.gain.setValueAtTime(volume * 0.5, this.audioContext.currentTime);
+                    
+                    pulseLFO.connect(pulseGain);
+                    pulseGain.connect(gain.gain);
                     
                     osc.connect(gain);
-                    gain.connect(panner);
-                    panner.connect(this.audioContext.destination);
+                    gain.connect(this.audioContext.destination);
                     
                     osc.start(this.audioContext.currentTime);
-                    modulator.start(this.audioContext.currentTime);
+                    pulseLFO.start(this.audioContext.currentTime);
                     
-                    this.oscillators.push({ osc, modulator });
+                    this.oscillators.push({ osc, pulseLFO });
+                    this.gains.push(gain);
+                    
+                } catch (e) {
+                    // Silent fail
+                }
+            }
+            
+            createArpeggioLayer(volume, frequencies, type) {
+                try {
+                    let index = 0;
+                    const interval = setInterval(() => {
+                        if (!this.isPlaying) {
+                            clearInterval(interval);
+                            return;
+                        }
+                        
+                        const freq = frequencies[index % frequencies.length];
+                        const osc = this.audioContext.createOscillator();
+                        const gain = this.audioContext.createGain();
+                        const panner = this.audioContext.createStereoPanner();
+                        
+                        osc.type = type;
+                        osc.frequency.setValueAtTime(freq, this.audioContext.currentTime);
+                        
+                        gain.gain.setValueAtTime(0, this.audioContext.currentTime);
+                        gain.gain.linearRampToValueAtTime(volume * 0.5, this.audioContext.currentTime + 0.05);
+                        gain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 0.3);
+                        
+                        panner.pan.setValueAtTime((index % 3 - 1) * 0.5, this.audioContext.currentTime);
+                        
+                        osc.connect(gain);
+                        gain.connect(panner);
+                        panner.connect(this.audioContext.destination);
+                        
+                        osc.start(this.audioContext.currentTime);
+                        osc.stop(this.audioContext.currentTime + 0.3);
+                        
+                        index++;
+                    }, 250);
+                    
+                    this.intervals = this.intervals || [];
+                    this.intervals.push(interval);
+                    
+                } catch (e) {
+                    // Silent fail
+                }
+            }
+            
+            createPadLayer(volume, frequency, type) {
+                try {
+                    const osc = this.audioContext.createOscillator();
+                    const gain = this.audioContext.createGain();
+                    
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+                    
+                    gain.gain.setValueAtTime(0, this.audioContext.currentTime);
+                    gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 5);
+                    
+                    // Slow modulation
+                    const mod = this.audioContext.createOscillator();
+                    const modGain = this.audioContext.createGain();
+                    mod.frequency.setValueAtTime(0.15, this.audioContext.currentTime);
+                    modGain.gain.setValueAtTime(5, this.audioContext.currentTime);
+                    
+                    mod.connect(modGain);
+                    modGain.connect(osc.frequency);
+                    
+                    osc.connect(gain);
+                    gain.connect(this.audioContext.destination);
+                    
+                    osc.start(this.audioContext.currentTime);
+                    mod.start(this.audioContext.currentTime);
+                    
+                    this.oscillators.push({ osc, mod });
                     this.gains.push(gain);
                     
                 } catch (e) {
@@ -2465,15 +2478,13 @@
                 this.isPlaying = !this.isPlaying;
                 
                 if (this.isPlaying) {
-                    // Resume all gains
                     this.gains.forEach(gain => {
-                        gain.gain.linearRampToValueAtTime(0.15, this.audioContext.currentTime + 2);
+                        gain.gain.linearRampToValueAtTime(0.15, this.audioContext.currentTime + 1);
                     });
                     this.updateUI(true);
                 } else {
-                    // Fade out all gains
                     this.gains.forEach(gain => {
-                        gain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 2);
+                        gain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 1);
                     });
                     this.updateUI(false);
                 }
@@ -2498,12 +2509,18 @@
             
             stop() {
                 this.isPlaying = false;
-                this.oscillators.forEach(({ osc, modulator }) => {
+                this.oscillators.forEach(({ osc, mod, vibrato, lfo, pulseLFO }) => {
                     try {
                         osc.stop();
-                        if (modulator) modulator.stop();
+                        if (mod) mod.stop();
+                        if (vibrato) vibrato.stop();
+                        if (lfo) lfo.stop();
+                        if (pulseLFO) pulseLFO.stop();
                     } catch (e) {}
                 });
+                if (this.intervals) {
+                    this.intervals.forEach(clearInterval);
+                }
                 this.oscillators = [];
                 this.gains = [];
                 if (this.audioContext) {
@@ -2798,7 +2815,6 @@
                 this.mainContent = document.getElementById('mainContent');
                 this.enterBtn = document.getElementById('enterBtn');
                 this.isEntered = false;
-                this.musicPlayer = null;
                 
                 this.enterBtn.addEventListener('click', () => this.enter());
                 document.addEventListener('keydown', (e) => {
@@ -2872,9 +2888,7 @@
                     });
                 });
                 
-                // ==============================================
-                // KEYBOARD SHORTCUTS
-                // ==============================================
+                // Keyboard shortcuts
                 document.addEventListener('keydown', (e) => {
                     if (e.metaKey || e.ctrlKey) {
                         switch(e.key) {
@@ -2894,9 +2908,7 @@
                     }
                 });
                 
-                // ==============================================
-                // AI MODE TOGGLE
-                // ==============================================
+                // AI Mode Toggle
                 const aiToggle = document.getElementById('aiToggle');
                 let aiMode = false;
                 
@@ -2933,13 +2945,12 @@
             const cursor = new AnimatedCursor();
             const bg = new EntryBackground();
             const entry = new EntryManager();
-            const music = new AmbientMusicPlayer();
+            const music = new DarkVibeMusicPlayer();
             
             console.log('🚀 Rohit Savan\'s ULTIMATE Portfolio ready!');
             console.log('🎬 Original entry animation restored!');
-            console.log('🌙 Dark Ambient Music playing at 432Hz!');
+            console.log('🎵 Dark Vibe Music playing - Cinematic & Atmospheric!');
             console.log('🍷 Deep Glass Effects - Apple Killer!');
-            console.log('📜 All 10 improvements + glass effects activated!');
             console.log('⌨️  Keyboard shortcuts: ⌘+H (Home), ⌘+P (Projects), ⌘+C (Contact)');
             console.log('🤖 Click the AI Mode toggle for a surprise!');
         });
