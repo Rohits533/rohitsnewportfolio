@@ -524,61 +524,51 @@
         }
         
         /* ==============================================
-           SPLIT SCROLL ANIMATIONS - 600+ LINES
+           SPLIT SCROLL ANIMATIONS - FIXED
            ============================================== */
         
-        /* Split Container - Each section becomes a split screen */
+        /* Each section is a split container */
         .split-section {
             position: relative;
             min-height: 100vh;
+            width: 100%;
             overflow: hidden;
             transition: all 0.8s cubic-bezier(0.77, 0, 0.18, 1);
         }
         
-        .split-section .split-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        /* Split Container for content */
+        /* The wrapper that holds left and right panels */
         .split-wrapper {
-            position: relative;
-            z-index: 1;
             display: grid;
             grid-template-columns: 1fr 1fr;
             min-height: 100vh;
-            transition: all 1s cubic-bezier(0.77, 0, 0.18, 1);
+            width: 100%;
+            transition: all 0.8s cubic-bezier(0.77, 0, 0.18, 1);
         }
         
-        /* Left and Right panels */
+        /* Both panels - always visible */
         .split-panel {
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 60px 40px;
-            transition: all 1s cubic-bezier(0.77, 0, 0.18, 1);
+            transition: all 0.8s cubic-bezier(0.77, 0, 0.18, 1);
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
         }
         
+        /* Left panel */
         .split-panel-left {
             background: rgba(0, 0, 0, 0.3);
-            clip-path: inset(0 50% 0 0);
-            transition: all 1s cubic-bezier(0.77, 0, 0.18, 1);
+            border-right: 1px solid rgba(0, 255, 65, 0.05);
         }
         
+        /* Right panel */
         .split-panel-right {
             background: rgba(10, 10, 10, 0.5);
-            clip-path: inset(0 0 0 50%);
-            transition: all 1s cubic-bezier(0.77, 0, 0.18, 1);
         }
         
-        /* Split Line (center divider) */
+        /* Split line in center */
         .split-line {
             position: absolute;
             top: 0;
@@ -596,8 +586,8 @@
             );
             transform: translateX(-50%);
             z-index: 5;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3), 0 0 60px rgba(0, 255, 65, 0.1);
-            transition: all 0.5s;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+            transition: all 0.8s cubic-bezier(0.77, 0, 0.18, 1);
         }
         
         .split-line::before,
@@ -606,8 +596,8 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: #00FF41;
             box-shadow: 0 0 40px rgba(0, 255, 65, 0.8);
@@ -621,15 +611,15 @@
             bottom: 20%;
         }
         
-        /* Split Glow Effect */
+        /* Glow effect behind content */
         .split-glow {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 255, 65, 0.05), transparent 70%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.03), transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
@@ -642,12 +632,12 @@
         }
         
         .split-section.split-open .split-panel-left {
-            clip-path: inset(0 50% 0 0);
+            opacity: 1;
             transform: translateX(0);
         }
         
         .split-section.split-open .split-panel-right {
-            clip-path: inset(0 0 0 50%);
+            opacity: 1;
             transform: translateX(0);
         }
         
@@ -658,18 +648,17 @@
         
         /* ===== SCROLL STATE: SPLIT CLOSED (scrolling up) ===== */
         .split-section.split-closed .split-wrapper {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
         }
         
         .split-section.split-closed .split-panel-left {
-            clip-path: inset(0 0 0 0);
-            transform: translateX(0);
+            opacity: 0.3;
+            transform: translateX(-30px);
         }
         
         .split-section.split-closed .split-panel-right {
-            clip-path: inset(0 0 0 0);
-            transform: translateX(0);
             opacity: 0.3;
+            transform: translateX(30px);
         }
         
         .split-section.split-closed .split-line {
@@ -677,10 +666,18 @@
             transform: translateX(-50%) scaleY(0.3);
         }
         
+        /* Hover state - always full opacity */
+        .split-section.split-closed:hover .split-panel-left,
+        .split-section.split-closed:hover .split-panel-right {
+            opacity: 0.6;
+        }
+        
         /* ===== PANEL CONTENT STYLES ===== */
         .split-content {
-            max-width: 500px;
+            max-width: 550px;
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
         
         .split-content-left {
@@ -725,37 +722,12 @@
             line-height: 1.8;
         }
         
-        /* ===== PANEL ICONS ===== */
         .panel-icon {
             font-size: 4rem;
             margin-bottom: 20px;
             display: block;
             color: #00FF41;
             text-shadow: 0 0 40px rgba(0, 255, 65, 0.3);
-        }
-        
-        /* ===== SPLIT SECTION BACKGROUNDS ===== */
-        .split-section:nth-child(odd) .split-panel-left {
-            background: rgba(0, 255, 65, 0.02);
-        }
-        
-        .split-section:nth-child(even) .split-panel-left {
-            background: rgba(255, 215, 0, 0.02);
-        }
-        
-        .split-section:nth-child(odd) .split-panel-right {
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .split-section:nth-child(even) .split-panel-right {
-            background: rgba(0, 0, 0, 0.4);
-        }
-        
-        /* ===== SECTION WRAPPER FOR SPLIT ===== */
-        .section-wrapper {
-            position: relative;
-            z-index: 1;
-            width: 100%;
         }
         
         /* ==============================================
@@ -876,7 +848,7 @@
         }
         
         /* ==============================================
-           HERO SECTION (No split for hero - stays full)
+           HERO SECTION (No split - stays full)
            ============================================== */
         .hero {
             min-height: 100vh;
@@ -1020,8 +992,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 15px;
-            max-width: 900px;
-            margin: 0 auto;
+            width: 100%;
         }
         
         .skill-tag {
@@ -1057,33 +1028,34 @@
             text-decoration: none;
             color: inherit;
             display: block;
-            height: 100%;
+            width: 100%;
         }
         
         .project-card .project-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 10px;
             display: block;
         }
         
         .project-card .project-title {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .project-card .project-desc {
             color: #b0b0b0;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             line-height: 1.6;
         }
         
         .project-card .project-link {
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 10px;
             color: #00FF41;
             font-weight: 600;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
         
         .project-card:hover .project-link {
@@ -1092,7 +1064,7 @@
         }
         
         /* ==============================================
-           SECTION HEADERS
+           SECTION HEADERS (for non-split sections)
            ============================================== */
         .section-header {
             text-align: center;
@@ -1130,7 +1102,7 @@
         }
         
         /* ==============================================
-           RESPONSIVE
+           RESPONSIVE - FIXED
            ============================================== */
         @media (max-width: 1024px) {
             .hero-container {
@@ -1150,6 +1122,7 @@
                 justify-content: center;
             }
             
+            /* Disable split on tablet/mobile */
             .split-wrapper {
                 grid-template-columns: 1fr !important;
                 min-height: auto !important;
@@ -1157,15 +1130,14 @@
             
             .split-panel {
                 padding: 40px 20px !important;
-                min-height: 50vh !important;
+                min-height: auto !important;
+                opacity: 1 !important;
+                transform: none !important;
             }
             
             .split-panel-left {
-                clip-path: inset(0 0 0 0) !important;
-            }
-            
-            .split-panel-right {
-                clip-path: inset(0 0 0 0) !important;
+                border-right: none !important;
+                border-bottom: 1px solid rgba(0, 255, 65, 0.05);
             }
             
             .split-line {
@@ -1184,6 +1156,14 @@
             
             .split-section {
                 min-height: auto !important;
+            }
+            
+            .split-section.split-open .split-panel-left,
+            .split-section.split-open .split-panel-right,
+            .split-section.split-closed .split-panel-left,
+            .split-section.split-closed .split-panel-right {
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
         
@@ -1251,7 +1231,6 @@
             
             .split-panel {
                 padding: 30px 15px !important;
-                min-height: 40vh !important;
             }
         }
     </style>
@@ -1329,7 +1308,7 @@
             </nav>
         </header>
 
-        <!-- ===== HOME/HERO SECTION (NO SPLIT) ===== -->
+        <!-- ===== HOME/HERO SECTION ===== -->
         <section id="home" class="hero">
             <div class="hero-container">
                 <div class="hero-content">
@@ -1384,7 +1363,6 @@
 
         <!-- ===== JOURNEY SECTION (SPLIT) ===== -->
         <section id="journey" class="split-section" data-section="journey">
-            <div class="split-overlay"></div>
             <div class="split-line"></div>
             <div class="split-glow"></div>
             
@@ -1451,7 +1429,6 @@
 
         <!-- ===== SKILLS SECTION (SPLIT) ===== -->
         <section id="skills" class="split-section" data-section="skills">
-            <div class="split-overlay"></div>
             <div class="split-line"></div>
             <div class="split-glow"></div>
             
@@ -1534,7 +1511,6 @@
 
         <!-- ===== PROJECTS SECTION (SPLIT) ===== -->
         <section id="projects" class="split-section" data-section="projects">
-            <div class="split-overlay"></div>
             <div class="split-line"></div>
             <div class="split-glow"></div>
             
@@ -1558,21 +1534,21 @@
                     <div class="split-content split-content-right">
                         <div style="display:grid;grid-template-columns:1fr;gap:20px;width:100%;">
                             <a href="https://rohits533.github.io" target="_blank" class="project-card glass-card" style="padding:20px;">
-                                <span class="project-icon" style="font-size:2rem;">🌐</span>
-                                <h4 class="project-title" style="font-size:1rem;">AI Tools Portfolio</h4>
-                                <p class="project-desc" style="font-size:0.85rem;">Portfolio containing AI tools for day-to-day tasks.</p>
+                                <span class="project-icon">🌐</span>
+                                <h4 class="project-title">AI Tools Portfolio</h4>
+                                <p class="project-desc">Portfolio containing AI tools for day-to-day tasks.</p>
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
                             <a href="https://rohit-ai-chatbot-2026.streamlit.app" target="_blank" class="project-card glass-card" style="padding:20px;">
-                                <span class="project-icon" style="font-size:2rem;">🤖</span>
-                                <h4 class="project-title" style="font-size:1rem;">AI Chatbot</h4>
-                                <p class="project-desc" style="font-size:0.85rem;">Intelligent AI chatbot built with Streamlit.</p>
+                                <span class="project-icon">🤖</span>
+                                <h4 class="project-title">AI Chatbot</h4>
+                                <p class="project-desc">Intelligent AI chatbot built with Streamlit.</p>
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
                             <a href="https://ai-code-reviewer-js.vercel.app" target="_blank" class="project-card glass-card" style="padding:20px;">
-                                <span class="project-icon" style="font-size:2rem;">📝</span>
-                                <h4 class="project-title" style="font-size:1rem;">AI Code Reviewer</h4>
-                                <p class="project-desc" style="font-size:0.85rem;">AI-powered code reviewer built with Next.js.</p>
+                                <span class="project-icon">📝</span>
+                                <h4 class="project-title">AI Code Reviewer</h4>
+                                <p class="project-desc">AI-powered code reviewer built with Next.js.</p>
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
                         </div>
@@ -1583,7 +1559,6 @@
 
         <!-- ===== CONTACT SECTION (SPLIT) ===== -->
         <section id="contact" class="split-section" data-section="contact">
-            <div class="split-overlay"></div>
             <div class="split-line"></div>
             <div class="split-glow"></div>
             
@@ -1609,15 +1584,15 @@
                             <form id="contactForm">
                                 <div style="margin-bottom:20px;">
                                     <label style="display:block;margin-bottom:5px;color:#b0b0b0;font-size:0.9rem;">Name</label>
-                                    <input type="text" placeholder="Your name" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;transition:all 0.3s;">
+                                    <input type="text" placeholder="Your name" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;">
                                 </div>
                                 <div style="margin-bottom:20px;">
                                     <label style="display:block;margin-bottom:5px;color:#b0b0b0;font-size:0.9rem;">Email</label>
-                                    <input type="email" placeholder="your@email.com" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;transition:all 0.3s;">
+                                    <input type="email" placeholder="your@email.com" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;">
                                 </div>
                                 <div style="margin-bottom:20px;">
                                     <label style="display:block;margin-bottom:5px;color:#b0b0b0;font-size:0.9rem;">Message</label>
-                                    <textarea rows="4" placeholder="Tell me about your project..." style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;resize:vertical;transition:all 0.3s;"></textarea>
+                                    <textarea rows="4" placeholder="Tell me about your project..." style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;resize:vertical;"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;cursor:none;">
                                     Send Message <i class="fas fa-paper-plane"></i>
@@ -1833,27 +1808,18 @@
         }
 
         // ==============================================
-        // SPLIT SCROLL CONTROLLER - 400+ LINES
+        // SPLIT SCROLL CONTROLLER - FIXED
         // ==============================================
         class SplitScrollController {
             constructor() {
                 this.sections = document.querySelectorAll('.split-section');
                 this.prevScroll = window.scrollY;
-                this.currentIndex = 0;
                 this.isAnimating = false;
-                this.scrollDirection = 'down';
                 
-                this.init();
-            }
-            
-            init() {
-                // Set initial state
-                this.sections.forEach((section, index) => {
-                    if (index === 0) {
-                        section.classList.add('split-open');
-                    } else {
-                        section.classList.add('split-closed');
-                    }
+                // Initialize - all sections start OPEN
+                this.sections.forEach((section) => {
+                    section.classList.add('split-open');
+                    section.classList.remove('split-closed');
                 });
                 
                 // Listen for scroll with throttling
@@ -1868,41 +1834,36 @@
                     }
                 });
                 
-                // Also handle on load
-                setTimeout(() => this.handleScroll(), 100);
+                // Handle on load
+                setTimeout(() => this.handleScroll(), 200);
             }
             
             handleScroll() {
                 const currentScroll = window.scrollY;
-                const direction = currentScroll > this.prevScroll ? 'down' : 'up';
-                this.scrollDirection = direction;
-                this.prevScroll = currentScroll;
+                const windowHeight = window.innerHeight;
                 
-                // Check which section is in view
-                this.sections.forEach((section, index) => {
+                this.sections.forEach((section) => {
                     const rect = section.getBoundingClientRect();
-                    const windowHeight = window.innerHeight;
                     
-                    // Section is in view
-                    if (rect.top < windowHeight * 0.7 && rect.bottom > windowHeight * 0.3) {
-                        this.currentIndex = index;
-                        
-                        // Update all sections based on scroll direction
-                        this.sections.forEach((s, idx) => {
-                            if (idx <= index) {
-                                // Sections above or current - OPEN (split)
-                                s.classList.remove('split-closed');
-                                s.classList.add('split-open');
-                            } else {
-                                // Sections below - CLOSED (merged)
-                                s.classList.remove('split-open');
-                                s.classList.add('split-closed');
-                            }
-                        });
+                    // Check if section is in viewport
+                    const isInView = rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2;
+                    
+                    if (isInView) {
+                        // Section is visible - OPEN (split)
+                        section.classList.remove('split-closed');
+                        section.classList.add('split-open');
+                    } else if (rect.top < 0) {
+                        // Section is above viewport - CLOSED (merged)
+                        section.classList.remove('split-open');
+                        section.classList.add('split-closed');
+                    } else {
+                        // Section is below viewport - CLOSED (merged)
+                        section.classList.remove('split-open');
+                        section.classList.add('split-closed');
                     }
                 });
                 
-                // Update navigation active state based on visible section
+                // Update navigation
                 this.updateNavigation();
             }
             
@@ -1910,7 +1871,6 @@
                 const navLinks = document.querySelectorAll('.nav-link');
                 const sections = document.querySelectorAll('section[id]');
                 
-                // Find which section is most visible
                 let maxVisibility = 0;
                 let visibleSection = 'home';
                 
@@ -1927,7 +1887,6 @@
                     }
                 });
                 
-                // Update nav links
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${visibleSection}`) {
@@ -1975,7 +1934,7 @@
             }
             
             initPortfolio() {
-                // Initialize counter animations
+                // Counter animations
                 document.querySelectorAll('.stat-number[data-count]').forEach(el => {
                     const target = parseInt(el.dataset.count);
                     let current = 0;
@@ -1993,12 +1952,9 @@
                 // Initialize Split Scroll Controller
                 const splitController = new SplitScrollController();
                 
-                // Navigation scroll spy (enhanced)
-                const sections = document.querySelectorAll('section[id]');
-                const navLinks = document.querySelectorAll('.nav-link');
-                
+                // Navigation scroll spy
+                const header = document.getElementById('header');
                 window.addEventListener('scroll', () => {
-                    const header = document.getElementById('header');
                     if (window.scrollY > 50) {
                         header.classList.add('scrolled');
                     } else {
@@ -2041,8 +1997,8 @@
             const bg = new EntryBackground();
             const entry = new EntryManager();
             
-            console.log('🚀 Rohit Savan\'s Portfolio ready with SPLIT SCROLL animations!');
-            console.log('📜 Scroll down to see sections split apart, scroll up to merge!');
+            console.log('🚀 Rohit Savan\'s Portfolio ready!');
+            console.log('📜 Scroll down to see sections split, scroll up to merge!');
         });
     </script>
 
