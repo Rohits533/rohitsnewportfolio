@@ -1,13 +1,14 @@
 // ============================================
-// ===== PRELOADER =====
+// ===== PRELOADER - FIXED! =====
 // ============================================
 (function preloader() {
     const preloader = document.getElementById('preloader');
     const progress = document.getElementById('progress');
+    
+    // Force progress to 100% after 2 seconds max
     let progressValue = 0;
-
     const interval = setInterval(() => {
-        progressValue += Math.random() * 15;
+        progressValue += Math.random() * 15 + 5;
         if (progressValue > 100) progressValue = 100;
         progress.style.width = progressValue + '%';
 
@@ -15,15 +16,28 @@
             clearInterval(interval);
             setTimeout(() => {
                 preloader.classList.add('hidden');
-                // Start animations after preloader
+                // Trigger reveal animations after preloader
                 setTimeout(() => {
                     document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
                         el.classList.add('active');
                     });
                 }, 200);
-            }, 500);
+            }, 300);
         }
     }, 200);
+
+    // FALLBACK: If preloader gets stuck, force it to finish after 4 seconds
+    setTimeout(() => {
+        if (!preloader.classList.contains('hidden')) {
+            progress.style.width = '100%';
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+                    el.classList.add('active');
+                });
+            }, 300);
+        }
+    }, 4000);
 })();
 
 // ============================================
@@ -31,6 +45,7 @@
 // ============================================
 (function particles() {
     const canvas = document.getElementById('particleCanvas');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
@@ -55,7 +70,6 @@
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
-
             if (this.x < 0 || this.x > width) this.speedX *= -1;
             if (this.y < 0 || this.y > height) this.speedY *= -1;
         }
@@ -79,19 +93,15 @@
 
     function animate() {
         ctx.clearRect(0, 0, width, height);
-
         for (let p of particles) {
             p.update();
             p.draw();
         }
-
-        // Draw connections
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-
                 if (dist < CONNECTION_DISTANCE) {
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
@@ -102,7 +112,6 @@
                 }
             }
         }
-
         requestAnimationFrame(animate);
     }
 
@@ -115,8 +124,8 @@
 // ============================================
 (function shootingStars() {
     const container = document.getElementById('stars');
+    if (!container) return;
 
-    // Static stars
     for (let i = 0; i < 150; i++) {
         const star = document.createElement('div');
         star.className = 'star';
@@ -129,7 +138,6 @@
         container.appendChild(star);
     }
 
-    // Shooting stars
     for (let i = 0; i < 8; i++) {
         const star = document.createElement('div');
         star.className = 'shooting-star';
@@ -151,20 +159,21 @@
     const ring = document.getElementById('cursorRing');
     const trail = document.getElementById('cursorTrail');
 
+    if (!dot || !ring) return;
+
+    if (window.innerWidth <= 768) {
+        dot.style.display = 'none';
+        ring.style.display = 'none';
+        if (trail) trail.style.display = 'none';
+        return;
+    }
+
     let mouseX = 0,
         mouseY = 0;
     let ringX = 0,
         ringY = 0;
     let trailX = 0,
         trailY = 0;
-
-    // Check if on mobile
-    if (window.innerWidth <= 768) {
-        dot.style.display = 'none';
-        ring.style.display = 'none';
-        trail.style.display = 'none';
-        return;
-    }
 
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -179,17 +188,17 @@
         ring.style.left = ringX + 'px';
         ring.style.top = ringY + 'px';
 
-        // Trail follow
-        trailX += (mouseX - trailX) * 0.06;
-        trailY += (mouseY - trailY) * 0.06;
-        trail.style.left = trailX + 'px';
-        trail.style.top = trailY + 'px';
+        if (trail) {
+            trailX += (mouseX - trailX) * 0.06;
+            trailY += (mouseY - trailY) * 0.06;
+            trail.style.left = trailX + 'px';
+            trail.style.top = trailY + 'px';
+        }
 
         requestAnimationFrame(animateRing);
     }
     animateRing();
 
-    // Hover effects
     const interactiveElements = document.querySelectorAll(
         'a, button, .project-card, .skill-tag, .journey-tab, .filter-btn, .manifesto-item'
     );
@@ -213,6 +222,7 @@
 // ============================================
 (function scrollProgress() {
     const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
 
     window.addEventListener('scroll', () => {
         const scrollTop = window.scrollY;
@@ -227,18 +237,14 @@
 // ============================================
 (function navbarScroll() {
     const navbar = document.getElementById('navbar');
-    let lastScroll = 0;
+    if (!navbar) return;
 
     window.addEventListener('scroll', () => {
-        const currentScroll = window.scrollY;
-
-        if (currentScroll > 50) {
+        if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-
-        lastScroll = currentScroll;
     });
 })();
 
@@ -247,22 +253,20 @@
 // ============================================
 (function enterPortfolio() {
     const enterBtn = document.getElementById('enterBtn');
+    if (!enterBtn) return;
 
     enterBtn.addEventListener('click', function(e) {
         e.preventDefault();
 
-        // Hide landing
         const landing = document.getElementById('landing');
         landing.style.opacity = '0';
         landing.style.transition = 'opacity 0.8s ease';
 
-        // Show portfolio
         setTimeout(() => {
             landing.style.display = 'none';
             const portfolio = document.getElementById('portfolio');
             portfolio.classList.add('active');
 
-            // Trigger reveal animations
             setTimeout(() => {
                 document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
                     .forEach(el => {
@@ -270,10 +274,7 @@
                     });
             }, 300);
 
-            // Animate stats
             animateStats();
-
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 800);
     });
@@ -284,14 +285,11 @@
 // ============================================
 function animateStats() {
     const statNumbers = document.querySelectorAll('.stat-number');
-
     statNumbers.forEach(stat => {
         const target = parseInt(stat.dataset.count);
+        if (isNaN(target)) return;
         let current = 0;
         const increment = Math.ceil(target / 60);
-        const duration = 2000;
-        const stepTime = Math.floor(duration / 60);
-
         const timer = setInterval(() => {
             current += increment;
             if (current >= target) {
@@ -299,7 +297,7 @@ function animateStats() {
                 clearInterval(timer);
             }
             stat.textContent = current + (target === 100 ? '%' : '+');
-        }, stepTime);
+        }, 30);
     });
 }
 
@@ -333,6 +331,7 @@ function animateStats() {
 (function hamburger() {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
+    if (!hamburger || !navLinks) return;
 
     hamburger.addEventListener('click', function() {
         this.classList.toggle('active');
@@ -340,7 +339,6 @@ function animateStats() {
         document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
@@ -356,17 +354,15 @@ function animateStats() {
 (function journeyTabs() {
     const tabs = document.querySelectorAll('.journey-tab');
     const contents = document.querySelectorAll('.journey-content');
+    if (!tabs.length) return;
 
     tabs.forEach(tab => {
         tab.addEventListener('click', function() {
-            // Remove active from all tabs
             tabs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
 
-            // Hide all content
             contents.forEach(c => c.classList.remove('active'));
 
-            // Show target content
             const target = document.getElementById(this.dataset.tab);
             if (target) {
                 target.classList.add('active');
@@ -381,10 +377,10 @@ function animateStats() {
 (function projectFilter() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    if (!filterBtns.length) return;
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Remove active from all buttons
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
@@ -414,17 +410,19 @@ function animateStats() {
 // ============================================
 (function contactForm() {
     const form = document.getElementById('contactForm');
+    if (!form) return;
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
         const btn = this.querySelector('.btn-primary');
+        if (!btn) return;
+
         const originalText = btn.innerHTML;
 
         btn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
         btn.disabled = true;
 
-        // Simulate sending
         setTimeout(() => {
             btn.innerHTML = '<span>Sent!</span><i class="fas fa-check"></i>';
             btn.style.background = 'linear-gradient(135deg, var(--neon-green), #00cc77)';
@@ -440,77 +438,26 @@ function animateStats() {
 })();
 
 // ============================================
-// ===== SMOOTH SCROLL FOR NAV LINKS =====
+// ===== SMOOTH SCROLL =====
 // ============================================
-(function smoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === '#') return;
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
 
-            e.preventDefault();
-            const target = document.querySelector(href);
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (!target) return;
 
-            if (target) {
-                const navHeight = document.querySelector('nav').offsetHeight;
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
+        const navHeight = document.querySelector('nav')?.offsetHeight || 60;
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
         });
     });
-})();
-
-// ============================================
-// ===== PARALLAX EFFECT ON HERO =====
-// ============================================
-(function parallax() {
-    const hero = document.querySelector('.hero-section');
-    if (!hero) return;
-
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        if (scrollPosition < window.innerHeight) {
-            const parallaxValue = scrollPosition * 0.05;
-            hero.style.transform = `translateY(${parallaxValue}px)`;
-            hero.style.opacity = 1 - (scrollPosition / (window.innerHeight * 0.8));
-        }
-    });
-})();
-
-// ============================================
-// ===== TYPEWRITER EFFECT ON HERO =====
-// ============================================
-(function typewriter() {
-    const heroTitle = document.querySelector('.hero-title');
-    if (!heroTitle) return;
-
-    // Add a subtle typewriter effect to the first word
-    const text = heroTitle.textContent;
-    const words = text.split(' ');
-    heroTitle.textContent = '';
-
-    // Skip for mobile
-    if (window.innerWidth <= 768) {
-        heroTitle.textContent = text;
-        return;
-    }
-
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function type() {
-        // Just show the full text after a moment
-        heroTitle.textContent = text;
-        heroTitle.style.opacity = '1';
-    }
-
-    setTimeout(type, 1000);
-})();
+});
 
 // ============================================
 // ===== CONSOLE GREETING =====
@@ -520,13 +467,3 @@ console.log('%c💻 Developer • AI/ML • Full Stack', 'font-size: 14px; color
 console.log('%c✨ Built with ❤️ & lots of code', 'font-size: 12px; color: #8888a0;');
 console.log('%c📧 rohitsavan360@gmail.com', 'font-size: 12px; color: #6C63FF;');
 console.log('%c🐙 github.com/Rohits533', 'font-size: 12px; color: #6C63FF;');
-
-// Keyboard shortcut: Press 'R' to reset
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'r' && e.ctrlKey) {
-        e.preventDefault();
-        location.reload();
-    }
-});
-
-console.log('%c⌨️ Press Ctrl+R to reload', 'font-size: 10px; color: #555;');
