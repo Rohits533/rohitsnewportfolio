@@ -1,1086 +1,1005 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
-    <!-- ============================================ -->
-    <!-- META TAGS - 500+ LINES                       -->
-    <!-- ============================================ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#00FF41">
-    <meta name="description" content="Ronit's Personal Portfolio - Neon Cyberpunk Developer">
-    <meta name="keywords" content="ronit, portfolio, developer, neon, cyberpunk, full stack">
-    <meta name="author" content="Ronit">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="description" content="Ronit's Portfolio - Enter the Neon Cyberpunk Experience">
+    <title>Ronit | Enter the Neon Experience</title>
     
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Ronit's Portfolio - Neon Cyberpunk Developer">
-    <meta property="og:description" content="Step into the future of web development">
-    <meta property="og:image" content="https://ronit.dev/og-image.jpg">
-    <meta property="og:url" content="https://ronit.dev">
-    <meta property="og:site_name" content="Ronit Portfolio">
-    
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ronit's Portfolio">
-    <meta name="twitter:description" content="Neon Cyberpunk Developer Portfolio">
-    <meta name="twitter:image" content="https://ronit.dev/twitter-image.jpg">
-    
-    <!-- Additional Meta Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="manifest" href="manifest.json">
-    <link rel="canonical" href="https://ronit.dev">
-    
-    <!-- DNS Prefetch & Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://api.github.com">
-    
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="assets/fonts/neon.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/images/hero-bg.webp" as="image">
-    <link rel="preload" href="styles.css" as="style">
-    
-    <!-- ============================================ -->
-    <!-- FONTS & ICONS - 200+ LINES                  -->
-    <!-- ============================================ -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
-    <!-- ============================================ -->
-    <!-- STRUCTURED DATA (JSON-LD) - 800+ LINES      -->
-    <!-- ============================================ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Ronit",
-      "givenName": "Ronit",
-      "familyName": "",
-      "description": "Neon Cyberpunk Developer creating immersive digital experiences",
-      "image": "https://ronit.dev/profile.jpg",
-      "url": "https://ronit.dev",
-      "sameAs": [
-        "https://github.com/ronit",
-        "https://linkedin.com/in/ronit",
-        "https://twitter.com/ronit",
-        "https://instagram.com/ronit",
-        "https://youtube.com/@ronit",
-        "https://dev.to/ronit",
-        "https://hashnode.com/@ronit",
-        "https://stackoverflow.com/users/ronit"
-      ],
-      "jobTitle": "Senior Full Stack Developer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Innovation Hacks"
-      },
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Innovation Hacks"
-      },
-      "knowsAbout": [
-        "JavaScript",
-        "React", 
-        "Node.js",
-        "Python",
-        "AWS",
-        "Docker",
-        "TypeScript",
-        "Next.js",
-        "GraphQL",
-        "MongoDB",
-        "PostgreSQL",
-        "Redis"
-      ],
-      "hasOccupation": {
-        "@type": "Occupation",
-        "name": "Full Stack Developer",
-        "description": "Building immersive web experiences with neon aesthetic"
-      },
-      "award": [
-        {
-          "@type": "Award",
-          "name": "Innovation Hacks Winner",
-          "year": "2024"
-        },
-        {
-          "@type": "Award", 
-          "name": "Best Cyberpunk Design",
-          "year": "2024"
-        }
-      ],
-      "knowsLanguage": ["English", "Hindi"],
-      "affiliation": {
-        "@type": "Organization",
-        "name": "Innovation Hacks"
-      },
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://ronit.dev"
-      }
-    }
-    </script>
-
-    <!-- ============================================ -->
-    <!-- CRITICAL STYLES - 200+ LINES                -->
-    <!-- ============================================ -->
     <style>
-        /* Critical CSS for initial render */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { 
+        /* ==============================================
+           RESET & BASE
+           ============================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             font-family: 'Rajdhani', sans-serif;
             background: #0a0a0a;
             color: #fff;
-            overflow-x: hidden;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            cursor: none;
+            user-select: none;
         }
-        .preloader {
+        
+        /* ==============================================
+           ANIMATED CURSOR
+           ============================================== */
+        .custom-cursor {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 99999;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #00FF41;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.8), 0 0 40px rgba(0, 255, 65, 0.4);
+            transition: width 0.2s, height 0.2s;
+        }
+        
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #00FF41;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+        }
+        
+        .cursor-trail {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.6;
+        }
+        
+        .cursor-glow {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.15), transparent 70%);
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s;
+        }
+        
+        .cursor-particles {
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #00FF41;
+            border-radius: 50%;
+            animation: particleFloat 1s ease-out forwards;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+        
+        /* Cursor States */
+        .custom-cursor.hover .cursor-dot {
+            width: 12px;
+            height: 12px;
+            background: #FFD700;
+        }
+        
+        .custom-cursor.hover .cursor-ring {
+            width: 60px;
+            height: 60px;
+            border-color: #FFD700;
+            transform: translate(-50%, -50%) scale(1.2);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+        }
+        
+        .custom-cursor.click .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background: #FF00FF;
+        }
+        
+        .custom-cursor.click .cursor-ring {
+            width: 80px;
+            height: 80px;
+            border-color: #FF00FF;
+            transform: translate(-50%, -50%) scale(1.5);
+            box-shadow: 0 0 60px rgba(255, 0, 255, 0.4);
+        }
+        
+        .custom-cursor.click .cursor-glow {
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.3), transparent 70%);
+        }
+        
+        /* ==============================================
+           ENTRY PAGE
+           ============================================== */
+        #entryPage {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 99998;
             background: #0a0a0a;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 99999;
-            transition: opacity 0.5s, visibility 0.5s;
+            transition: all 1.8s cubic-bezier(0.77, 0, 0.18, 1);
         }
-        .preloader.hidden {
+        
+        #entryPage.exit {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
+            transform: scale(1.1);
         }
-        .preloader-content {
+        
+        #entryPage.exit .entry-content {
+            transform: translateY(-50px) scale(0.9);
+            opacity: 0;
+        }
+        
+        /* ===== BACKGROUND EFFECTS ===== */
+        .entry-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #entryCanvas {
+            width: 100%;
+            height: 100%;
+            opacity: 0.6;
+        }
+        
+        .entry-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .entry-scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            pointer-events: none;
+        }
+        
+        .entry-vignette {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 50%, #0a0a0a 100%);
+            pointer-events: none;
+        }
+        
+        .entry-noise {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            animation: noiseMove 0.3s steps(5) infinite;
+        }
+        
+        @keyframes noiseMove {
+            0% { transform: translate(0, 0); }
+            20% { transform: translate(-5%, -5%); }
+            40% { transform: translate(5%, -5%); }
+            60% { transform: translate(-5%, 5%); }
+            80% { transform: translate(5%, 5%); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        /* Glow Orbs */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: orbFloat 8s ease-in-out infinite;
+        }
+        
+        .glow-orb:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: #00FF41;
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+        
+        .glow-orb:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: #FFD700;
+            bottom: -50px;
+            left: -50px;
+            animation-delay: -3s;
+        }
+        
+        .glow-orb:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background: #FF00FF;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -5s;
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.2); }
+            66% { transform: translate(-20px, 20px) scale(0.8); }
+        }
+        
+        /* ===== ENTRY CONTENT ===== */
+        .entry-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
+            transition: all 1s cubic-bezier(0.77, 0, 0.18, 1);
         }
-        .preloader-logo {
+        
+        /* Glitch Text */
+        .entry-title {
             font-family: 'Orbitron', monospace;
-            font-size: 4rem;
-            background: linear-gradient(135deg, #00FF41, #FFD700, #00FF41);
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .entry-title .glitch-text {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, #00FF41, #FFD700, #00FF41, #FF00FF);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientShift 2s ease infinite;
+            animation: gradientShift 3s ease infinite;
+            text-shadow: none;
+            filter: drop-shadow(0 0 30px rgba(0, 255, 65, 0.3));
         }
+        
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .preloader-bar {
-            width: 200px;
-            height: 3px;
-            background: rgba(255,255,255,0.1);
-            margin: 20px auto;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        .preloader-bar-inner {
+        
+        .entry-title .glitch-text::before,
+        .entry-title .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #00FF41, #FFD700);
-            transition: width 0.3s;
+            -webkit-text-fill-color: initial;
+        }
+        
+        .entry-title .glitch-text::before {
+            color: #FF00FF;
+            animation: glitch1 2s infinite;
+            clip-path: inset(20% 0 60% 0);
+            -webkit-text-fill-color: initial;
+        }
+        
+        .entry-title .glitch-text::after {
+            color: #00D4FF;
+            animation: glitch2 2.5s infinite;
+            clip-path: inset(60% 0 20% 0);
+            -webkit-text-fill-color: initial;
+        }
+        
+        @keyframes glitch1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+        }
+        
+        @keyframes glitch2 {
+            0%, 100% { transform: translate(0); }
+            30% { transform: translate(2px, -2px); }
+            50% { transform: translate(-2px, 2px); }
+            70% { transform: translate(2px, 2px); }
+            90% { transform: translate(-2px, -2px); }
+        }
+        
+        .entry-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: #b0b0b0;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            animation: fadeInUp 1.5s ease 0.5s both;
+        }
+        
+        .entry-subtitle span {
+            color: #00FF41;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+        }
+        
+        /* ===== ENTER BUTTON ===== */
+        .enter-btn {
+            position: relative;
+            padding: 20px 60px;
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1rem, 1.5vw, 1.5rem);
+            font-weight: 700;
+            color: #00FF41;
+            background: transparent;
+            border: 2px solid #00FF41;
+            border-radius: 50px;
+            cursor: none;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1.5s ease 1s both;
+        }
+        
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: all 0.6s;
+        }
+        
+        .enter-btn:hover::before {
+            left: 100%;
+        }
+        
+        .enter-btn:hover {
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.3), inset 0 0 40px rgba(0, 255, 65, 0.1);
+            transform: translateY(-3px) scale(1.02);
+            color: #fff;
+            border-color: #FFD700;
+        }
+        
+        .enter-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .enter-btn .btn-text {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .enter-btn .btn-icon {
+            display: inline-block;
+            transition: all 0.4s;
+        }
+        
+        .enter-btn:hover .btn-icon {
+            transform: translateX(5px) rotate(-45deg);
+            color: #FFD700;
+        }
+        
+        /* Button Glow Rings */
+        .enter-btn .btn-glow-ring {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: ringPulse 2s ease-in-out infinite;
+        }
+        
+        .enter-btn .btn-glow-ring:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            top: -30px;
+            right: -30px;
+            animation-delay: 0s;
+        }
+        
+        .enter-btn .btn-glow-ring:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            bottom: -20px;
+            left: -20px;
+            animation-delay: 1s;
+        }
+        
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.3); opacity: 0.8; }
+        }
+        
+        /* ===== ENTRY FOOTER ===== */
+        .entry-footer {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 14px;
+            letter-spacing: 2px;
+            z-index: 2;
+            animation: fadeInUp 1.5s ease 1.5s both;
+        }
+        
+        .entry-footer span {
+            color: #00FF41;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* ==============================================
+           ANIMATIONS
+           ============================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* ==============================================
+           RESPONSIVE
+           ============================================== */
+        @media (max-width: 768px) {
+            .entry-title {
+                font-size: clamp(2rem, 8vw, 4rem);
+            }
+            
+            .enter-btn {
+                padding: 15px 40px;
+                font-size: 1rem;
+            }
+            
+            .entry-subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 4px;
+            }
+            
+            .glow-orb {
+                filter: blur(40px);
+            }
+            
+            .glow-orb:nth-child(1) {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .glow-orb:nth-child(2) {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .glow-orb:nth-child(3) {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .entry-title {
+                font-size: 2rem;
+            }
+            
+            .enter-btn {
+                padding: 12px 30px;
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .entry-footer {
+                font-size: 10px;
+                bottom: 20px;
+            }
         }
     </style>
-
-    <!-- ============================================ -->
-    <!-- MAIN STYLESHEET (Linked)                    -->
-    <!-- ============================================ -->
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ============================================ -->
-    <!-- 1. PRELOADER - 800+ LINES                   -->
-    <!-- ============================================ -->
-    <div class="preloader" id="preloader" role="status" aria-label="Loading">
-        <div class="preloader-content">
-            <div class="preloader-logo">RONIT</div>
-            <div class="preloader-text">Loading Matrix</div>
-            <div class="preloader-bar">
-                <div class="preloader-bar-inner" id="preloaderProgress"></div>
-            </div>
-            <div class="preloader-percentage" id="preloaderPercentage">0%</div>
-            <div class="preloader-tips" id="preloaderTip">
-                ⚡ Loading the future...
-            </div>
-            <div class="preloader-matrix">
-                <!-- Matrix rain effect -->
-                <canvas id="matrixCanvas"></canvas>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- 2. CUSTOM CURSOR - 500+ LINES              -->
-    <!-- ============================================ -->
+    <!-- ============================================== -->
+    <!-- ANIMATED CURSOR -->
+    <!-- ============================================== -->
     <div class="custom-cursor" id="customCursor">
-        <div class="cursor-dot" id="cursorDot"></div>
-        <div class="cursor-ring" id="cursorRing"></div>
-        <div class="cursor-trail" id="cursorTrail"></div>
         <div class="cursor-glow" id="cursorGlow"></div>
-        <div class="cursor-text" id="cursorText"></div>
+        <div class="cursor-ring" id="cursorRing"></div>
+        <div class="cursor-dot" id="cursorDot"></div>
         <div class="cursor-particles" id="cursorParticles"></div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- 3. GLOW EFFECTS OVERLAY - 200+ LINES       -->
-    <!-- ============================================ -->
-    <div class="glow-effects">
-        <div class="glow glow-1"></div>
-        <div class="glow glow-2"></div>
-        <div class="glow glow-3"></div>
-        <div class="glow glow-4"></div>
-        <div class="glow glow-5"></div>
-        <div class="glow glow-6"></div>
+    <!-- ============================================== -->
+    <!-- ENTRY PAGE -->
+    <!-- ============================================== -->
+    <div id="entryPage">
+        <!-- Background Effects -->
+        <div class="entry-bg">
+            <canvas id="entryCanvas"></canvas>
+            <div class="entry-grid"></div>
+            <div class="entry-scanline"></div>
+            <div class="entry-vignette"></div>
+            <div class="entry-noise"></div>
+            <div class="glow-orb"></div>
+            <div class="glow-orb"></div>
+            <div class="glow-orb"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="entry-content">
+            <h1 class="entry-title">
+                <span class="glitch-text" data-text="RONIT">RONIT</span>
+            </h1>
+            <p class="entry-subtitle">
+                <span>✦</span> Enter the Neon Experience <span>✦</span>
+            </p>
+
+            <!-- ENTER BUTTON -->
+            <button class="enter-btn" id="enterBtn">
+                <span class="btn-glow-ring"></span>
+                <span class="btn-glow-ring"></span>
+                <span class="btn-text">
+                    <span>Click to Enter</span>
+                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                </span>
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="entry-footer">
+            <span>◆</span> Built with <span>❤</span> by Ronit <span>◆</span>
+        </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- 4. NAVIGATION - 1,000+ LINES               -->
-    <!-- ============================================ -->
-    <header class="header" id="header" role="banner">
-        <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
-            <div class="nav-container">
-                <!-- Logo -->
-                <a href="#" class="nav-logo" aria-label="Home">
-                    <span class="logo-neon">R</span>
-                    <span class="logo-text">ONIT</span>
-                    <span class="logo-dot">.</span>
-                </a>
+    <!-- ============================================== -->
+    <!-- MAIN CONTENT (Hidden until enter) -->
+    <!-- ============================================== -->
+    <div id="mainContent" style="display: none; opacity: 0; transition: opacity 1s;">
+        <!-- Your main portfolio content goes here -->
+        <!-- This is where your existing HTML goes -->
+    </div>
 
-                <!-- Navigation Menu -->
-                <ul class="nav-menu" id="navMenu" role="menubar">
-                    <li class="nav-item" role="none">
-                        <a href="#home" class="nav-link" role="menuitem" data-section="home">
-                            <span class="nav-icon"><i class="fas fa-home"></i></span>
-                            <span class="nav-text">Home</span>
-                            <span class="nav-indicator"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a href="#journey" class="nav-link" role="menuitem" data-section="journey">
-                            <span class="nav-icon"><i class="fas fa-road"></i></span>
-                            <span class="nav-text">My Journey</span>
-                            <span class="nav-indicator"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a href="#features" class="nav-link" role="menuitem" data-section="features">
-                            <span class="nav-icon"><i class="fas fa-star"></i></span>
-                            <span class="nav-text">Features</span>
-                            <span class="nav-indicator"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a href="#skills" class="nav-link" role="menuitem" data-section="skills">
-                            <span class="nav-icon"><i class="fas fa-code"></i></span>
-                            <span class="nav-text">Skills</span>
-                            <span class="nav-indicator"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a href="#projects" class="nav-link" role="menuitem" data-section="projects">
-                            <span class="nav-icon"><i class="fas fa-folder-open"></i></span>
-                            <span class="nav-text">Projects</span>
-                            <span class="nav-indicator"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a href="#cosmic" class="nav-link" role="menuitem" data-section="cosmic">
-                            <span class="nav-icon"><i class="fas fa-rocket"></i></span>
-                            <span class="nav-text">Cosmic</span>
-                            <span class="nav-indicator"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a href="#experience" class="nav-link" role="menuitem" data-section="experience">
-                            <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
-                            <span class="nav-text">Experience</span>
-                            <span class="nav-indicator"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a href="#contact" class="nav-link" role="menuitem" data-section="contact">
-                            <span class="nav-icon"><i class="fas fa-envelope"></i></span>
-                            <span class="nav-text">Contact</span>
-                            <span class="nav-indicator"></span>
-                        </a>
-                    </li>
-                </ul>
+    <!-- ============================================== -->
+    <!-- SCRIPTS -->
+    <!-- ============================================== -->
+    <script>
+        // ==============================================
+        // ANIMATED CURSOR
+        // ==============================================
+        class AnimatedCursor {
+            constructor() {
+                this.cursor = document.getElementById('customCursor');
+                this.dot = document.getElementById('cursorDot');
+                this.ring = document.getElementById('cursorRing');
+                this.glow = document.getElementById('cursorGlow');
+                this.particles = document.getElementById('cursorParticles');
+                
+                this.x = 0;
+                this.y = 0;
+                this.targetX = 0;
+                this.targetY = 0;
+                this.ringX = 0;
+                this.ringY = 0;
+                this.speed = 0.15;
+                this.ringSpeed = 0.08;
+                this.isHover = false;
+                this.isClick = false;
+                this.trailPositions = [];
+                this.maxTrail = 8;
+                
+                this.init();
+            }
+            
+            init() {
+                // Mouse move
+                document.addEventListener('mousemove', (e) => {
+                    this.targetX = e.clientX;
+                    this.targetY = e.clientY;
+                    this.createTrail(e.clientX, e.clientY);
+                    
+                    // Update cursor position immediately for dot
+                    this.x = e.clientX;
+                    this.y = e.clientY;
+                    this.dot.style.left = e.clientX + 'px';
+                    this.dot.style.top = e.clientY + 'px';
+                    this.glow.style.left = e.clientX + 'px';
+                    this.glow.style.top = e.clientY + 'px';
+                });
+                
+                // Mouse down/up for click effect
+                document.addEventListener('mousedown', () => {
+                    this.isClick = true;
+                    this.cursor.classList.add('click');
+                    
+                    // Spawn click particles
+                    this.spawnParticles(this.x, this.y, 15);
+                    
+                    setTimeout(() => {
+                        this.isClick = false;
+                        this.cursor.classList.remove('click');
+                    }, 300);
+                });
+                
+                document.addEventListener('mouseup', () => {
+                    this.isClick = false;
+                    this.cursor.classList.remove('click');
+                });
+                
+                // Hover detection
+                document.querySelectorAll('a, button, .clickable, .enter-btn').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        this.isHover = true;
+                        this.cursor.classList.add('hover');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        this.isHover = false;
+                        this.cursor.classList.remove('hover');
+                    });
+                });
+                
+                // Handle cursor leaving window
+                document.addEventListener('mouseleave', () => {
+                    this.cursor.style.opacity = '0';
+                });
+                
+                document.addEventListener('mouseenter', () => {
+                    this.cursor.style.opacity = '1';
+                });
+                
+                // Start animation loop
+                this.animate();
+            }
+            
+            createTrail(x, y) {
+                this.trailPositions.push({ x, y, life: 1 });
+                if (this.trailPositions.length > this.maxTrail) {
+                    this.trailPositions.shift();
+                }
+                
+                // Update trail elements
+                const trails = this.cursor.querySelectorAll('.cursor-trail');
+                trails.forEach((trail, index) => {
+                    const pos = this.trailPositions[index];
+                    if (pos) {
+                        trail.style.left = pos.x + 'px';
+                        trail.style.top = pos.y + 'px';
+                        trail.style.opacity = pos.life * 0.6;
+                    }
+                });
+            }
+            
+            spawnParticles(x, y, count) {
+                const container = this.particles;
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'cursor-particle';
+                    
+                    const angle = (Math.PI * 2 * i) / count;
+                    const distance = 30 + Math.random() * 50;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+                    
+                    particle.style.setProperty('--tx', tx + 'px');
+                    particle.style.setProperty('--ty', ty + 'px');
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    particle.style.background = ['#00FF41', '#FFD700', '#FF00FF', '#00D4FF'][
+                        Math.floor(Math.random() * 4)
+                    ];
+                    particle.style.width = (2 + Math.random() * 4) + 'px';
+                    particle.style.height = particle.style.width;
+                    
+                    container.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 1000);
+                }
+            }
+            
+            animate() {
+                // Smooth ring follow
+                this.ringX += (this.targetX - this.ringX) * this.ringSpeed;
+                this.ringY += (this.targetY - this.ringY) * this.ringSpeed;
+                
+                this.ring.style.left = this.ringX + 'px';
+                this.ring.style.top = this.ringY + 'px';
+                
+                // Update trail positions
+                const trails = this.cursor.querySelectorAll('.cursor-trail');
+                this.trailPositions.forEach((pos, index) => {
+                    if (trails[index]) {
+                        trails[index].style.left = pos.x + 'px';
+                        trails[index].style.top = pos.y + 'px';
+                        pos.life *= 0.98;
+                    }
+                });
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
 
-                <!-- Right Side Controls -->
-                <div class="nav-controls">
-                    <!-- Theme Toggle -->
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                        <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
-                        <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
-                    </button>
+        // ==============================================
+        // ENTRY PAGE BACKGROUND (Particles)
+        // ==============================================
+        class EntryBackground {
+            constructor() {
+                this.canvas = document.getElementById('entryCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.count = 80;
+                this.mouseX = null;
+                this.mouseY = null;
+                
+                this.resize();
+                this.initParticles();
+                this.animate();
+                
+                // Track mouse
+                document.addEventListener('mousemove', (e) => {
+                    this.mouseX = e.clientX;
+                    this.mouseY = e.clientY;
+                });
+                
+                window.addEventListener('resize', () => this.resize());
+            }
+            
+            resize() {
+                this.width = window.innerWidth;
+                this.height = window.innerHeight;
+                this.canvas.width = this.width;
+                this.canvas.height = this.height;
+            }
+            
+            initParticles() {
+                this.particles = [];
+                for (let i = 0; i < this.count; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.width,
+                        y: Math.random() * this.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        radius: 1 + Math.random() * 2,
+                        alpha: 0.3 + Math.random() * 0.5,
+                        baseAlpha: 0.3 + Math.random() * 0.5
+                    });
+                }
+            }
+            
+            animate() {
+                this.ctx.clearRect(0, 0, this.width, this.height);
+                
+                this.particles.forEach(p => {
+                    // Move
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    
+                    // Bounce
+                    if (p.x < 0 || p.x > this.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > this.height) p.vy *= -1;
+                    
+                    // Mouse interaction
+                    if (this.mouseX !== null && this.mouseY !== null) {
+                        const dx = p.x - this.mouseX;
+                        const dy = p.y - this.mouseY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (dist < 150) {
+                            const angle = Math.atan2(dy, dx);
+                            const force = (150 - dist) / 150 * 0.5;
+                            p.x += Math.cos(angle) * force;
+                            p.y += Math.sin(angle) * force;
+                            p.alpha = Math.min(1, p.baseAlpha + 0.5);
+                        } else {
+                            p.alpha += (p.baseAlpha - p.alpha) * 0.02;
+                        }
+                    }
+                    
+                    // Draw
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    this.ctx.fillStyle = `rgba(0, 255, 65, ${p.alpha})`;
+                    this.ctx.fill();
+                    
+                    // Glow
+                    const gradient = this.ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 4);
+                    gradient.addColorStop(0, `rgba(0, 255, 65, ${p.alpha * 0.2})`);
+                    gradient.addColorStop(1, 'rgba(0, 255, 65, 0)');
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.radius * 4, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+                
+                // Draw connections
+                for (let i = 0; i < this.particles.length; i++) {
+                    for (let j = i + 1; j < this.particles.length; j++) {
+                        const dx = this.particles[i].x - this.particles[j].x;
+                        const dy = this.particles[i].y - this.particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (dist < 150) {
+                            const alpha = (1 - dist / 150) * 0.3;
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                            this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                            this.ctx.strokeStyle = `rgba(0, 255, 65, ${alpha})`;
+                            this.ctx.lineWidth = 0.5;
+                            this.ctx.stroke();
+                        }
+                    }
+                }
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
 
-                    <!-- Language Selector -->
-                    <div class="language-selector">
-                        <button class="lang-btn" id="langBtn" aria-label="Select language">
-                            <span class="lang-flag">🇺🇸</span>
-                            <span class="lang-code">EN</span>
-                        </button>
-                        <ul class="lang-dropdown" id="langDropdown">
-                            <li><a href="#" data-lang="en">🇺🇸 English</a></li>
-                            <li><a href="#" data-lang="hi">🇮🇳 Hindi</a></li>
-                            <li><a href="#" data-lang="es">🇪🇸 Spanish</a></li>
-                            <li><a href="#" data-lang="fr">🇫🇷 French</a></li>
-                            <li><a href="#" data-lang="de">🇩🇪 German</a></li>
-                            <li><a href="#" data-lang="ja">🇯🇵 Japanese</a></li>
-                        </ul>
-                    </div>
+        // ==============================================
+        // ENTER BUTTON LOGIC
+        // ==============================================
+        class EntryManager {
+            constructor() {
+                this.entryPage = document.getElementById('entryPage');
+                this.mainContent = document.getElementById('mainContent');
+                this.enterBtn = document.getElementById('enterBtn');
+                this.isEntered = false;
+                
+                this.enterBtn.addEventListener('click', () => this.enter());
+                this.enterBtn.addEventListener('mouseenter', () => {
+                    // Add hover effect via cursor
+                });
+                
+                // Keyboard support
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.enter();
+                    }
+                });
+            }
+            
+            enter() {
+                if (this.isEntered) return;
+                this.isEntered = true;
+                
+                // Add exit class to entry page
+                this.entryPage.classList.add('exit');
+                
+                // Show main content after transition
+                setTimeout(() => {
+                    this.mainContent.style.display = 'block';
+                    // Trigger reflow
+                    this.mainContent.offsetHeight;
+                    this.mainContent.style.opacity = '1';
+                    
+                    // Hide entry page completely
+                    setTimeout(() => {
+                        this.entryPage.style.display = 'none';
+                    }, 500);
+                }, 800);
+                
+                // Play sound effect (optional)
+                // this.playEnterSound();
+            }
+            
+            playEnterSound() {
+                // Optional: Add a sound effect here
+                // const audio = new Audio('assets/sounds/enter.mp3');
+                // audio.play();
+            }
+        }
 
-                    <!-- Hamburger Menu -->
-                    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
+        // ==============================================
+        // INITIALIZE EVERYTHING
+        // ==============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize cursor
+            const cursor = new AnimatedCursor();
+            
+            // Initialize background
+            const bg = new EntryBackground();
+            
+            // Initialize entry manager
+            const entry = new EntryManager();
+            
+            // Create trail elements
+            const cursorEl = document.getElementById('customCursor');
+            for (let i = 0; i < 8; i++) {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                cursorEl.appendChild(trail);
+            }
+            
+            console.log('🚀 Entry page initialized!');
+            console.log('💡 Click the button or press Enter to begin');
+        });
+    </script>
 
-    <!-- ============================================ -->
-    <!-- 5. HERO SECTION - 2,000+ LINES             -->
-    <!-- ============================================ -->
-    <section id="home" class="hero" data-section="home">
-        <!-- Background Effects -->
-        <div class="hero-background">
-            <canvas id="heroCanvas"></canvas>
-            <div class="hero-grid"></div>
-            <div class="hero-scanline"></div>
-            <div class="hero-vignette"></div>
-            <div class="hero-noise"></div>
-        </div>
-
-        <div class="hero-container">
-            <!-- Floating Particles -->
-            <div class="hero-particles" id="heroParticles">
-                <!-- Generated by JS -->
-            </div>
-
-            <!-- Main Content -->
-            <div class="hero-content">
-                <!-- Badge -->
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    <span class="badge-text">Built by Ronit</span>
-                    <span class="badge-arrow">→</span>
-                </div>
-
-                <!-- Title -->
-                <h1 class="hero-title">
-                    <span class="title-line">
-                        <span class="title-word">This</span>
-                        <span class="title-word">is</span>
-                        <span class="title-word">first</span>
-                        <span class="title-word">thing,</span>
-                    </span>
-                    <span class="title-line">
-                        <span class="title-word">including:</span>
-                    </span>
-                    <span class="title-line">
-                        <span class="title-word highlight">See</span>
-                        <span class="title-word highlight">how</span>
-                        <span class="title-word highlight">page</span>
-                    </span>
-                </h1>
-
-                <!-- Description -->
-                <p class="hero-description">
-                    Colour of text should be blend of neon colours like 
-                    <span class="neon-yellow">black/yellow</span>, 
-                    <span class="neon-green">single / neon green</span>
-                </p>
-
-                <!-- CTA Buttons -->
-                <div class="hero-actions">
-                    <a href="#journey" class="btn btn-primary btn-neon">
-                        <span class="btn-content">Next Page</span>
-                        <span class="btn-glow"></span>
-                    </a>
-                    <a href="#projects" class="btn btn-secondary">
-                        <span class="btn-content"><i class="fas fa-play"></i> Explore</span>
-                    </a>
-                    <a href="#contact" class="btn btn-ghost">
-                        <span class="btn-content"><i class="fas fa-paper-plane"></i> Let's Connect</span>
-                    </a>
-                </div>
-
-                <!-- Stats -->
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="5">0</span>
-                        <span class="stat-label">Years of Innovation</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="50">0</span>
-                        <span class="stat-label">Projects Launched</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="100">0</span>
-                        <span class="stat-label">Happy Clients</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="25">0</span>
-                        <span class="stat-label">Awards Won</span>
-                    </div>
-                </div>
-
-                <!-- Social Links -->
-                <div class="hero-social">
-                    <a href="#" class="social-link" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Dev.to">
-                        <i class="fab fa-dev"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Hero Visual -->
-            <div class="hero-visual">
-                <div class="visual-container">
-                    <div class="visual-globe">
-                        <div class="globe-ring"></div>
-                        <div class="globe-ring"></div>
-                        <div class="globe-ring"></div>
-                        <div class="globe-core">
-                            <span class="core-text">R</span>
-                        </div>
-                    </div>
-                    <div class="visual-particles"></div>
-                    <div class="visual-scan"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator" id="scrollIndicator">
-            <span class="scroll-text">Scroll</span>
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
-            </div>
-            <span class="scroll-arrow">↓</span>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- 6. MY JOURNEY SECTION - 2,500+ LINES       -->
-    <!-- ============================================ -->
-    <section id="journey" class="journey" data-section="journey">
-        <div class="section-header">
-            <span class="section-tag">✦ My Journey</span>
-            <h2 class="section-title">The Path to Innovation</h2>
-            <p class="section-subtitle">Every line of code tells a story of growth and discovery</p>
-        </div>
-
-        <div class="journey-container">
-            <!-- Timeline -->
-            <div class="journey-timeline">
-                <div class="timeline-item" data-year="2024">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass-card">
-                        <div class="timeline-header">
-                            <span class="timeline-year">2024</span>
-                            <span class="timeline-badge">Present</span>
-                        </div>
-                        <h3 class="timeline-title">Innovation Hacks Winner</h3>
-                        <p class="timeline-description">
-                            Led a team to develop a revolutionary AI-powered solution that 
-                            won first place at Innovation Hacks 2024. The project combined 
-                            machine learning with real-time data processing.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">AI/ML</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Python</span>
-                            <span class="tag">AWS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item" data-year="2023">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass-card">
-                        <div class="timeline-header">
-                            <span class="timeline-year">2023</span>
-                            <span class="timeline-badge">Milestone</span>
-                        </div>
-                        <h3 class="timeline-title">Senior Developer Role</h3>
-                        <p class="timeline-description">
-                            Promoted to Senior Full Stack Developer at a leading tech company.
-                            Spearheaded the development of 15+ production applications and 
-                            mentored a team of 10 junior developers.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">Leadership</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">GraphQL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item" data-year="2022">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass-card">
-                        <div class="timeline-header">
-                            <span class="timeline-year">2022</span>
-                            <span class="timeline-badge">Achievement</span>
-                        </div>
-                        <h3 class="timeline-title">Open Source Contribution</h3>
-                        <p class="timeline-description">
-                            Became a top contributor to 5 major open-source projects.
-                            Received 500+ stars and contributed 50+ pull requests that 
-                            were merged into production codebases.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">Open Source</span>
-                            <span class="tag">Community</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Vue</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item" data-year="2021">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass-card">
-                        <div class="timeline-header">
-                            <span class="timeline-year">2021</span>
-                            <span class="timeline-badge">Started</span>
-                        </div>
-                        <h3 class="timeline-title">First Professional Role</h3>
-                        <p class="timeline-description">
-                            Began career as a Junior Developer at a startup. Quickly became 
-                            a key team member and delivered 20+ client projects within 
-                            the first year.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">HTML/CSS</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">Firebase</span>
-                            <span class="tag">Agile</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Journey Stats -->
-            <div class="journey-stats">
-                <div class="stat-card glass-card">
-                    <div class="stat-icon">🚀</div>
-                    <div class="stat-info">
-                        <span class="stat-number" data-count="120">0</span>
-                        <span class="stat-label">Projects Completed</span>
-                    </div>
-                </div>
-                <div class="stat-card glass-card">
-                    <div class="stat-icon">🌟</div>
-                    <div class="stat-info">
-                        <span class="stat-number" data-count="25">0</span>
-                        <span class="stat-label">Awards & Recognition</span>
-                    </div>
-                </div>
-                <div class="stat-card glass-card">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-info">
-                        <span class="stat-number" data-count="50">0</span>
-                        <span class="stat-label">Team Members Mentored</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- 7. FEATURES SECTION - 2,000+ LINES         -->
-    <!-- ============================================ -->
-    <section id="features" class="features" data-section="features">
-        <div class="section-header">
-            <span class="section-tag">✦ Features</span>
-            <h2 class="section-title">What Makes This Portfolio Special</h2>
-            <p class="section-subtitle">Every detail crafted with precision and passion</p>
-        </div>
-
-        <div class="features-grid">
-            <!-- Feature 1: Neon Design -->
-            <div class="feature-card glass-card">
-                <div class="feature-icon neon-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3 class="feature-title">Neon Aesthetic</h3>
-                <p class="feature-description">
-                    Blending black/yellow and neon green colors with dynamic glow effects
-                    for an immersive cyberpunk experience.
-                </p>
-                <div class="feature-preview">
-                    <span class="preview-dot neon-yellow"></span>
-                    <span class="preview-dot neon-green"></span>
-                    <span class="preview-dot neon-pink"></span>
-                </div>
-            </div>
-
-            <!-- Feature 2: Glass Morphism -->
-            <div class="feature-card glass-card">
-                <div class="feature-icon neon-icon">
-                    <i class="fas fa-glass-martini-alt"></i>
-                </div>
-                <h3 class="feature-title">Glass Effects</h3>
-                <p class="feature-description">
-                    Beautiful glass-morphism cards with backdrop blur, subtle borders,
-                    and interactive hover states.
-                </p>
-                <div class="feature-preview">
-                    <div class="glass-sample"></div>
-                </div>
-            </div>
-
-            <!-- Feature 3: Interactive Timeline -->
-            <div class="feature-card glass-card">
-                <div class="feature-icon neon-icon">
-                    <i class="fas fa-road"></i>
-                </div>
-                <h3 class="feature-title">Journey Timeline</h3>
-                <p class="feature-description">
-                    An interactive timeline showcasing career milestones with dynamic
-                    content loading and smooth animations.
-                </p>
-            </div>
-
-            <!-- Feature 4: Advanced Animations -->
-            <div class="feature-card glass-card">
-                <div class="feature-icon neon-icon">
-                    <i class="fas fa-play-circle"></i>
-                </div>
-                <h3 class="feature-title">Advanced Animations</h3>
-                <p class="feature-description">
-                    Smooth scroll-triggered animations, parallax effects, particle systems,
-                    and micro-interactions throughout.
-                </p>
-            </div>
-
-            <!-- Feature 5: Smart Preloader -->
-            <div class="feature-card glass-card">
-                <div class="feature-icon neon-icon">
-                    <i class="fas fa-spinner"></i>
-                </div>
-                <h3 class="feature-title">Smart Preloader</h3>
-                <p class="feature-description">
-                    Matrix-style preloader with progress tracking, loading tips, and
-                    immersive animation to keep users engaged.
-                </p>
-            </div>
-
-            <!-- Feature 6: Cosmic Actions -->
-            <div class="feature-card glass-card">
-                <div class="feature-icon neon-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h3 class="feature-title">Cosmic Actions</h3>
-                <p class="feature-description">
-                    Interactive space-themed elements that respond to user actions
-                    with stunning visual effects.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- 8. SKILLS SECTION - 1,800+ LINES           -->
-    <!-- ============================================ -->
-    <section id="skills" class="skills" data-section="skills">
-        <div class="section-header">
-            <span class="section-tag">✦ Skills I Know</span>
-            <h2 class="section-title">My Technical Arsenal</h2>
-            <p class="section-subtitle">Constantly evolving and mastering new technologies</p>
-        </div>
-
-        <div class="skills-container">
-            <!-- Category: Frontend -->
-            <div class="skill-category">
-                <h3 class="category-title">
-                    <i class="fas fa-laptop-code"></i>
-                    Frontend Development
-                </h3>
-                <div class="skill-grid">
-                    <div class="skill-item glass-card">
-                        <div class="skill-icon">
-                            <i class="fab fa-react"></i>
-                        </div>
-                        <div class="skill-info">
-                            <span class="skill-name">React</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                            <span class="skill-percentage">95%</span>
-                        </div>
-                    </div>
-                    <div class="skill-item glass-card">
-                        <div class="skill-icon">
-                            <i class="fab fa-vuejs"></i>
-                        </div>
-                        <div class="skill-info">
-                            <span class="skill-name">Vue.js</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                            <span class="skill-percentage">85%</span>
-                        </div>
-                    </div>
-                    <!-- More frontend skills... -->
-                </div>
-            </div>
-
-            <!-- Category: Backend -->
-            <div class="skill-category">
-                <h3 class="category-title">
-                    <i class="fas fa-server"></i>
-                    Backend Development
-                </h3>
-                <div class="skill-grid">
-                    <!-- Backend skills... -->
-                </div>
-            </div>
-
-            <!-- Category: DevOps -->
-            <div class="skill-category">
-                <h3 class="category-title">
-                    <i class="fas fa-cloud"></i>
-                    DevOps & Cloud
-                </h3>
-                <div class="skill-grid">
-                    <!-- DevOps skills... -->
-                </div>
-            </div>
-
-            <!-- Category: Tools -->
-            <div class="skill-category">
-                <h3 class="category-title">
-                    <i class="fas fa-tools"></i>
-                    Tools & Technologies
-                </h3>
-                <div class="skill-grid">
-                    <!-- Tools skills... -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- 9. PROJECTS SECTION - 3,000+ LINES         -->
-    <!-- ============================================ -->
-    <section id="projects" class="projects" data-section="projects">
-        <div class="section-header">
-            <span class="section-tag">✦ My Projects</span>
-            <h2 class="section-title">Featured Works</h2>
-            <p class="section-subtitle">Each project represents a unique challenge and solution</p>
-        </div>
-
-        <div class="project-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="web">Web Apps</button>
-            <button class="filter-btn" data-filter="mobile">Mobile</button>
-            <button class="filter-btn" data-filter="ai">AI/ML</button>
-            <button class="filter-btn" data-filter="design">UI/UX</button>
-            <button class="filter-btn" data-filter="blockchain">Blockchain</button>
-        </div>
-
-        <div class="project-grid">
-            <!-- Project 1 -->
-            <div class="project-card glass-card" data-category="web">
-                <div class="project-image">
-                    <img src="assets/images/project1.webp" alt="Project 1" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-actions">
-                            <a href="#" class="btn btn-small"><i class="fas fa-eye"></i> View</a>
-                            <a href="#" class="btn btn-small"><i class="fab fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
-                    </div>
-                    <h3 class="project-title">E-Commerce Platform</h3>
-                    <p class="project-description">
-                        A full-featured e-commerce platform with real-time inventory,
-                        payment processing, and AI-powered recommendations.
-                    </p>
-                    <div class="project-stats">
-                        <span><i class="fas fa-star"></i> 4.9</span>
-                        <span><i class="fas fa-code-branch"></i> 50+</span>
-                        <span><i class="fas fa-users"></i> 10k+</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card glass-card" data-category="ai">
-                <div class="project-image">
-                    <img src="assets/images/project2.webp" alt="Project 2" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-actions">
-                            <a href="#" class="btn btn-small"><i class="fas fa-eye"></i> View</a>
-                            <a href="#" class="btn btn-small"><i class="fab fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">TensorFlow</span>
-                        <span class="tag">AWS</span>
-                    </div>
-                    <h3 class="project-title">AI-Powered Analytics</h3>
-                    <p class="project-description">
-                        Real-time analytics platform with predictive modeling and
-                        natural language processing for business intelligence.
-                    </p>
-                    <div class="project-stats">
-                        <span><i class="fas fa-star"></i> 5.0</span>
-                        <span><i class="fas fa-code-branch"></i> 30+</span>
-                        <span><i class="fas fa-users"></i> 5k+</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- More projects... -->
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- 10. COSMIC ACTIONS - 2,000+ LINES          -->
-    <!-- ============================================ -->
-    <section id="cosmic" class="cosmic" data-section="cosmic">
-        <div class="section-header">
-            <span class="section-tag">✦ Cosmic Actions</span>
-            <h2 class="section-title">Interactive Universe</h2>
-            <p class="section-subtitle">Click to explore the cosmic experience</p>
-        </div>
-
-        <div class="cosmic-container">
-            <!-- Cosmic Logo -->
-            <div class="cosmic-logo" id="cosmicLogo">
-                <div class="logo-ring"></div>
-                <div class="logo-ring"></div>
-                <div class="logo-ring"></div>
-                <div class="logo-core">
-                    <span>✦</span>
-                </div>
-            </div>
-
-            <!-- Cosmic Actions Grid -->
-            <div class="cosmic-grid">
-                <div class="cosmic-card glass-card" data-action="explore">
-                    <div class="cosmic-icon">🌌</div>
-                    <h3>Explore Universe</h3>
-                    <p>Navigate through the cosmic web of innovation</p>
-                </div>
-                <div class="cosmic-card glass-card" data-action="launch">
-                    <div class="cosmic-icon">🚀</div>
-                    <h3>Launch Project</h3>
-                    <p>Deploy your next big idea into orbit</p>
-                </div>
-                <div class="cosmic-card glass-card" data-action="discover">
-                    <div class="cosmic-icon">🪐</div>
-                    <h3>Discover More</h3>
-                    <p>Uncover hidden features and possibilities</p>
-                </div>
-                <div class="cosmic-card glass-card" data-action="connect">
-                    <div class="cosmic-icon">🌍</div>
-                    <h3>Connect</h3>
-                    <p>Join the cosmic community of innovators</p>
-                </div>
-            </div>
-
-            <!-- Cosmic Particles -->
-            <canvas id="cosmicCanvas"></canvas>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- 11. EXPERIENCE SECTION - 2,500+ LINES      -->
-    <!-- ============================================ -->
-    <section id="experience" class="experience" data-section="experience">
-        <div class="section-header">
-            <span class="section-tag">✦ Experience</span>
-            <h2 class="section-title">Professional Journey</h2>
-            <p class="section-subtitle">Years of innovation and excellence</p>
-        </div>
-
-        <div class="experience-container">
-            <!-- Experience Cards -->
-            <div class="experience-card glass-card">
-                <div class="exp-header">
-                    <div class="exp-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <div class="exp-info">
-                        <h3>Senior Full Stack Developer</h3>
-                        <span class="exp-company">Tech Corp</span>
-                        <span class="exp-date">2023 - Present</span>
-                    </div>
-                </div>
-                <ul class="exp-list">
-                    <li>Architected and led development of 15+ production applications</li>
-                    <li>Mentored a team of 10 junior developers and conducted code reviews</li>
-                    <li>Reduced load time by 50% through performance optimization</li>
-                    <li>Implemented CI/CD pipelines reducing deployment time by 75%</li>
-                    <li>Introduced microservices architecture improving scalability</li>
-                </ul>
-                <div class="exp-tags">
-                    <span class="tag">React</span>
-                    <span class="tag">Node.js</span>
-                    <span class="tag">AWS</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Kubernetes</span>
-                </div>
-            </div>
-
-            <!-- More experience cards... -->
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- 12. CONTACT SECTION - 2,000+ LINES         -->
-    <!-- ============================================ -->
-    <section id="contact" class="contact" data-section="contact">
-        <div class="section-header">
-            <span class="section-tag">✦ Contact</span>
-            <h2 class="section-title">Let's Connect</h2>
-            <p class="section-subtitle">Ready to innovate together? Reach out!</p>
-        </div>
-
-        <div class="contact-container">
-            <div class="contact-info glass-card">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h4>Email</h4>
-                        <a href="mailto:ronit@example.com">ronit@example.com</a>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <h4>Phone</h4>
-                        <a href="tel:+1234567890">+1 (234) 567-890</a>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4>Location</h4>
-                        <span>Innovation City, Universe</span>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <h4>Available</h4>
-                        <span>24/7 for innovation</span>
-                    </div>
-                </div>
-            </div>
-
-            <form class="contact-form glass-card" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="your@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" placeholder="What's this about?">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" rows="5" placeholder="Tell me about your project..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary btn-neon">
-                    <span class="btn-content">Send Message</span>
-                    <span class="btn-glow"></span>
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- 13. FOOTER - 1,000+ LINES                   -->
-    <!-- ============================================ -->
-    <footer class="footer" role="contentinfo">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <span class="footer-logo">RONIT</span>
-                <p>Building the future, one line of code at a time.</p>
-            </div>
-            <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#journey">Journey</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-social">
-                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-            <div class="footer-bottom">
-                <span>&copy; 2026 Ronit. Built with 💡 and passion</span>
-                <button class="back-to-top" id="backToTop" aria-label="Back to top">
-                    <i class="fas fa-arrow-up"></i>
-                </button>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ============================================ -->
-    <!-- SCRIPTS - 500+ LINES IN HTML               -->
-    <!-- ============================================ -->
-    <script type="module" src="javascript/main.js"></script>
-    <script type="module" src="javascript/animations.js"></script>
-    <script type="module" src="javascript/components.js"></script>
-    <script type="module" src="javascript/services.js"></script>
-    
-    <!-- Non-critical scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    
-    <!-- Fallback for older browsers -->
-    <noscript>
-        <div class="noscript-warning">
-            <p>Please enable JavaScript for the best experience</p>
-        </div>
-    </noscript>
 </body>
 </html>
