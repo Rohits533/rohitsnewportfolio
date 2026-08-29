@@ -57,48 +57,213 @@
         }
         
         /* ==============================================
-           ENHANCED GLASS EFFECTS
+           ULTIMATE DEEP GLASS EFFECTS - Apple Killer
            ============================================== */
-        .glass-enhanced {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        
+        /* Glass that actually looks like real glass */
+        .glass-ultimate {
             position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(40px) saturate(1.8);
+            -webkit-backdrop-filter: blur(40px) saturate(1.8);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 32px;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+                0 0 60px rgba(0, 255, 65, 0.02),
+                0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             overflow: hidden;
         }
         
-        .glass-enhanced::before {
+        /* Glass reflection - the secret sauce */
+        .glass-ultimate::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at center, 
-                rgba(0, 255, 65, 0.03) 0%, 
-                transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
+            background: 
+                radial-gradient(ellipse at 30% 20%, 
+                    rgba(255, 255, 255, 0.04) 0%, 
+                    transparent 60%),
+                radial-gradient(ellipse at 70% 80%, 
+                    rgba(0, 255, 65, 0.02) 0%, 
+                    transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: glassReflection 12s ease-in-out infinite;
+        }
+        
+        @keyframes glassReflection {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.6;
+            }
+            33% { 
+                transform: translate(5%, -5%) rotate(5deg);
+                opacity: 1;
+            }
+            66% { 
+                transform: translate(-5%, 5%) rotate(-5deg);
+                opacity: 0.8;
+            }
+        }
+        
+        /* Glass shine - the Apple killer */
+        .glass-ultimate::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, 
+                    rgba(255, 255, 255, 0.06) 0%, 
+                    transparent 40%),
+                radial-gradient(ellipse at 80% 70%, 
+                    rgba(0, 255, 65, 0.03) 0%, 
+                    transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+            animation: glassShine 8s ease-in-out infinite;
+        }
+        
+        @keyframes glassShine {
+            0%, 100% { 
+                transform: translate(-10%, -10%) rotate(-5deg);
+                opacity: 0.4;
+            }
+            50% { 
+                transform: translate(10%, 10%) rotate(5deg);
+                opacity: 1;
+            }
+        }
+        
+        /* Glass border glow - ultra premium */
+        .glass-ultimate .glass-border-glow {
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 32px;
+            padding: 1px;
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 65, 0.15), 
+                rgba(255, 215, 0, 0.05),
+                rgba(0, 255, 65, 0.1),
+                rgba(255, 215, 0, 0.02),
+                rgba(0, 255, 65, 0.15)
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
+            animation: borderPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes borderPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        /* Hover state - ultimate glass experience */
+        .glass-ultimate:hover {
+            transform: translateY(-8px) scale(1.01);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 
+                0 40px 100px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+                0 0 80px rgba(0, 255, 65, 0.06),
+                0 8px 40px rgba(0, 0, 0, 0.5);
+            border-color: rgba(0, 255, 65, 0.08);
+        }
+        
+        /* Glass with frosted effect */
+        .glass-frosted {
+            background: rgba(255, 255, 255, 0.015);
+            backdrop-filter: blur(60px) saturate(2);
+            -webkit-backdrop-filter: blur(60px) saturate(2);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 28px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.01) inset,
+                0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .glass-frosted::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 50% 0%, 
+                    rgba(255, 255, 255, 0.02) 0%, 
+                    transparent 70%);
+            pointer-events: none;
+            border-radius: 28px;
+        }
+        
+        .glass-frosted:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 255, 65, 0.06);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+                0 0 60px rgba(0, 255, 65, 0.04);
+        }
+        
+        /* Glass with prism effect */
+        .glass-prism {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(50px) saturate(1.5);
+            -webkit-backdrop-filter: blur(50px) saturate(1.5);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.01) inset;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-prism::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                conic-gradient(from 0deg at 50% 50%, 
+                    rgba(0, 255, 65, 0.02), 
+                    rgba(255, 215, 0, 0.01),
+                    rgba(255, 0, 255, 0.01),
+                    rgba(0, 212, 255, 0.01),
+                    rgba(0, 255, 65, 0.02)
+                );
+            animation: prismRotate 20s linear infinite;
             pointer-events: none;
         }
         
-        .glass-enhanced:hover::before {
-            opacity: 1;
+        @keyframes prismRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        .glass-enhanced:hover {
-            border-color: rgba(0, 255, 65, 0.2);
-            box-shadow: 
-                0 8px 40px rgba(0, 0, 0, 0.4),
-                0 0 60px rgba(0, 255, 65, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
+        .glass-prism:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 65, 0.08);
         }
         
         /* ==============================================
@@ -205,6 +370,123 @@
             border-color: #FF00FF;
             transform: translate(-50%, -50%) scale(1.5);
             box-shadow: 0 0 60px rgba(255, 0, 255, 0.4);
+        }
+        
+        /* ==============================================
+           MUSIC PLAYER - Dark Ambient
+           ============================================== */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s;
+        }
+        
+        .music-player:hover {
+            border-color: rgba(0, 255, 65, 0.3);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 255, 65, 0.05);
+        }
+        
+        .music-player .music-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00FF41;
+            font-size: 1rem;
+            transition: all 0.4s;
+            cursor: none;
+        }
+        
+        .music-player .music-icon:hover {
+            background: rgba(0, 255, 65, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .music-player .music-icon.playing {
+            animation: musicPulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes musicPulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(0, 255, 65, 0.5), 0 0 80px rgba(0, 255, 65, 0.1);
+            }
+        }
+        
+        .music-player .music-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .music-player .music-title {
+            font-size: 0.75rem;
+            color: #b0b0b0;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .music-player .music-title span {
+            color: #00FF41;
+        }
+        
+        .music-player .music-status {
+            font-size: 0.6rem;
+            color: #4a4a4a;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .music-player .music-wave {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 20px;
+        }
+        
+        .music-player .music-wave .bar {
+            width: 3px;
+            height: 100%;
+            background: #00FF41;
+            border-radius: 2px;
+            animation: waveBounce 1s ease-in-out infinite;
+        }
+        
+        .music-player .music-wave .bar:nth-child(1) { animation-delay: 0.1s; height: 40%; }
+        .music-player .music-wave .bar:nth-child(2) { animation-delay: 0.3s; height: 70%; }
+        .music-player .music-wave .bar:nth-child(3) { animation-delay: 0.5s; height: 50%; }
+        .music-player .music-wave .bar:nth-child(4) { animation-delay: 0.7s; height: 90%; }
+        .music-player .music-wave .bar:nth-child(5) { animation-delay: 0.9s; height: 30%; }
+        .music-player .music-wave .bar:nth-child(6) { animation-delay: 0.2s; height: 60%; }
+        .music-player .music-wave .bar:nth-child(7) { animation-delay: 0.4s; height: 80%; }
+        .music-player .music-wave .bar:nth-child(8) { animation-delay: 0.6s; height: 45%; }
+        .music-player .music-wave .bar:nth-child(9) { animation-delay: 0.8s; height: 75%; }
+        .music-player .music-wave .bar:nth-child(10) { animation-delay: 0.0s; height: 55%; }
+        
+        .music-player .music-wave.paused .bar {
+            animation-play-state: paused;
+            height: 20%;
+        }
+        
+        @keyframes waveBounce {
+            0%, 100% { transform: scaleY(0.3); }
+            50% { transform: scaleY(1); }
         }
         
         /* ==============================================
@@ -1031,7 +1313,7 @@
         }
         
         /* ==============================================
-           IMPROVEMENT 1: LIVE STATUS BADGE
+           LIVE STATUS BADGE
            ============================================== */
         .live-status {
             display: inline-flex;
@@ -1060,7 +1342,7 @@
         }
         
         /* ==============================================
-           IMPROVEMENT 2: CURRENTLY WORKING ON
+           CURRENTLY WORKING ON
            ============================================== */
         .currently-working {
             margin-top: 20px;
@@ -1099,7 +1381,7 @@
         }
         
         /* ==============================================
-           IMPROVEMENT 4: SOCIAL PROOF BAR
+           SOCIAL PROOF BAR
            ============================================== */
         .social-proof {
             display: flex;
@@ -1135,7 +1417,7 @@
         }
         
         /* ==============================================
-           IMPROVEMENT 7: AI MODE TOGGLE
+           AI MODE TOGGLE
            ============================================== */
         .ai-toggle {
             position: fixed;
@@ -1171,16 +1453,15 @@
             box-shadow: 0 0 40px rgba(0, 255, 65, 0.2);
         }
         
-        body.ai-mode .glass-enhanced {
+        body.ai-mode .glass-ultimate {
             border-color: rgba(0, 212, 255, 0.2);
         }
         
-        body.ai-mode .glass-enhanced:hover {
+        body.ai-mode .glass-ultimate:hover {
             border-color: rgba(0, 212, 255, 0.4);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(0, 212, 255, 0.1);
         }
         
-        body.ai-mode .neon-text,
         body.ai-mode .stat-number,
         body.ai-mode .panel-label,
         body.ai-mode .nav-link:hover {
@@ -1266,7 +1547,7 @@
         }
         
         /* ==============================================
-           IMPROVEMENT 10: PROJECT PREVIEW
+           PROJECT PREVIEW
            ============================================== */
         .project-preview {
             position: relative;
@@ -1306,7 +1587,7 @@
         }
         
         /* ==============================================
-           IMPROVEMENT 6: 3D PARALLAX
+           3D PARALLAX
            ============================================== */
         .hero-visual {
             perspective: 1000px;
@@ -1426,6 +1707,12 @@
             .social-proof {
                 gap: 15px;
             }
+            
+            .music-player {
+                bottom: 80px;
+                left: 20px;
+                padding: 10px 16px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1476,7 +1763,7 @@
             }
             
             .ai-toggle {
-                bottom: 20px;
+                bottom: 80px;
                 right: 20px;
                 padding: 10px 18px;
                 font-size: 0.7rem;
@@ -1484,6 +1771,20 @@
             
             .keyboard-hint {
                 display: none;
+            }
+            
+            .music-player {
+                bottom: 140px;
+                left: 20px;
+                padding: 8px 14px;
+            }
+            
+            .music-player .music-info {
+                display: none;
+            }
+            
+            .music-player .music-wave {
+                height: 14px;
             }
         }
         
@@ -1516,6 +1817,31 @@
 <body>
 
     <!-- ============================================== -->
+    <!-- DARK AMBIENT MUSIC PLAYER -->
+    <!-- ============================================== -->
+    <div class="music-player" id="musicPlayer">
+        <div class="music-icon playing" id="musicToggle">
+            <i class="fas fa-music"></i>
+        </div>
+        <div class="music-info">
+            <span class="music-title">🌙 <span>Dark Ambient</span> · 432Hz</span>
+            <span class="music-status" id="musicStatus">● Playing</span>
+        </div>
+        <div class="music-wave" id="musicWave">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
     <!-- ANIMATED CURSOR -->
     <!-- ============================================== -->
     <div class="custom-cursor" id="customCursor">
@@ -1526,7 +1852,7 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- ORIGINAL ENTRY PAGE - RESTORED -->
+    <!-- ORIGINAL ENTRY PAGE -->
     <!-- ============================================== -->
     <div id="entryPage">
         <div class="entry-bg">
@@ -1596,7 +1922,7 @@
                         <span class="pulse-dot" style="margin-left:5px;"></span>
                     </div>
                     
-                    <!-- IMPROVEMENT 1: LIVE STATUS BADGE -->
+                    <!-- LIVE STATUS BADGE -->
                     <div class="live-status">
                         <span class="pulse"></span>
                         <span>🚀 Building </span>
@@ -1615,9 +1941,10 @@
                         <span class="highlight-text">✦ Innovation Enthusiast</span>
                     </p>
                     
-                    <!-- IMPROVEMENT 2: CURRENTLY WORKING ON -->
-                    <div class="currently-working glass-enhanced">
-                        <div style="display:flex;align-items:center;gap:15px;">
+                    <!-- CURRENTLY WORKING ON with ULTIMATE GLASS -->
+                    <div class="currently-working glass-ultimate">
+                        <div class="glass-border-glow"></div>
+                        <div style="display:flex;align-items:center;gap:15px;position:relative;z-index:1;">
                             <span style="font-size:1.5rem;">🔄</span>
                             <div style="flex:1;">
                                 <h4 style="font-size:0.95rem;color:#00FF41;">Currently Building</h4>
@@ -1625,7 +1952,7 @@
                             </div>
                             <span style="color:#FFD700;font-size:0.8rem;font-weight:700;">70%</span>
                         </div>
-                        <div class="progress-bar">
+                        <div class="progress-bar" style="position:relative;z-index:1;">
                             <div class="progress-fill"></div>
                         </div>
                     </div>
@@ -1658,7 +1985,7 @@
                     </div>
                 </div>
                 
-                <!-- IMPROVEMENT 6: 3D PARALLAX -->
+                <!-- 3D PARALLAX -->
                 <div class="hero-visual">
                     <span class="parallax-icon">
                         <i class="fas fa-brain"></i>
@@ -1667,7 +1994,7 @@
             </div>
         </section>
 
-        <!-- ===== JOURNEY SECTION (SPLIT) ===== -->
+        <!-- ===== JOURNEY SECTION with ULTIMATE GLASS ===== -->
         <section id="journey" class="split-section" data-section="journey">
             <div class="split-line"></div>
             <div class="split-glow"></div>
@@ -1689,8 +2016,9 @@
                 <div class="split-panel split-panel-right">
                     <div class="split-content split-content-right">
                         <div style="display:grid;gap:20px;width:100%;">
-                            <div class="glass-enhanced" style="padding:20px;">
-                                <div style="display:flex;align-items:center;gap:15px;">
+                            <div class="glass-ultimate" style="padding:20px;">
+                                <div class="glass-border-glow"></div>
+                                <div style="display:flex;align-items:center;gap:15px;position:relative;z-index:1;">
                                     <span style="font-size:2rem;">🏆</span>
                                     <div>
                                         <h4 style="font-size:1rem;">AI Assistant Bootcamp Winner</h4>
@@ -1698,8 +2026,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="glass-enhanced" style="padding:20px;">
-                                <div style="display:flex;align-items:center;gap:15px;">
+                            <div class="glass-ultimate" style="padding:20px;">
+                                <div class="glass-border-glow"></div>
+                                <div style="display:flex;align-items:center;gap:15px;position:relative;z-index:1;">
                                     <span style="font-size:2rem;">💼</span>
                                     <div>
                                         <h4 style="font-size:1rem;">Intern at Innovation Hacks</h4>
@@ -1707,8 +2036,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="glass-enhanced" style="padding:20px;">
-                                <div style="display:flex;align-items:center;gap:15px;">
+                            <div class="glass-ultimate" style="padding:20px;">
+                                <div class="glass-border-glow"></div>
+                                <div style="display:flex;align-items:center;gap:15px;position:relative;z-index:1;">
                                     <span style="font-size:2rem;">📜</span>
                                     <div>
                                         <h4 style="font-size:1rem;">Google Developers Certification</h4>
@@ -1716,8 +2046,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="glass-enhanced" style="padding:20px;">
-                                <div style="display:flex;align-items:center;gap:15px;">
+                            <div class="glass-ultimate" style="padding:20px;">
+                                <div class="glass-border-glow"></div>
+                                <div style="display:flex;align-items:center;gap:15px;position:relative;z-index:1;">
                                     <span style="font-size:2rem;">🚀</span>
                                     <div>
                                         <h4 style="font-size:1rem;">Full Stack Developer</h4>
@@ -1731,7 +2062,7 @@
             </div>
         </section>
 
-        <!-- ===== SKILLS SECTION (SPLIT) ===== -->
+        <!-- ===== SKILLS SECTION ===== -->
         <section id="skills" class="split-section" data-section="skills">
             <div class="split-line"></div>
             <div class="split-glow"></div>
@@ -1811,7 +2142,7 @@
             </div>
         </section>
 
-        <!-- ===== PROJECTS SECTION (SPLIT) ===== -->
+        <!-- ===== PROJECTS SECTION ===== -->
         <section id="projects" class="split-section" data-section="projects">
             <div class="split-line"></div>
             <div class="split-glow"></div>
@@ -1833,8 +2164,9 @@
                 <div class="split-panel split-panel-right">
                     <div class="split-content split-content-right">
                         <div style="display:grid;grid-template-columns:1fr;gap:20px;width:100%;">
-                            <!-- PROJECT 1 with PREVIEW -->
-                            <a href="https://rohits533.github.io" target="_blank" class="project-card glass-enhanced" style="padding:20px;">
+                            <!-- PROJECT 1 -->
+                            <a href="https://rohits533.github.io" target="_blank" class="project-card glass-ultimate" style="padding:20px;">
+                                <div class="glass-border-glow"></div>
                                 <div class="project-preview">
                                     <iframe src="https://rohits533.github.io" loading="lazy"></iframe>
                                     <span class="preview-badge">🔴 Live</span>
@@ -1845,8 +2177,9 @@
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
                             
-                            <!-- PROJECT 2 with PREVIEW -->
-                            <a href="https://rohit-ai-chatbot-2026.streamlit.app" target="_blank" class="project-card glass-enhanced" style="padding:20px;">
+                            <!-- PROJECT 2 -->
+                            <a href="https://rohit-ai-chatbot-2026.streamlit.app" target="_blank" class="project-card glass-ultimate" style="padding:20px;">
+                                <div class="glass-border-glow"></div>
                                 <div class="project-preview">
                                     <iframe src="https://rohit-ai-chatbot-2026.streamlit.app" loading="lazy"></iframe>
                                     <span class="preview-badge">🔴 Live</span>
@@ -1857,8 +2190,9 @@
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
                             
-                            <!-- PROJECT 3 with PREVIEW -->
-                            <a href="https://ai-code-reviewer-js.vercel.app" target="_blank" class="project-card glass-enhanced" style="padding:20px;">
+                            <!-- PROJECT 3 -->
+                            <a href="https://ai-code-reviewer-js.vercel.app" target="_blank" class="project-card glass-ultimate" style="padding:20px;">
+                                <div class="glass-border-glow"></div>
                                 <div class="project-preview">
                                     <iframe src="https://ai-code-reviewer-js.vercel.app" loading="lazy"></iframe>
                                     <span class="preview-badge">🔴 Live</span>
@@ -1874,7 +2208,7 @@
             </div>
         </section>
 
-        <!-- ===== CONTACT SECTION (SPLIT) ===== -->
+        <!-- ===== CONTACT SECTION ===== -->
         <section id="contact" class="split-section" data-section="contact">
             <div class="split-line"></div>
             <div class="split-glow"></div>
@@ -1895,8 +2229,9 @@
                 
                 <div class="split-panel split-panel-right">
                     <div class="split-content split-content-right" style="max-width:500px;">
-                        <div class="glass-enhanced" style="padding:30px;">
-                            <form id="contactForm">
+                        <div class="glass-ultimate" style="padding:30px;">
+                            <div class="glass-border-glow"></div>
+                            <form id="contactForm" style="position:relative;z-index:1;">
                                 <div style="margin-bottom:20px;">
                                     <label style="display:block;margin-bottom:5px;color:#b0b0b0;font-size:0.9rem;">Name</label>
                                     <input type="text" placeholder="Your name" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;color:#fff;font-size:1rem;transition:all 0.3s;">
@@ -1919,7 +2254,7 @@
             </div>
         </section>
 
-        <!-- ===== IMPROVEMENT 4: SOCIAL PROOF BAR ===== -->
+        <!-- ===== SOCIAL PROOF BAR ===== -->
         <div class="social-proof">
             <span class="proof-item">
                 <span class="icon">✦</span> Google
@@ -1944,7 +2279,7 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- IMPROVEMENT 7: AI MODE TOGGLE -->
+    <!-- AI MODE TOGGLE -->
     <!-- ============================================== -->
     <button class="ai-toggle" id="aiToggle">
         <span>🤖</span>
@@ -1952,7 +2287,7 @@
     </button>
 
     <!-- ============================================== -->
-    <!-- IMPROVEMENT 8: KEYBOARD SHORTCUTS HINT -->
+    <!-- KEYBOARD SHORTCUTS HINT -->
     <!-- ============================================== -->
     <div class="keyboard-hint">
         <kbd>⌘</kbd> + <kbd>H</kbd> Home<br>
@@ -1964,6 +2299,221 @@
     <!-- SCRIPTS -->
     <!-- ============================================== -->
     <script>
+        // ==============================================
+        // DARK AMBIENT MUSIC PLAYER - ULTIMATE VIBE
+        // ==============================================
+        class AmbientMusicPlayer {
+            constructor() {
+                this.audioContext = null;
+                this.isPlaying = false;
+                this.oscillators = [];
+                this.gains = [];
+                this.toggleBtn = document.getElementById('musicToggle');
+                this.statusEl = document.getElementById('musicStatus');
+                this.waveEl = document.getElementById('musicWave');
+                this.musicPlayer = document.getElementById('musicPlayer');
+                
+                this.init();
+            }
+            
+            init() {
+                this.toggleBtn.addEventListener('click', () => this.toggle());
+                
+                // Auto-play on any user interaction
+                document.addEventListener('click', () => {
+                    if (!this.audioContext) {
+                        this.startMusic();
+                    }
+                }, { once: true });
+                
+                document.addEventListener('keydown', () => {
+                    if (!this.audioContext) {
+                        this.startMusic();
+                    }
+                }, { once: true });
+            }
+            
+            startMusic() {
+                try {
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    this.isPlaying = true;
+                    
+                    // Create ambient layers
+                    this.createAmbientLayer(0.3, 432, 'sine', 0.15);
+                    this.createAmbientLayer(0.2, 540, 'sine', 0.1);
+                    this.createAmbientLayer(0.15, 324, 'sine', 0.08);
+                    this.createAmbientLayer(0.1, 648, 'sine', 0.05);
+                    this.createAmbientLayer(0.2, 486, 'triangle', 0.06);
+                    
+                    // Low drone
+                    this.createDroneLayer(0.25, 108, 'sawtooth', 0.12);
+                    this.createDroneLayer(0.15, 216, 'sawtooth', 0.08);
+                    
+                    this.updateUI(true);
+                    
+                    console.log('🌙 Dark Ambient Music started at 432Hz');
+                } catch (e) {
+                    console.warn('⚠️ Audio not supported:', e);
+                    this.updateUI(false);
+                }
+            }
+            
+            createAmbientLayer(volume, frequency, type, panValue) {
+                try {
+                    const osc = this.audioContext.createOscillator();
+                    const gain = this.audioContext.createGain();
+                    const panner = this.audioContext.createStereoPanner();
+                    
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+                    
+                    // Slow modulation for depth
+                    const modulator = this.audioContext.createOscillator();
+                    const modGain = this.audioContext.createGain();
+                    modulator.frequency.setValueAtTime(0.3, this.audioContext.currentTime);
+                    modGain.gain.setValueAtTime(8, this.audioContext.currentTime);
+                    
+                    modulator.connect(modGain);
+                    modGain.connect(osc.frequency);
+                    
+                    gain.gain.setValueAtTime(0, this.audioContext.currentTime);
+                    gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 4);
+                    
+                    // Gentle LFO for volume
+                    const lfo = this.audioContext.createOscillator();
+                    const lfoGain = this.audioContext.createGain();
+                    lfo.frequency.setValueAtTime(0.1 + Math.random() * 0.05, this.audioContext.currentTime);
+                    lfoGain.gain.setValueAtTime(volume * 0.3, this.audioContext.currentTime);
+                    
+                    lfo.connect(lfoGain);
+                    lfoGain.connect(gain.gain);
+                    
+                    panner.pan.setValueAtTime(panValue || 0, this.audioContext.currentTime);
+                    
+                    osc.connect(gain);
+                    gain.connect(panner);
+                    panner.connect(this.audioContext.destination);
+                    
+                    osc.start(this.audioContext.currentTime);
+                    modulator.start(this.audioContext.currentTime);
+                    lfo.start(this.audioContext.currentTime);
+                    
+                    this.oscillators.push({ osc, modulator, lfo });
+                    this.gains.push(gain);
+                    
+                    // Slow fade out after 30 seconds, then restart
+                    setTimeout(() => {
+                        if (this.isPlaying) {
+                            gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 3);
+                            setTimeout(() => {
+                                if (this.isPlaying) {
+                                    gain.gain.linearRampToValueAtTime(volume * 0.7, this.audioContext.currentTime + 5);
+                                }
+                            }, 5000);
+                        }
+                    }, 20000);
+                    
+                } catch (e) {
+                    // Silent fail
+                }
+            }
+            
+            createDroneLayer(volume, frequency, type, panValue) {
+                try {
+                    const osc = this.audioContext.createOscillator();
+                    const gain = this.audioContext.createGain();
+                    const panner = this.audioContext.createStereoPanner();
+                    
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+                    
+                    // Very slow modulation
+                    const modulator = this.audioContext.createOscillator();
+                    const modGain = this.audioContext.createGain();
+                    modulator.frequency.setValueAtTime(0.05, this.audioContext.currentTime);
+                    modGain.gain.setValueAtTime(3, this.audioContext.currentTime);
+                    
+                    modulator.connect(modGain);
+                    modGain.connect(osc.frequency);
+                    
+                    gain.gain.setValueAtTime(0, this.audioContext.currentTime);
+                    gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 6);
+                    
+                    panner.pan.setValueAtTime(panValue || 0, this.audioContext.currentTime);
+                    
+                    osc.connect(gain);
+                    gain.connect(panner);
+                    panner.connect(this.audioContext.destination);
+                    
+                    osc.start(this.audioContext.currentTime);
+                    modulator.start(this.audioContext.currentTime);
+                    
+                    this.oscillators.push({ osc, modulator });
+                    this.gains.push(gain);
+                    
+                } catch (e) {
+                    // Silent fail
+                }
+            }
+            
+            toggle() {
+                if (!this.audioContext) {
+                    this.startMusic();
+                    return;
+                }
+                
+                this.isPlaying = !this.isPlaying;
+                
+                if (this.isPlaying) {
+                    // Resume all gains
+                    this.gains.forEach(gain => {
+                        gain.gain.linearRampToValueAtTime(0.15, this.audioContext.currentTime + 2);
+                    });
+                    this.updateUI(true);
+                } else {
+                    // Fade out all gains
+                    this.gains.forEach(gain => {
+                        gain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 2);
+                    });
+                    this.updateUI(false);
+                }
+            }
+            
+            updateUI(playing) {
+                const icon = this.toggleBtn.querySelector('i');
+                if (playing) {
+                    icon.className = 'fas fa-music';
+                    this.toggleBtn.classList.add('playing');
+                    this.statusEl.textContent = '● Playing';
+                    this.statusEl.style.color = '#00FF41';
+                    this.waveEl.classList.remove('paused');
+                } else {
+                    icon.className = 'fas fa-volume-mute';
+                    this.toggleBtn.classList.remove('playing');
+                    this.statusEl.textContent = '○ Paused';
+                    this.statusEl.style.color = '#4a4a4a';
+                    this.waveEl.classList.add('paused');
+                }
+            }
+            
+            stop() {
+                this.isPlaying = false;
+                this.oscillators.forEach(({ osc, modulator }) => {
+                    try {
+                        osc.stop();
+                        if (modulator) modulator.stop();
+                    } catch (e) {}
+                });
+                this.oscillators = [];
+                this.gains = [];
+                if (this.audioContext) {
+                    this.audioContext.close();
+                    this.audioContext = null;
+                }
+                this.updateUI(false);
+            }
+        }
+
         // ==============================================
         // ANIMATED CURSOR
         // ==============================================
@@ -2248,6 +2798,7 @@
                 this.mainContent = document.getElementById('mainContent');
                 this.enterBtn = document.getElementById('enterBtn');
                 this.isEntered = false;
+                this.musicPlayer = null;
                 
                 this.enterBtn.addEventListener('click', () => this.enter());
                 document.addEventListener('keydown', (e) => {
@@ -2322,7 +2873,7 @@
                 });
                 
                 // ==============================================
-                // IMPROVEMENT 5: KEYBOARD SHORTCUTS
+                // KEYBOARD SHORTCUTS
                 // ==============================================
                 document.addEventListener('keydown', (e) => {
                     if (e.metaKey || e.ctrlKey) {
@@ -2344,7 +2895,7 @@
                 });
                 
                 // ==============================================
-                // IMPROVEMENT 7: AI MODE TOGGLE
+                // AI MODE TOGGLE
                 // ==============================================
                 const aiToggle = document.getElementById('aiToggle');
                 let aiMode = false;
@@ -2382,9 +2933,12 @@
             const cursor = new AnimatedCursor();
             const bg = new EntryBackground();
             const entry = new EntryManager();
+            const music = new AmbientMusicPlayer();
             
             console.log('🚀 Rohit Savan\'s ULTIMATE Portfolio ready!');
             console.log('🎬 Original entry animation restored!');
+            console.log('🌙 Dark Ambient Music playing at 432Hz!');
+            console.log('🍷 Deep Glass Effects - Apple Killer!');
             console.log('📜 All 10 improvements + glass effects activated!');
             console.log('⌨️  Keyboard shortcuts: ⌘+H (Home), ⌘+P (Projects), ⌘+C (Contact)');
             console.log('🤖 Click the AI Mode toggle for a surprise!');
