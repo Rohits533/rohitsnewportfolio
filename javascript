@@ -1,43 +1,86 @@
 // ============================================
-// ===== PRELOADER - FIXED! =====
+// ===== PRELOADER WITH ENTER BUTTON =====
 // ============================================
 (function preloader() {
     const preloader = document.getElementById('preloader');
     const progress = document.getElementById('progress');
-    
-    // Force progress to 100% after 2 seconds max
+    const preloaderText = document.getElementById('preloaderText');
+    const preloaderEnter = document.getElementById('preloaderEnter');
+    const forceEnterBtn = document.getElementById('forceEnterBtn');
+
     let progressValue = 0;
-    const interval = setInterval(() => {
-        progressValue += Math.random() * 15 + 5;
+    let isFinished = false;
+    let progressInterval;
+
+    // Progress bar animation
+    progressInterval = setInterval(() => {
+        progressValue += Math.random() * 10 + 3;
         if (progressValue > 100) progressValue = 100;
         progress.style.width = progressValue + '%';
 
-        if (progressValue === 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-                preloader.classList.add('hidden');
-                // Trigger reveal animations after preloader
-                setTimeout(() => {
-                    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
-                        el.classList.add('active');
-                    });
-                }, 200);
-            }, 300);
+        if (progressValue >= 100) {
+            clearInterval(progressInterval);
+            finishPreloader();
         }
     }, 200);
 
-    // FALLBACK: If preloader gets stuck, force it to finish after 4 seconds
+    // FALLBACK: Show enter button if stuck (5 seconds)
     setTimeout(() => {
-        if (!preloader.classList.contains('hidden')) {
+        if (!isFinished && !preloader.classList.contains('hidden')) {
+            preloaderText.textContent = 'Taking longer than expected...';
+            preloaderEnter.classList.add('show');
+        }
+    }, 5000);
+
+    // FORCE ENTER BUTTON - Click to skip
+    if (forceEnterBtn) {
+        forceEnterBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!isFinished) {
+                progress.style.width = '100%';
+                finishPreloader();
+            }
+        });
+    }
+
+    // FALLBACK: Force finish at 8 seconds no matter what
+    setTimeout(() => {
+        if (!isFinished && !preloader.classList.contains('hidden')) {
             progress.style.width = '100%';
+            finishPreloader();
+        }
+    }, 8000);
+
+    function finishPreloader() {
+        if (isFinished) return;
+        isFinished = true;
+        clearInterval(progressInterval);
+
+        // Hide preloader
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            
+            // Trigger reveal animations
             setTimeout(() => {
-                preloader.classList.add('hidden');
                 document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
                     el.classList.add('active');
                 });
-            }, 300);
+            }, 200);
+            
+            // Animate stats
+            setTimeout(() => {
+                animateStats();
+            }, 400);
+        }, 300);
+    }
+
+    // Keyboard shortcut: Press 'Enter' to skip
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !isFinished && !preloader.classList.contains('hidden')) {
+            progress.style.width = '100%';
+            finishPreloader();
         }
-    }, 4000);
+    });
 })();
 
 // ============================================
@@ -157,14 +200,13 @@
 (function cursor() {
     const dot = document.getElementById('cursorDot');
     const ring = document.getElementById('cursorRing');
-    const trail = document.getElementById('cursorTrail');
 
     if (!dot || !ring) return;
 
+    // Hide on mobile
     if (window.innerWidth <= 768) {
         dot.style.display = 'none';
         ring.style.display = 'none';
-        if (trail) trail.style.display = 'none';
         return;
     }
 
@@ -172,8 +214,6 @@
         mouseY = 0;
     let ringX = 0,
         ringY = 0;
-    let trailX = 0,
-        trailY = 0;
 
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -187,20 +227,13 @@
         ringY += (mouseY - ringY) * 0.12;
         ring.style.left = ringX + 'px';
         ring.style.top = ringY + 'px';
-
-        if (trail) {
-            trailX += (mouseX - trailX) * 0.06;
-            trailY += (mouseY - trailY) * 0.06;
-            trail.style.left = trailX + 'px';
-            trail.style.top = trailY + 'px';
-        }
-
         requestAnimationFrame(animateRing);
     }
     animateRing();
 
+    // Hover effects on interactive elements
     const interactiveElements = document.querySelectorAll(
-        'a, button, .project-card, .skill-tag, .journey-tab, .filter-btn, .manifesto-item'
+        'a, button, .project-card, .skill-tag, .journey-tab, .filter-btn, .manifesto-item, .enter-btn'
     );
 
     interactiveElements.forEach(el => {
@@ -249,7 +282,7 @@
 })();
 
 // ============================================
-// ===== ENTER BUTTON =====
+// ===== ENTER BUTTON (Landing) =====
 // ============================================
 (function enterPortfolio() {
     const enterBtn = document.getElementById('enterBtn');
@@ -460,6 +493,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
+// ===== KEYBOARD SHORTCUTS =====
+// ============================================
+document.addEventListener('keydown', (e) => {
+    // Press 'R' to reload
+    if (e.key === 'r' && e.ctrlKey) {
+        e.preventDefault();
+        location.reload();
+    }
+});
+
+// ============================================
 // ===== CONSOLE GREETING =====
 // ============================================
 console.log('%c🚀 Rohit Savan - Portfolio', 'font-size: 24px; font-weight: bold; color: #FFD700;');
@@ -467,3 +511,4 @@ console.log('%c💻 Developer • AI/ML • Full Stack', 'font-size: 14px; color
 console.log('%c✨ Built with ❤️ & lots of code', 'font-size: 12px; color: #8888a0;');
 console.log('%c📧 rohitsavan360@gmail.com', 'font-size: 12px; color: #6C63FF;');
 console.log('%c🐙 github.com/Rohits533', 'font-size: 12px; color: #6C63FF;');
+console.log('%c⌨️ Press Enter to skip loading', 'font-size: 10px; color: #555;');
