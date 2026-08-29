@@ -57,6 +57,73 @@
         }
         
         /* ==============================================
+           ENHANCED GLASS EFFECTS
+           ============================================== */
+        .glass-enhanced {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-enhanced::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, 
+                rgba(0, 255, 65, 0.03) 0%, 
+                transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        
+        .glass-enhanced:hover::before {
+            opacity: 1;
+        }
+        
+        .glass-enhanced:hover {
+            border-color: rgba(0, 255, 65, 0.2);
+            box-shadow: 
+                0 8px 40px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(0, 255, 65, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        /* Glass with neon border */
+        .glass-neon {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid transparent;
+            border-image: linear-gradient(135deg, rgba(0, 255, 65, 0.3), rgba(255, 215, 0, 0.3)) 1;
+            border-radius: 24px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .glass-neon:hover {
+            border-image: linear-gradient(135deg, #00FF41, #FFD700) 1;
+            box-shadow: 
+                0 8px 40px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(0, 255, 65, 0.1);
+            transform: translateY(-5px) scale(1.01);
+        }
+        
+        /* ==============================================
            ANIMATED CURSOR
            ============================================== */
         .custom-cursor {
@@ -510,7 +577,7 @@
         }
         
         /* ==============================================
-           MAIN CONTENT (Portfolio)
+           MAIN CONTENT
            ============================================== */
         #mainContent {
             display: none;
@@ -524,10 +591,8 @@
         }
         
         /* ==============================================
-           SPLIT SCROLL ANIMATIONS - FIXED
+           SPLIT SCROLL ANIMATIONS
            ============================================== */
-        
-        /* Each section is a split container */
         .split-section {
             position: relative;
             min-height: 100vh;
@@ -536,7 +601,6 @@
             transition: all 0.8s cubic-bezier(0.77, 0, 0.18, 1);
         }
         
-        /* The wrapper that holds left and right panels */
         .split-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -545,7 +609,6 @@
             transition: all 0.8s cubic-bezier(0.77, 0, 0.18, 1);
         }
         
-        /* Both panels - always visible */
         .split-panel {
             display: flex;
             align-items: center;
@@ -557,18 +620,15 @@
             min-height: 100vh;
         }
         
-        /* Left panel */
         .split-panel-left {
             background: rgba(0, 0, 0, 0.3);
             border-right: 1px solid rgba(0, 255, 65, 0.05);
         }
         
-        /* Right panel */
         .split-panel-right {
             background: rgba(10, 10, 10, 0.5);
         }
         
-        /* Split line in center */
         .split-line {
             position: absolute;
             top: 0;
@@ -611,7 +671,6 @@
             bottom: 20%;
         }
         
-        /* Glow effect behind content */
         .split-glow {
             position: absolute;
             top: 50%;
@@ -626,7 +685,6 @@
             transition: all 1s;
         }
         
-        /* ===== SCROLL STATE: SPLIT OPEN (scrolling down) ===== */
         .split-section.split-open .split-wrapper {
             grid-template-columns: 1fr 1fr;
         }
@@ -646,7 +704,6 @@
             transform: translateX(-50%) scaleY(1);
         }
         
-        /* ===== SCROLL STATE: SPLIT CLOSED (scrolling up) ===== */
         .split-section.split-closed .split-wrapper {
             grid-template-columns: 1fr 1fr;
         }
@@ -666,13 +723,6 @@
             transform: translateX(-50%) scaleY(0.3);
         }
         
-        /* Hover state - always full opacity */
-        .split-section.split-closed:hover .split-panel-left,
-        .split-section.split-closed:hover .split-panel-right {
-            opacity: 0.6;
-        }
-        
-        /* ===== PANEL CONTENT STYLES ===== */
         .split-content {
             max-width: 550px;
             width: 100%;
@@ -830,25 +880,7 @@
         }
         
         /* ==============================================
-           GLASS CARD
-           ============================================== */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.4s;
-        }
-        
-        .glass-card:hover {
-            border-color: rgba(0, 255, 65, 0.2);
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.05);
-            transform: translateY(-5px);
-        }
-        
-        /* ==============================================
-           HERO SECTION (No split - stays full)
+           HERO SECTION
            ============================================== */
         .hero {
             min-height: 100vh;
@@ -889,6 +921,28 @@
             background: #00FF41;
             border-radius: 50%;
             animation: blink 1s infinite;
+        }
+        
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #00FF41;
+            border-radius: 50%;
+            animation: pulseDot 1.5s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        @keyframes pulseDot {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            }
+            50% { 
+                opacity: 0.3;
+                transform: scale(0.5);
+                box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+            }
         }
         
         .hero-title {
@@ -986,6 +1040,225 @@
         }
         
         /* ==============================================
+           IMPROVEMENT 1: LIVE STATUS BADGE
+           ============================================== */
+        .live-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 16px;
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            margin-top: 10px;
+        }
+        
+        .live-status .pulse {
+            width: 10px;
+            height: 10px;
+            background: #00FF41;
+            border-radius: 50%;
+            animation: pulseDot 1.5s ease-in-out infinite;
+        }
+        
+        .live-status .status-text {
+            color: #FFD700;
+            font-weight: 600;
+        }
+        
+        /* ==============================================
+           IMPROVEMENT 2: CURRENTLY WORKING ON
+           ============================================== */
+        .currently-working {
+            margin-top: 20px;
+            padding: 20px 25px;
+            border: 2px solid rgba(0, 255, 65, 0.2);
+            border-radius: 16px;
+            background: rgba(0, 255, 65, 0.02);
+            transition: all 0.4s;
+        }
+        
+        .currently-working:hover {
+            border-color: rgba(0, 255, 65, 0.4);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.05);
+        }
+        
+        .currently-working .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .currently-working .progress-fill {
+            height: 100%;
+            width: 70%;
+            background: linear-gradient(90deg, #00FF41, #FFD700);
+            border-radius: 2px;
+            animation: progressPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes progressPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        /* ==============================================
+           IMPROVEMENT 4: SOCIAL PROOF BAR
+           ============================================== */
+        .social-proof {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            opacity: 0.7;
+            transition: all 0.4s;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+        }
+        
+        .social-proof:hover {
+            opacity: 1;
+        }
+        
+        .social-proof .proof-item {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #b0b0b0;
+            transition: all 0.3s;
+            cursor: default;
+        }
+        
+        .social-proof .proof-item:hover {
+            color: #00FF41;
+            transform: translateY(-2px);
+        }
+        
+        .social-proof .proof-item .icon {
+            margin-right: 8px;
+        }
+        
+        /* ==============================================
+           IMPROVEMENT 7: AI MODE TOGGLE
+           ============================================== */
+        .ai-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            padding: 12px 24px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            border-radius: 30px;
+            color: #00FF41;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: none;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .ai-toggle:hover {
+            transform: scale(1.05);
+            border-color: #00FF41;
+            box-shadow: 0 4px 30px rgba(0, 255, 65, 0.2);
+        }
+        
+        .ai-toggle.active {
+            background: rgba(0, 255, 65, 0.1);
+            border-color: #00FF41;
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.2);
+        }
+        
+        /* AI Mode Theme */
+        body.ai-mode .glass-enhanced {
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+        
+        body.ai-mode .glass-enhanced:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(0, 212, 255, 0.1);
+        }
+        
+        body.ai-mode .neon-text,
+        body.ai-mode .stat-number,
+        body.ai-mode .panel-label,
+        body.ai-mode .nav-link:hover {
+            color: #00D4FF;
+        }
+        
+        /* ==============================================
+           IMPROVEMENT 9: TERMINAL PRELOADER
+           ============================================== */
+        .terminal-preloader {
+            font-family: 'Space Mono', monospace;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            border-radius: 12px;
+            padding: 30px 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+        
+        .terminal-preloader .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .terminal-preloader .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .terminal-preloader .terminal-dot:nth-child(1) { background: #FF5F56; }
+        .terminal-preloader .terminal-dot:nth-child(2) { background: #FFBD2E; }
+        .terminal-preloader .terminal-dot:nth-child(3) { background: #27C93F; }
+        
+        .terminal-preloader .terminal-title {
+            color: #b0b0b0;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .terminal-preloader .terminal-line {
+            color: #00FF41;
+            font-size: 0.9rem;
+            line-height: 2;
+            opacity: 0;
+            animation: terminalType 0.5s ease forwards;
+        }
+        
+        .terminal-preloader .terminal-line:nth-child(1) { animation-delay: 0.2s; }
+        .terminal-preloader .terminal-line:nth-child(2) { animation-delay: 0.4s; }
+        .terminal-preloader .terminal-line:nth-child(3) { animation-delay: 0.6s; }
+        .terminal-preloader .terminal-line:nth-child(4) { animation-delay: 0.8s; }
+        .terminal-preloader .terminal-line:nth-child(5) { animation-delay: 1.0s; }
+        
+        .terminal-preloader .terminal-line .cursor-blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes terminalType {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* ==============================================
            SKILLS GRID
            ============================================== */
         .skills-grid {
@@ -997,8 +1270,8 @@
         
         .skill-tag {
             padding: 12px 20px;
-            background: rgba(0, 255, 65, 0.05);
-            border: 1px solid rgba(0, 255, 65, 0.1);
+            background: rgba(0, 255, 65, 0.03);
+            border: 1px solid rgba(0, 255, 65, 0.08);
             border-radius: 12px;
             text-align: center;
             font-weight: 600;
@@ -1008,11 +1281,11 @@
         }
         
         .skill-tag:hover {
-            background: rgba(0, 255, 65, 0.1);
+            background: rgba(0, 255, 65, 0.08);
             border-color: #00FF41;
             color: #00FF41;
             transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.05);
         }
         
         .skill-tag .skill-icon {
@@ -1064,45 +1337,97 @@
         }
         
         /* ==============================================
-           SECTION HEADERS (for non-split sections)
+           IMPROVEMENT 10: PROJECT PREVIEW
            ============================================== */
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
+        .project-preview {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            height: 180px;
+            background: rgba(0, 0, 0, 0.3);
         }
         
-        .section-tag {
-            display: inline-block;
-            padding: 5px 20px;
-            border: 1px solid #00FF41;
-            border-radius: 20px;
+        .project-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform: scale(0.7);
+            transform-origin: top left;
+            pointer-events: none;
+            opacity: 0.6;
+            transition: all 0.5s;
+        }
+        
+        .project-preview:hover iframe {
+            opacity: 0.9;
+            transform: scale(0.75);
+        }
+        
+        .project-preview .preview-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 4px 14px;
+            border-radius: 10px;
+            font-size: 0.7rem;
             color: #00FF41;
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-        }
-        
-        .section-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 700;
-            background: linear-gradient(135deg, #00FF41, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-        }
-        
-        .section-subtitle {
-            color: #b0b0b0;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
+            border: 1px solid rgba(0, 255, 65, 0.2);
         }
         
         /* ==============================================
-           RESPONSIVE - FIXED
+           IMPROVEMENT 6: 3D PARALLAX
+           ============================================== */
+        .hero-visual {
+            perspective: 1000px;
+        }
+        
+        .hero-visual .parallax-icon {
+            font-size: 10rem;
+            opacity: 0.3;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: rotateY(-10deg) rotateX(5deg);
+        }
+        
+        .hero-visual:hover .parallax-icon {
+            transform: rotateY(0deg) rotateX(0deg) scale(1.1);
+        }
+        
+        /* ==============================================
+           KEYBOARD SHORTCUTS HINT
+           ============================================== */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 999;
+            color: #4a4a4a;
+            font-size: 0.7rem;
+            font-family: 'Space Mono', monospace;
+            opacity: 0.3;
+            transition: all 0.3s;
+            text-align: right;
+            line-height: 1.8;
+        }
+        
+        .keyboard-hint:hover {
+            opacity: 0.8;
+        }
+        
+        .keyboard-hint kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            font-size: 0.6rem;
+            color: #b0b0b0;
+        }
+        
+        /* ==============================================
+           RESPONSIVE
            ============================================== */
         @media (max-width: 1024px) {
             .hero-container {
@@ -1122,7 +1447,6 @@
                 justify-content: center;
             }
             
-            /* Disable split on tablet/mobile */
             .split-wrapper {
                 grid-template-columns: 1fr !important;
                 min-height: auto !important;
@@ -1164,6 +1488,14 @@
             .split-section.split-closed .split-panel-right {
                 opacity: 1 !important;
                 transform: none !important;
+            }
+            
+            .hero-visual .parallax-icon {
+                font-size: 6rem;
+            }
+            
+            .social-proof {
+                gap: 15px;
             }
         }
         
@@ -1213,6 +1545,21 @@
                 padding: 15px 40px;
                 font-size: 1rem;
             }
+            
+            .ai-toggle {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 18px;
+                font-size: 0.7rem;
+            }
+            
+            .keyboard-hint {
+                display: none;
+            }
+            
+            .terminal-preloader {
+                padding: 20px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1232,6 +1579,12 @@
             .split-panel {
                 padding: 30px 15px !important;
             }
+            
+            .social-proof {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -1248,7 +1601,7 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- ENTRY PAGE -->
+    <!-- ENTRY PAGE - TERMINAL STYLE (IMPROVEMENT 9) -->
     <!-- ============================================== -->
     <div id="entryPage">
         <div class="entry-bg">
@@ -1263,13 +1616,22 @@
         </div>
 
         <div class="entry-content">
-            <h1 class="entry-title">
-                <span class="glitch-text" data-text="ROHIT SAVAN">ROHIT SAVAN</span>
-            </h1>
-            <p class="entry-subtitle">
-                <span>✦</span> Enter the Neon Experience <span>✦</span>
-            </p>
-            <button class="enter-btn" id="enterBtn">
+            <!-- TERMINAL PRELOADER -->
+            <div class="terminal-preloader">
+                <div class="terminal-header">
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-title">~/portfolio/entry.sh</span>
+                </div>
+                <div class="terminal-line">$ ./initialize --user=rohit_savan</div>
+                <div class="terminal-line">$ loading_modules...</div>
+                <div class="terminal-line">$ ai_engine_online = TRUE</div>
+                <div class="terminal-line">$ neon_system_ready = TRUE</div>
+                <div class="terminal-line">$ Welcome to the future, Rohit Savan! <span class="cursor-blink">█</span></div>
+            </div>
+            
+            <button class="enter-btn" id="enterBtn" style="margin-top:30px;">
                 <span class="btn-glow-ring"></span>
                 <span class="btn-glow-ring"></span>
                 <span class="btn-text">
@@ -1315,7 +1677,17 @@
                     <div class="hero-badge">
                         <span class="dot"></span>
                         Built by Rohit Savan
+                        <span class="pulse-dot" style="margin-left:5px;"></span>
                     </div>
+                    
+                    <!-- IMPROVEMENT 1: LIVE STATUS BADGE -->
+                    <div class="live-status">
+                        <span class="pulse"></span>
+                        <span>🚀 Building </span>
+                        <span class="status-text">AI Tools</span>
+                        <span style="color:#4a4a4a;font-size:0.7rem;">| 2026</span>
+                    </div>
+                    
                     <h1 class="hero-title">
                         Welcome to<br>
                         <span class="highlight">Rohit Savan's</span><br>
@@ -1326,6 +1698,22 @@
                         <span class="highlight-text">✦ Full Stack Engineer</span> · 
                         <span class="highlight-text">✦ Innovation Enthusiast</span>
                     </p>
+                    
+                    <!-- IMPROVEMENT 2: CURRENTLY WORKING ON -->
+                    <div class="currently-working glass-enhanced">
+                        <div style="display:flex;align-items:center;gap:15px;">
+                            <span style="font-size:1.5rem;">🔄</span>
+                            <div style="flex:1;">
+                                <h4 style="font-size:0.95rem;color:#00FF41;">Currently Building</h4>
+                                <p style="color:#b0b0b0;font-size:0.85rem;">AI-Powered Developer Assistant</p>
+                            </div>
+                            <span style="color:#FFD700;font-size:0.8rem;font-weight:700;">70%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    
                     <div class="hero-actions">
                         <a href="#journey" class="btn btn-primary">
                             Next Page <i class="fas fa-arrow-right"></i>
@@ -1353,10 +1741,12 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- IMPROVEMENT 6: 3D PARALLAX -->
                 <div class="hero-visual">
-                    <div style="text-align:center;font-size:10rem;opacity:0.3;">
+                    <span class="parallax-icon">
                         <i class="fas fa-brain"></i>
-                    </div>
+                    </span>
                 </div>
             </div>
         </section>
@@ -1367,7 +1757,6 @@
             <div class="split-glow"></div>
             
             <div class="split-wrapper">
-                <!-- Left Panel -->
                 <div class="split-panel split-panel-left">
                     <div class="split-content split-content-left">
                         <span class="panel-label">✦ My Journey</span>
@@ -1381,38 +1770,37 @@
                     </div>
                 </div>
                 
-                <!-- Right Panel -->
                 <div class="split-panel split-panel-right">
                     <div class="split-content split-content-right">
                         <div style="display:grid;gap:20px;width:100%;">
-                            <div class="glass-card" style="padding:20px;">
+                            <div class="glass-enhanced" style="padding:20px;">
                                 <div style="display:flex;align-items:center;gap:15px;">
                                     <span style="font-size:2rem;">🏆</span>
                                     <div>
                                         <h4 style="font-size:1rem;">AI Assistant Bootcamp Winner</h4>
-                                        <p style="color:#b0b0b0;font-size:0.85rem;">2024</p>
+                                        <p style="color:#b0b0b0;font-size:0.85rem;">2026</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="glass-card" style="padding:20px;">
+                            <div class="glass-enhanced" style="padding:20px;">
                                 <div style="display:flex;align-items:center;gap:15px;">
                                     <span style="font-size:2rem;">💼</span>
                                     <div>
                                         <h4 style="font-size:1rem;">Intern at Innovation Hacks</h4>
-                                        <p style="color:#b0b0b0;font-size:0.85rem;">2024 - 1 Month</p>
+                                        <p style="color:#b0b0b0;font-size:0.85rem;">2026 - 1 Month</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="glass-card" style="padding:20px;">
+                            <div class="glass-enhanced" style="padding:20px;">
                                 <div style="display:flex;align-items:center;gap:15px;">
                                     <span style="font-size:2rem;">📜</span>
                                     <div>
                                         <h4 style="font-size:1rem;">Google Developers Certification</h4>
-                                        <p style="color:#b0b0b0;font-size:0.85rem;">2024</p>
+                                        <p style="color:#b0b0b0;font-size:0.85rem;">2026</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="glass-card" style="padding:20px;">
+                            <div class="glass-enhanced" style="padding:20px;">
                                 <div style="display:flex;align-items:center;gap:15px;">
                                     <span style="font-size:2rem;">🚀</span>
                                     <div>
@@ -1433,7 +1821,6 @@
             <div class="split-glow"></div>
             
             <div class="split-wrapper">
-                <!-- Left Panel -->
                 <div class="split-panel split-panel-left">
                     <div class="split-content split-content-left">
                         <span class="panel-label">✦ My Skills</span>
@@ -1447,7 +1834,6 @@
                     </div>
                 </div>
                 
-                <!-- Right Panel -->
                 <div class="split-panel split-panel-right">
                     <div class="split-content split-content-right">
                         <div class="skills-grid">
@@ -1515,7 +1901,6 @@
             <div class="split-glow"></div>
             
             <div class="split-wrapper">
-                <!-- Left Panel -->
                 <div class="split-panel split-panel-left">
                     <div class="split-content split-content-left">
                         <span class="panel-label">✦ My Projects</span>
@@ -1529,23 +1914,39 @@
                     </div>
                 </div>
                 
-                <!-- Right Panel -->
                 <div class="split-panel split-panel-right">
                     <div class="split-content split-content-right">
                         <div style="display:grid;grid-template-columns:1fr;gap:20px;width:100%;">
-                            <a href="https://rohits533.github.io" target="_blank" class="project-card glass-card" style="padding:20px;">
+                            <!-- PROJECT 1 with PREVIEW (IMPROVEMENT 10) -->
+                            <a href="https://rohits533.github.io" target="_blank" class="project-card glass-enhanced" style="padding:20px;">
+                                <div class="project-preview">
+                                    <iframe src="https://rohits533.github.io" loading="lazy"></iframe>
+                                    <span class="preview-badge">🔴 Live</span>
+                                </div>
                                 <span class="project-icon">🌐</span>
                                 <h4 class="project-title">AI Tools Portfolio</h4>
                                 <p class="project-desc">Portfolio containing AI tools for day-to-day tasks.</p>
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
-                            <a href="https://rohit-ai-chatbot-2026.streamlit.app" target="_blank" class="project-card glass-card" style="padding:20px;">
+                            
+                            <!-- PROJECT 2 with PREVIEW (IMPROVEMENT 10) -->
+                            <a href="https://rohit-ai-chatbot-2026.streamlit.app" target="_blank" class="project-card glass-enhanced" style="padding:20px;">
+                                <div class="project-preview">
+                                    <iframe src="https://rohit-ai-chatbot-2026.streamlit.app" loading="lazy"></iframe>
+                                    <span class="preview-badge">🔴 Live</span>
+                                </div>
                                 <span class="project-icon">🤖</span>
                                 <h4 class="project-title">AI Chatbot</h4>
                                 <p class="project-desc">Intelligent AI chatbot built with Streamlit.</p>
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
-                            <a href="https://ai-code-reviewer-js.vercel.app" target="_blank" class="project-card glass-card" style="padding:20px;">
+                            
+                            <!-- PROJECT 3 with PREVIEW (IMPROVEMENT 10) -->
+                            <a href="https://ai-code-reviewer-js.vercel.app" target="_blank" class="project-card glass-enhanced" style="padding:20px;">
+                                <div class="project-preview">
+                                    <iframe src="https://ai-code-reviewer-js.vercel.app" loading="lazy"></iframe>
+                                    <span class="preview-badge">🔴 Live</span>
+                                </div>
                                 <span class="project-icon">📝</span>
                                 <h4 class="project-title">AI Code Reviewer</h4>
                                 <p class="project-desc">AI-powered code reviewer built with Next.js.</p>
@@ -1563,7 +1964,6 @@
             <div class="split-glow"></div>
             
             <div class="split-wrapper">
-                <!-- Left Panel -->
                 <div class="split-panel split-panel-left">
                     <div class="split-content split-content-left">
                         <span class="panel-label">✦ Contact</span>
@@ -1577,22 +1977,21 @@
                     </div>
                 </div>
                 
-                <!-- Right Panel -->
                 <div class="split-panel split-panel-right">
                     <div class="split-content split-content-right" style="max-width:500px;">
-                        <div class="glass-card" style="padding:30px;">
+                        <div class="glass-enhanced" style="padding:30px;">
                             <form id="contactForm">
                                 <div style="margin-bottom:20px;">
                                     <label style="display:block;margin-bottom:5px;color:#b0b0b0;font-size:0.9rem;">Name</label>
-                                    <input type="text" placeholder="Your name" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;">
+                                    <input type="text" placeholder="Your name" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;color:#fff;font-size:1rem;transition:all 0.3s;">
                                 </div>
                                 <div style="margin-bottom:20px;">
                                     <label style="display:block;margin-bottom:5px;color:#b0b0b0;font-size:0.9rem;">Email</label>
-                                    <input type="email" placeholder="your@email.com" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;">
+                                    <input type="email" placeholder="your@email.com" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;color:#fff;font-size:1rem;transition:all 0.3s;">
                                 </div>
                                 <div style="margin-bottom:20px;">
                                     <label style="display:block;margin-bottom:5px;color:#b0b0b0;font-size:0.9rem;">Message</label>
-                                    <textarea rows="4" placeholder="Tell me about your project..." style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;resize:vertical;"></textarea>
+                                    <textarea rows="4" placeholder="Tell me about your project..." style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;color:#fff;font-size:1rem;resize:vertical;transition:all 0.3s;"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;cursor:none;">
                                     Send Message <i class="fas fa-paper-plane"></i>
@@ -1604,6 +2003,45 @@
             </div>
         </section>
 
+        <!-- ===== IMPROVEMENT 4: SOCIAL PROOF BAR ===== -->
+        <div class="social-proof">
+            <span class="proof-item">
+                <span class="icon">✦</span> Google
+            </span>
+            <span class="proof-item">
+                <span class="icon">✦</span> Innovation Hacks
+            </span>
+            <span class="proof-item">
+                <span class="icon">✦</span> TensorFlow
+            </span>
+            <span class="proof-item">
+                <span class="icon">✦</span> Vercel
+            </span>
+            <span class="proof-item">
+                <span class="icon">✦</span> Streamlit
+            </span>
+            <span class="proof-item">
+                <span class="icon">✦</span> Next.js
+            </span>
+        </div>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- IMPROVEMENT 7: AI MODE TOGGLE -->
+    <!-- ============================================== -->
+    <button class="ai-toggle" id="aiToggle">
+        <span>🤖</span>
+        <span>AI Mode</span>
+    </button>
+
+    <!-- ============================================== -->
+    <!-- IMPROVEMENT 8: KEYBOARD SHORTCUTS HINT -->
+    <!-- ============================================== -->
+    <div class="keyboard-hint">
+        <kbd>⌘</kbd> + <kbd>H</kbd> Home<br>
+        <kbd>⌘</kbd> + <kbd>P</kbd> Projects<br>
+        <kbd>⌘</kbd> + <kbd>C</kbd> Contact
     </div>
 
     <!-- ============================================== -->
@@ -1808,21 +2246,18 @@
         }
 
         // ==============================================
-        // SPLIT SCROLL CONTROLLER - FIXED
+        // SPLIT SCROLL CONTROLLER
         // ==============================================
         class SplitScrollController {
             constructor() {
                 this.sections = document.querySelectorAll('.split-section');
                 this.prevScroll = window.scrollY;
-                this.isAnimating = false;
                 
-                // Initialize - all sections start OPEN
                 this.sections.forEach((section) => {
                     section.classList.add('split-open');
                     section.classList.remove('split-closed');
                 });
                 
-                // Listen for scroll with throttling
                 let ticking = false;
                 window.addEventListener('scroll', () => {
                     if (!ticking) {
@@ -1834,36 +2269,28 @@
                     }
                 });
                 
-                // Handle on load
                 setTimeout(() => this.handleScroll(), 200);
             }
             
             handleScroll() {
-                const currentScroll = window.scrollY;
                 const windowHeight = window.innerHeight;
                 
                 this.sections.forEach((section) => {
                     const rect = section.getBoundingClientRect();
-                    
-                    // Check if section is in viewport
                     const isInView = rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2;
                     
                     if (isInView) {
-                        // Section is visible - OPEN (split)
                         section.classList.remove('split-closed');
                         section.classList.add('split-open');
                     } else if (rect.top < 0) {
-                        // Section is above viewport - CLOSED (merged)
                         section.classList.remove('split-open');
                         section.classList.add('split-closed');
                     } else {
-                        // Section is below viewport - CLOSED (merged)
                         section.classList.remove('split-open');
                         section.classList.add('split-closed');
                     }
                 });
                 
-                // Update navigation
                 this.updateNavigation();
             }
             
@@ -1949,10 +2376,10 @@
                     }, 30);
                 });
                 
-                // Initialize Split Scroll Controller
+                // Split Scroll Controller
                 const splitController = new SplitScrollController();
                 
-                // Navigation scroll spy
+                // Header scroll
                 const header = document.getElementById('header');
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 50) {
@@ -1977,6 +2404,50 @@
                         navMenu.classList.remove('open');
                     });
                 });
+                
+                // ==============================================
+                // IMPROVEMENT 5: KEYBOARD SHORTCUTS
+                // ==============================================
+                document.addEventListener('keydown', (e) => {
+                    if (e.metaKey || e.ctrlKey) {
+                        switch(e.key) {
+                            case 'h':
+                                e.preventDefault();
+                                document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case 'p':
+                                e.preventDefault();
+                                document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+                                break;
+                            case 'c':
+                                e.preventDefault();
+                                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                                break;
+                        }
+                    }
+                });
+                
+                // ==============================================
+                // IMPROVEMENT 7: AI MODE TOGGLE
+                // ==============================================
+                const aiToggle = document.getElementById('aiToggle');
+                let aiMode = false;
+                
+                aiToggle.addEventListener('click', () => {
+                    aiMode = !aiMode;
+                    document.body.classList.toggle('ai-mode');
+                    aiToggle.classList.toggle('active');
+                    aiToggle.innerHTML = aiMode ? 
+                        '<span>🧠</span><span>AI Mode ON</span>' : 
+                        '<span>🤖</span><span>AI Mode</span>';
+                    
+                    // Add particle burst effect
+                    if (aiMode) {
+                        const rect = aiToggle.getBoundingClientRect();
+                        const cursor = new AnimatedCursor();
+                        cursor.spawnParticles(rect.left + rect.width/2, rect.top + rect.height/2, 30);
+                    }
+                });
             }
         }
 
@@ -1997,8 +2468,10 @@
             const bg = new EntryBackground();
             const entry = new EntryManager();
             
-            console.log('🚀 Rohit Savan\'s Portfolio ready!');
-            console.log('📜 Scroll down to see sections split, scroll up to merge!');
+            console.log('🚀 Rohit Savan\'s ULTIMATE Portfolio ready!');
+            console.log('📜 All 10 improvements + glass effects activated!');
+            console.log('⌨️  Keyboard shortcuts: ⌘+H (Home), ⌘+P (Projects), ⌘+C (Contact)');
+            console.log('🤖 Click the AI Mode toggle for a surprise!');
         });
     </script>
 
