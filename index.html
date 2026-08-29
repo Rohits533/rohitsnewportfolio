@@ -101,28 +101,6 @@
             transform: translateY(-5px);
         }
         
-        /* Glass with neon border */
-        .glass-neon {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid transparent;
-            border-image: linear-gradient(135deg, rgba(0, 255, 65, 0.3), rgba(255, 215, 0, 0.3)) 1;
-            border-radius: 24px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .glass-neon:hover {
-            border-image: linear-gradient(135deg, #00FF41, #FFD700) 1;
-            box-shadow: 
-                0 8px 40px rgba(0, 0, 0, 0.4),
-                0 0 60px rgba(0, 255, 65, 0.1);
-            transform: translateY(-5px) scale(1.01);
-        }
-        
         /* ==============================================
            ANIMATED CURSOR
            ============================================== */
@@ -230,7 +208,7 @@
         }
         
         /* ==============================================
-           ENTRY PAGE
+           ORIGINAL ENTRY PAGE - RESTORED
            ============================================== */
         #entryPage {
             position: fixed;
@@ -251,6 +229,11 @@
             visibility: hidden;
             pointer-events: none;
             transform: scale(1.1);
+        }
+        
+        #entryPage.exit .entry-content {
+            transform: translateY(-50px) scale(0.9);
+            opacity: 0;
         }
         
         .entry-bg {
@@ -374,6 +357,7 @@
             position: relative;
             z-index: 2;
             text-align: center;
+            transition: all 1s cubic-bezier(0.77, 0, 0.18, 1);
         }
         
         .entry-title {
@@ -381,6 +365,7 @@
             font-size: clamp(3rem, 10vw, 8rem);
             font-weight: 900;
             margin-bottom: 20px;
+            animation: fadeInUp 1.5s ease 0.3s both;
         }
         
         .entry-title .glitch-text {
@@ -448,7 +433,7 @@
             text-transform: uppercase;
             margin-bottom: 40px;
             opacity: 0.8;
-            animation: fadeInUp 1.5s ease 0.5s both;
+            animation: fadeInUp 1.5s ease 0.8s both;
         }
         
         .entry-subtitle span {
@@ -471,7 +456,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             overflow: hidden;
-            animation: fadeInUp 1.5s ease 1s both;
+            animation: fadeInUp 1.5s ease 1.2s both;
         }
         
         .enter-btn::before {
@@ -558,7 +543,7 @@
             font-size: 14px;
             letter-spacing: 2px;
             z-index: 2;
-            animation: fadeInUp 1.5s ease 1.5s both;
+            animation: fadeInUp 1.5s ease 1.8s both;
         }
         
         .entry-footer span {
@@ -572,8 +557,14 @@
         }
         
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
         
         /* ==============================================
@@ -1180,7 +1171,6 @@
             box-shadow: 0 0 40px rgba(0, 255, 65, 0.2);
         }
         
-        /* AI Mode Theme */
         body.ai-mode .glass-enhanced {
             border-color: rgba(0, 212, 255, 0.2);
         }
@@ -1195,67 +1185,6 @@
         body.ai-mode .panel-label,
         body.ai-mode .nav-link:hover {
             color: #00D4FF;
-        }
-        
-        /* ==============================================
-           IMPROVEMENT 9: TERMINAL PRELOADER
-           ============================================== */
-        .terminal-preloader {
-            font-family: 'Space Mono', monospace;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(0, 255, 65, 0.1);
-            border-radius: 12px;
-            padding: 30px 40px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-        }
-        
-        .terminal-preloader .terminal-header {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .terminal-preloader .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        
-        .terminal-preloader .terminal-dot:nth-child(1) { background: #FF5F56; }
-        .terminal-preloader .terminal-dot:nth-child(2) { background: #FFBD2E; }
-        .terminal-preloader .terminal-dot:nth-child(3) { background: #27C93F; }
-        
-        .terminal-preloader .terminal-title {
-            color: #b0b0b0;
-            font-size: 0.8rem;
-            margin-left: 10px;
-        }
-        
-        .terminal-preloader .terminal-line {
-            color: #00FF41;
-            font-size: 0.9rem;
-            line-height: 2;
-            opacity: 0;
-            animation: terminalType 0.5s ease forwards;
-        }
-        
-        .terminal-preloader .terminal-line:nth-child(1) { animation-delay: 0.2s; }
-        .terminal-preloader .terminal-line:nth-child(2) { animation-delay: 0.4s; }
-        .terminal-preloader .terminal-line:nth-child(3) { animation-delay: 0.6s; }
-        .terminal-preloader .terminal-line:nth-child(4) { animation-delay: 0.8s; }
-        .terminal-preloader .terminal-line:nth-child(5) { animation-delay: 1.0s; }
-        
-        .terminal-preloader .terminal-line .cursor-blink {
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes terminalType {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
         }
         
         /* ==============================================
@@ -1556,10 +1485,6 @@
             .keyboard-hint {
                 display: none;
             }
-            
-            .terminal-preloader {
-                padding: 20px;
-            }
         }
         
         @media (max-width: 480px) {
@@ -1601,7 +1526,7 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- ENTRY PAGE - TERMINAL STYLE (IMPROVEMENT 9) -->
+    <!-- ORIGINAL ENTRY PAGE - RESTORED -->
     <!-- ============================================== -->
     <div id="entryPage">
         <div class="entry-bg">
@@ -1616,22 +1541,13 @@
         </div>
 
         <div class="entry-content">
-            <!-- TERMINAL PRELOADER -->
-            <div class="terminal-preloader">
-                <div class="terminal-header">
-                    <span class="terminal-dot"></span>
-                    <span class="terminal-dot"></span>
-                    <span class="terminal-dot"></span>
-                    <span class="terminal-title">~/portfolio/entry.sh</span>
-                </div>
-                <div class="terminal-line">$ ./initialize --user=rohit_savan</div>
-                <div class="terminal-line">$ loading_modules...</div>
-                <div class="terminal-line">$ ai_engine_online = TRUE</div>
-                <div class="terminal-line">$ neon_system_ready = TRUE</div>
-                <div class="terminal-line">$ Welcome to the future, Rohit Savan! <span class="cursor-blink">█</span></div>
-            </div>
-            
-            <button class="enter-btn" id="enterBtn" style="margin-top:30px;">
+            <h1 class="entry-title">
+                <span class="glitch-text" data-text="ROHIT SAVAN">ROHIT SAVAN</span>
+            </h1>
+            <p class="entry-subtitle">
+                <span>✦</span> Enter the Neon Experience <span>✦</span>
+            </p>
+            <button class="enter-btn" id="enterBtn">
                 <span class="btn-glow-ring"></span>
                 <span class="btn-glow-ring"></span>
                 <span class="btn-text">
@@ -1917,7 +1833,7 @@
                 <div class="split-panel split-panel-right">
                     <div class="split-content split-content-right">
                         <div style="display:grid;grid-template-columns:1fr;gap:20px;width:100%;">
-                            <!-- PROJECT 1 with PREVIEW (IMPROVEMENT 10) -->
+                            <!-- PROJECT 1 with PREVIEW -->
                             <a href="https://rohits533.github.io" target="_blank" class="project-card glass-enhanced" style="padding:20px;">
                                 <div class="project-preview">
                                     <iframe src="https://rohits533.github.io" loading="lazy"></iframe>
@@ -1929,7 +1845,7 @@
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
                             
-                            <!-- PROJECT 2 with PREVIEW (IMPROVEMENT 10) -->
+                            <!-- PROJECT 2 with PREVIEW -->
                             <a href="https://rohit-ai-chatbot-2026.streamlit.app" target="_blank" class="project-card glass-enhanced" style="padding:20px;">
                                 <div class="project-preview">
                                     <iframe src="https://rohit-ai-chatbot-2026.streamlit.app" loading="lazy"></iframe>
@@ -1941,7 +1857,7 @@
                                 <span class="project-link">Visit <i class="fas fa-arrow-right"></i></span>
                             </a>
                             
-                            <!-- PROJECT 3 with PREVIEW (IMPROVEMENT 10) -->
+                            <!-- PROJECT 3 with PREVIEW -->
                             <a href="https://ai-code-reviewer-js.vercel.app" target="_blank" class="project-card glass-enhanced" style="padding:20px;">
                                 <div class="project-preview">
                                     <iframe src="https://ai-code-reviewer-js.vercel.app" loading="lazy"></iframe>
@@ -2441,7 +2357,6 @@
                         '<span>🧠</span><span>AI Mode ON</span>' : 
                         '<span>🤖</span><span>AI Mode</span>';
                     
-                    // Add particle burst effect
                     if (aiMode) {
                         const rect = aiToggle.getBoundingClientRect();
                         const cursor = new AnimatedCursor();
@@ -2469,6 +2384,7 @@
             const entry = new EntryManager();
             
             console.log('🚀 Rohit Savan\'s ULTIMATE Portfolio ready!');
+            console.log('🎬 Original entry animation restored!');
             console.log('📜 All 10 improvements + glass effects activated!');
             console.log('⌨️  Keyboard shortcuts: ⌘+H (Home), ⌘+P (Projects), ⌘+C (Contact)');
             console.log('🤖 Click the AI Mode toggle for a surprise!');
