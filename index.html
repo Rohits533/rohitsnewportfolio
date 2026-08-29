@@ -294,7 +294,7 @@
         }
         
         /* ==============================================
-           ORIGINAL ENTRY PAGE - WITH ULTIMATE ANIMATIONS
+           ENTRY PAGE - SHOOTING STARS EDITION
            ============================================== */
         #entryPage {
             position: fixed;
@@ -329,12 +329,103 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+            background: radial-gradient(ellipse at center, #0a0a0a, #000000);
         }
         
-        #entryCanvas {
+        /* Stars background */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.8;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* Shooting stars */
+        .shooting-star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.3);
+            animation: shoot var(--duration) linear infinite;
+        }
+        
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+            border-radius: 1px;
+        }
+        
+        .shooting-star.golden::before {
+            background: linear-gradient(to left, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0));
+        }
+        
+        .shooting-star.golden {
+            background: #FFD700;
+            box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.5);
+        }
+        
+        @keyframes shoot {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            20% {
+                opacity: 1;
+            }
+            25% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        /* Golden sparkle particles */
+        .sparkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 4px 1px rgba(255, 215, 0, 0.5);
+            animation: sparkleFloat var(--duration) ease-in-out infinite;
+        }
+        
+        @keyframes sparkleFloat {
+            0%, 100% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1);
+            }
         }
         
         .entry-grid {
@@ -344,15 +435,16 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
             animation: gridPulse 4s ease-in-out infinite;
+            pointer-events: none;
         }
         
         @keyframes gridPulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
         }
         
         .entry-scanline {
@@ -363,7 +455,7 @@
             height: 100%;
             background: repeating-linear-gradient(0deg,
                 transparent, transparent 2px,
-                rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px
+                rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px
             );
             pointer-events: none;
             animation: scanlineMove 8s linear infinite;
@@ -380,7 +472,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, transparent 50%, #0a0a0a 100%);
+            background: radial-gradient(ellipse at center, transparent 40%, #0a0a0a 100%);
             pointer-events: none;
             animation: vignettePulse 4s ease-in-out infinite;
         }
@@ -388,86 +480,6 @@
         @keyframes vignettePulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
-        }
-        
-        .entry-noise {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-            pointer-events: none;
-            animation: noiseMove 0.2s steps(3) infinite;
-        }
-        
-        @keyframes noiseMove {
-            0% { transform: translate(0, 0); }
-            20% { transform: translate(-3%, -3%); }
-            40% { transform: translate(3%, -3%); }
-            60% { transform: translate(-3%, 3%); }
-            80% { transform: translate(3%, 3%); }
-            100% { transform: translate(0, 0); }
-        }
-        
-        .glow-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: orbFloat 8s ease-in-out infinite;
-        }
-        
-        .glow-orb:nth-child(1) {
-            width: 400px;
-            height: 400px;
-            background: #00FF41;
-            top: -100px;
-            right: -100px;
-            animation-delay: 0s;
-        }
-        
-        .glow-orb:nth-child(2) {
-            width: 300px;
-            height: 300px;
-            background: #FFD700;
-            bottom: -50px;
-            left: -50px;
-            animation-delay: -2.7s;
-        }
-        
-        .glow-orb:nth-child(3) {
-            width: 250px;
-            height: 250px;
-            background: #FF00FF;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-delay: -5.3s;
-        }
-        
-        .glow-orb:nth-child(4) {
-            width: 200px;
-            height: 200px;
-            background: #00D4FF;
-            top: 20%;
-            left: 20%;
-            animation-delay: -1.3s;
-        }
-        
-        .glow-orb:nth-child(5) {
-            width: 180px;
-            height: 180px;
-            background: #FF6B00;
-            bottom: 20%;
-            right: 20%;
-            animation-delay: -3.7s;
-        }
-        
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(40px, -40px) scale(1.2); }
-            66% { transform: translate(-30px, 30px) scale(0.8); }
         }
         
         .entry-content {
@@ -585,8 +597,8 @@
         }
         
         .entry-subtitle span {
-            color: #00FF41;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
             animation: subtitlePulse 2s ease-in-out infinite;
         }
         
@@ -726,7 +738,7 @@
         }
         
         .entry-footer span {
-            color: #00FF41;
+            color: #FFD700;
             animation: blink 1.5s infinite;
         }
         
@@ -750,7 +762,7 @@
         }
         
         /* ==============================================
-           SPLIT SCROLL ANIMATIONS - ENHANCED
+           SPLIT SCROLL ANIMATIONS
            ============================================== */
         .split-section {
             position: relative;
@@ -827,8 +839,8 @@
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            background: #00FF41;
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.8);
+            background: #FFD700;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
             animation: dotPulse 2s ease-in-out infinite;
         }
         
@@ -927,9 +939,9 @@
         .split-content .panel-label {
             display: inline-block;
             padding: 4px 16px;
-            border: 1px solid #00FF41;
+            border: 1px solid #FFD700;
             border-radius: 20px;
-            color: #00FF41;
+            color: #FFD700;
             font-size: 0.7rem;
             letter-spacing: 4px;
             text-transform: uppercase;
@@ -938,8 +950,8 @@
         }
         
         @keyframes labelPulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 65, 0.1); }
-            50% { box-shadow: 0 0 30px rgba(0, 255, 65, 0.3); }
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.1); }
+            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); }
         }
         
         .split-content .panel-title {
@@ -968,8 +980,8 @@
             font-size: 4rem;
             margin-bottom: 20px;
             display: block;
-            color: #00FF41;
-            text-shadow: 0 0 40px rgba(0, 255, 65, 0.3);
+            color: #FFD700;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
             animation: iconFloat 3s ease-in-out infinite;
         }
         
@@ -979,7 +991,7 @@
         }
         
         /* ==============================================
-           NAVIGATION - ENHANCED
+           NAVIGATION
            ============================================== */
         .header {
             position: fixed;
@@ -1017,14 +1029,14 @@
         }
         
         .nav-logo span {
-            color: #00FF41;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
             animation: logoPulse 2s ease-in-out infinite;
         }
         
         @keyframes logoPulse {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 65, 0.5); }
-            50% { text-shadow: 0 0 40px rgba(0, 255, 65, 0.8), 0 0 80px rgba(0, 255, 65, 0.3); }
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.3); }
         }
         
         .nav-menu {
@@ -1052,7 +1064,7 @@
             width: 100%;
             height: 100%;
             border-radius: 20px;
-            background: rgba(0, 255, 65, 0.1);
+            background: rgba(255, 215, 0, 0.1);
             transform: scale(0);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -1064,7 +1076,7 @@
         
         .nav-link:hover,
         .nav-link.active {
-            color: #00FF41;
+            color: #FFD700;
         }
         
         .nav-link::after {
@@ -1075,9 +1087,9 @@
             transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: #00FF41;
+            background: #FFD700;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
         
         .nav-link:hover::after,
@@ -1116,7 +1128,7 @@
         }
         
         /* ==============================================
-           HERO SECTION - ENHANCED
+           HERO SECTION
            ============================================== */
         .hero {
             min-height: 100vh;
@@ -1163,23 +1175,23 @@
             align-items: center;
             gap: 10px;
             padding: 8px 20px;
-            border: 1px solid #00FF41;
+            border: 1px solid #FFD700;
             border-radius: 20px;
-            color: #00FF41;
+            color: #FFD700;
             font-size: 0.9rem;
             margin-bottom: 25px;
             animation: badgePulse 3s ease-in-out infinite;
         }
         
         @keyframes badgePulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.1); }
-            50% { box-shadow: 0 0 40px rgba(0, 255, 65, 0.3); }
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.3); }
         }
         
         .hero-badge .dot {
             width: 6px;
             height: 6px;
-            background: #00FF41;
+            background: #FFD700;
             border-radius: 50%;
             animation: blink 1s infinite;
         }
@@ -1187,7 +1199,7 @@
         .hero-badge .pulse-dot {
             width: 8px;
             height: 8px;
-            background: #00FF41;
+            background: #FFD700;
             border-radius: 50%;
             animation: pulseDot 1.5s ease-in-out infinite;
             display: inline-block;
@@ -1197,12 +1209,12 @@
             0%, 100% { 
                 opacity: 1;
                 transform: scale(1);
-                box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             }
             50% { 
                 opacity: 0.3;
                 transform: scale(0.5);
-                box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
             }
         }
         
@@ -1211,8 +1223,8 @@
             align-items: center;
             gap: 10px;
             padding: 6px 16px;
-            background: rgba(0, 255, 65, 0.05);
-            border: 1px solid rgba(0, 255, 65, 0.2);
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 20px;
             font-size: 0.85rem;
             color: #b0b0b0;
@@ -1221,20 +1233,20 @@
         }
         
         @keyframes statusPulse {
-            0%, 100% { border-color: rgba(0, 255, 65, 0.2); }
-            50% { border-color: rgba(0, 255, 65, 0.5); }
+            0%, 100% { border-color: rgba(255, 215, 0, 0.2); }
+            50% { border-color: rgba(255, 215, 0, 0.5); }
         }
         
         .live-status .pulse {
             width: 10px;
             height: 10px;
-            background: #00FF41;
+            background: #FFD700;
             border-radius: 50%;
             animation: pulseDot 1.5s ease-in-out infinite;
         }
         
         .live-status .status-text {
-            color: #FFD700;
+            color: #00FF41;
             font-weight: 600;
         }
         
@@ -1276,16 +1288,16 @@
         }
         
         .hero-description .highlight-text {
-            color: #00FF41;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
         
         .currently-working {
             margin-top: 20px;
             padding: 20px 25px;
-            border: 2px solid rgba(0, 255, 65, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.2);
             border-radius: 16px;
-            background: rgba(0, 255, 65, 0.02);
+            background: rgba(255, 215, 0, 0.02);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             animation: workingEntrance 1.5s ease 0.6s both;
             opacity: 0;
@@ -1298,8 +1310,8 @@
         }
         
         .currently-working:hover {
-            border-color: rgba(0, 255, 65, 0.4);
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.05);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.05);
             transform: translateY(-3px);
         }
         
@@ -1315,7 +1327,7 @@
         .currently-working .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #00FF41, #FFD700);
+            background: linear-gradient(90deg, #FFD700, #00FF41);
             border-radius: 2px;
             animation: progressFill 3s ease-in-out 1s forwards, progressPulse 2s ease-in-out infinite;
         }
@@ -1362,9 +1374,9 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #00FF41, #00CC33);
+            background: linear-gradient(135deg, #FFD700, #FFA500);
             color: #0a0a0a;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
         
         .btn-primary::before {
@@ -1374,7 +1386,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 60%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 60%);
             opacity: 0;
             transition: all 0.6s;
         }
@@ -1386,19 +1398,19 @@
         
         .btn-primary:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 50px rgba(0, 255, 65, 0.5), 0 0 100px rgba(0, 255, 65, 0.2);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5), 0 0 100px rgba(255, 215, 0, 0.2);
         }
         
         .btn-secondary {
-            border-color: #00FF41;
-            color: #00FF41;
+            border-color: #FFD700;
+            color: #FFD700;
             background: transparent;
         }
         
         .btn-secondary:hover {
-            background: rgba(0, 255, 65, 0.1);
+            background: rgba(255, 215, 0, 0.1);
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
         }
         
         .hero-stats {
@@ -1427,7 +1439,7 @@
             transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #00FF41, transparent);
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
             transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         
@@ -1439,15 +1451,15 @@
             font-family: 'Orbitron', monospace;
             font-size: 2rem;
             font-weight: 900;
-            color: #00FF41;
+            color: #FFD700;
             display: block;
             transition: all 0.3s;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
         
         .stat-item:hover .stat-number {
             transform: scale(1.1);
-            text-shadow: 0 0 40px rgba(0, 255, 65, 0.5);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
         }
         
         .stat-label {
@@ -1496,7 +1508,7 @@
             left: 0;
             width: 0;
             height: 1px;
-            background: #00FF41;
+            background: #FFD700;
             transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         
@@ -1505,7 +1517,7 @@
         }
         
         .social-proof .proof-item:hover {
-            color: #00FF41;
+            color: #FFD700;
             transform: translateY(-3px) scale(1.05);
         }
         
@@ -1521,7 +1533,7 @@
         }
         
         /* ==============================================
-           SKILLS GRID - ENHANCED
+           SKILLS GRID
            ============================================== */
         .skills-grid {
             display: grid;
@@ -1532,8 +1544,8 @@
         
         .skill-tag {
             padding: 12px 20px;
-            background: rgba(0, 255, 65, 0.03);
-            border: 1px solid rgba(0, 255, 65, 0.08);
+            background: rgba(255, 215, 0, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.08);
             border-radius: 12px;
             text-align: center;
             font-weight: 600;
@@ -1552,7 +1564,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.05), transparent);
             transition: all 0.6s;
         }
         
@@ -1561,11 +1573,11 @@
         }
         
         .skill-tag:hover {
-            background: rgba(0, 255, 65, 0.08);
-            border-color: #00FF41;
-            color: #00FF41;
+            background: rgba(255, 215, 0, 0.08);
+            border-color: #FFD700;
+            color: #FFD700;
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
         }
         
         .skill-tag .skill-icon {
@@ -1580,7 +1592,7 @@
         }
         
         /* ==============================================
-           PROJECT CARDS - ENHANCED
+           PROJECT CARDS
            ============================================== */
         .project-card {
             text-decoration: none;
@@ -1599,7 +1611,7 @@
             width: 100%;
             height: 100%;
             border-radius: 32px;
-            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), transparent);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), transparent);
             opacity: 0;
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             pointer-events: none;
@@ -1629,7 +1641,7 @@
         }
         
         .project-card:hover .project-title {
-            color: #00FF41;
+            color: #FFD700;
         }
         
         .project-card .project-desc {
@@ -1641,7 +1653,7 @@
         .project-card .project-link {
             display: inline-block;
             margin-top: 10px;
-            color: #00FF41;
+            color: #FFD700;
             font-weight: 600;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             font-size: 0.9rem;
@@ -1655,12 +1667,12 @@
             left: 0;
             width: 0;
             height: 1px;
-            background: #FFD700;
+            background: #00FF41;
             transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         
         .project-card:hover .project-link {
-            color: #FFD700;
+            color: #00FF41;
             transform: translateX(5px);
         }
         
@@ -1701,14 +1713,14 @@
             padding: 4px 14px;
             border-radius: 10px;
             font-size: 0.7rem;
-            color: #00FF41;
-            border: 1px solid rgba(0, 255, 65, 0.2);
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.2);
             animation: badgeLive 2s ease-in-out infinite;
         }
         
         @keyframes badgeLive {
             0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2); }
+            50% { opacity: 1; box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
         }
         
         .hero-visual {
@@ -1723,6 +1735,7 @@
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             transform: rotateY(-10deg) rotateX(5deg);
             animation: iconFloatLarge 4s ease-in-out infinite;
+            color: #FFD700;
         }
         
         @keyframes iconFloatLarge {
@@ -1767,13 +1780,13 @@
         }
         
         .keyboard-hint kbd:hover {
-            background: rgba(0, 255, 65, 0.1);
-            border-color: #00FF41;
-            color: #00FF41;
+            background: rgba(255, 215, 0, 0.1);
+            border-color: #FFD700;
+            color: #FFD700;
         }
         
         /* ==============================================
-           AI MODE TOGGLE - ENHANCED
+           AI MODE TOGGLE
            ============================================== */
         .ai-toggle {
             position: fixed;
@@ -1783,9 +1796,9 @@
             padding: 12px 24px;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 65, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 30px;
-            color: #00FF41;
+            color: #FFD700;
             font-family: 'Orbitron', monospace;
             font-size: 0.8rem;
             font-weight: 600;
@@ -1799,20 +1812,20 @@
         
         .ai-toggle:hover {
             transform: scale(1.05) translateY(-3px);
-            border-color: #00FF41;
-            box-shadow: 0 4px 30px rgba(0, 255, 65, 0.2);
+            border-color: #FFD700;
+            box-shadow: 0 4px 30px rgba(255, 215, 0, 0.2);
         }
         
         .ai-toggle.active {
-            background: rgba(0, 255, 65, 0.1);
-            border-color: #00FF41;
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.2);
+            background: rgba(255, 215, 0, 0.1);
+            border-color: #FFD700;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
             animation: toggleActive 2s ease-in-out infinite;
         }
         
         @keyframes toggleActive {
-            0%, 100% { box-shadow: 0 0 40px rgba(0, 255, 65, 0.2); }
-            50% { box-shadow: 0 0 80px rgba(0, 255, 65, 0.4), 0 0 120px rgba(0, 255, 65, 0.1); }
+            0%, 100% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.2); }
+            50% { box-shadow: 0 0 80px rgba(255, 215, 0, 0.4), 0 0 120px rgba(255, 215, 0, 0.1); }
         }
         
         /* ==============================================
@@ -1976,20 +1989,15 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- ENTRY PAGE -->
+    <!-- ENTRY PAGE - SHOOTING STARS EDITION -->
     <!-- ============================================== -->
     <div id="entryPage">
         <div class="entry-bg">
-            <canvas id="entryCanvas"></canvas>
+            <div class="stars-container" id="starsContainer"></div>
             <div class="entry-grid"></div>
             <div class="entry-scanline"></div>
             <div class="entry-vignette"></div>
             <div class="entry-noise"></div>
-            <div class="glow-orb"></div>
-            <div class="glow-orb"></div>
-            <div class="glow-orb"></div>
-            <div class="glow-orb"></div>
-            <div class="glow-orb"></div>
         </div>
 
         <div class="entry-content">
@@ -2071,10 +2079,10 @@
                         <div style="display:flex;align-items:center;gap:15px;position:relative;z-index:1;">
                             <span style="font-size:1.5rem;">🔄</span>
                             <div style="flex:1;">
-                                <h4 style="font-size:0.95rem;color:#00FF41;">Currently Building</h4>
+                                <h4 style="font-size:0.95rem;color:#FFD700;">Currently Building</h4>
                                 <p style="color:#b0b0b0;font-size:0.85rem;">AI-Powered Developer Assistant</p>
                             </div>
-                            <span style="color:#FFD700;font-size:0.8rem;font-weight:700;">70%</span>
+                            <span style="color:#00FF41;font-size:0.8rem;font-weight:700;">70%</span>
                         </div>
                         <div class="progress-bar" style="position:relative;z-index:1;">
                             <div class="progress-fill"></div>
@@ -2420,7 +2428,90 @@
     <!-- ============================================== -->
     <script>
         // ==============================================
-        // ANIMATED CURSOR - ENHANCED
+        // SHOOTING STARS & STARS GENERATOR
+        // ==============================================
+        class ShootingStarsBackground {
+            constructor() {
+                this.container = document.getElementById('starsContainer');
+                this.createStars();
+                this.createShootingStars();
+                this.createSparkles();
+            }
+            
+            createStars() {
+                const count = 200;
+                for (let i = 0; i < count; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    const size = 1 + Math.random() * 2.5;
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    const duration = 2 + Math.random() * 4;
+                    star.style.setProperty('--duration', duration + 's');
+                    star.style.animationDelay = Math.random() * 4 + 's';
+                    this.container.appendChild(star);
+                }
+            }
+            
+            createShootingStars() {
+                const count = 8;
+                for (let i = 0; i < count; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'shooting-star';
+                    if (i % 2 === 0) {
+                        star.classList.add('golden');
+                    }
+                    
+                    const startX = Math.random() * 100;
+                    const startY = Math.random() * 50;
+                    const endX = 80 + Math.random() * 20;
+                    const endY = 80 + Math.random() * 20;
+                    
+                    star.style.left = startX + '%';
+                    star.style.top = startY + '%';
+                    star.style.setProperty('--tx', endX + '%');
+                    star.style.setProperty('--ty', endY + '%');
+                    
+                    const duration = 3 + Math.random() * 3;
+                    star.style.setProperty('--duration', duration + 's');
+                    star.style.animationDelay = (2 + Math.random() * 5) + 's';
+                    
+                    // Random rotation
+                    const rotation = 45 + Math.random() * 30;
+                    star.style.transform = `rotate(${rotation}deg)`;
+                    
+                    this.container.appendChild(star);
+                    
+                    // Recreate shooting star after it finishes
+                    star.addEventListener('animationend', () => {
+                        star.remove();
+                        this.createShootingStars();
+                    });
+                }
+            }
+            
+            createSparkles() {
+                const count = 30;
+                for (let i = 0; i < count; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    const size = 1 + Math.random() * 2;
+                    sparkle.style.width = size + 'px';
+                    sparkle.style.height = size + 'px';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    const duration = 3 + Math.random() * 4;
+                    sparkle.style.setProperty('--duration', duration + 's');
+                    sparkle.style.animationDelay = Math.random() * 5 + 's';
+                    this.container.appendChild(sparkle);
+                }
+            }
+        }
+
+        // ==============================================
+        // ANIMATED CURSOR
         // ==============================================
         class AnimatedCursor {
             constructor() {
@@ -2444,7 +2535,6 @@
             }
             
             init() {
-                // Create trail elements
                 for (let i = 0; i < 12; i++) {
                     const trail = document.createElement('div');
                     trail.className = 'cursor-trail';
@@ -2509,7 +2599,7 @@
                     particle.className = 'cursor-particle';
                     const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
                     const distance = 40 + Math.random() * 60;
-                    const colors = ['#00FF41', '#FFD700', '#FF00FF', '#00D4FF', '#FF6B00'];
+                    const colors = ['#FFD700', '#00FF41', '#FF00FF', '#00D4FF', '#FF6B00'];
                     particle.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
                     particle.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
                     particle.style.left = x + 'px';
@@ -2532,158 +2622,12 @@
         }
 
         // ==============================================
-        // ENTRY PAGE BACKGROUND
-        // ==============================================
-        class EntryBackground {
-            constructor() {
-                this.canvas = document.getElementById('entryCanvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.particles = [];
-                this.count = 120;
-                this.mouseX = null;
-                this.mouseY = null;
-                
-                this.resize();
-                this.initParticles();
-                this.animate();
-                
-                document.addEventListener('mousemove', (e) => {
-                    this.mouseX = e.clientX;
-                    this.mouseY = e.clientY;
-                });
-                
-                window.addEventListener('resize', () => this.resize());
-            }
-            
-            resize() {
-                this.canvas.width = window.innerWidth;
-                this.canvas.height = window.innerHeight;
-            }
-            
-            initParticles() {
-                for (let i = 0; i < this.count; i++) {
-                    const size = 1 + Math.random() * 3;
-                    const colors = ['#00FF41', '#FFD700', '#FF00FF', '#00D4FF', '#FF6B00'];
-                    this.particles.push({
-                        x: Math.random() * this.canvas.width,
-                        y: Math.random() * this.canvas.height,
-                        vx: (Math.random() - 0.5) * 0.8,
-                        vy: (Math.random() - 0.5) * 0.8,
-                        radius: size,
-                        alpha: 0.2 + Math.random() * 0.5,
-                        baseAlpha: 0.2 + Math.random() * 0.5,
-                        color: colors[Math.floor(Math.random() * colors.length)],
-                        pulse: Math.random() * Math.PI * 2
-                    });
-                }
-            }
-            
-            animate() {
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                
-                this.particles.forEach(p => {
-                    // Movement
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    p.pulse += 0.02;
-                    
-                    // Bounce off walls
-                    if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
-                    if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
-                    
-                    // Mouse interaction - enhanced
-                    if (this.mouseX !== null && this.mouseY !== null) {
-                        const dx = p.x - this.mouseX;
-                        const dy = p.y - this.mouseY;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (dist < 200) {
-                            const angle = Math.atan2(dy, dx);
-                            const force = (200 - dist) / 200 * 0.8;
-                            p.x += Math.cos(angle) * force;
-                            p.y += Math.sin(angle) * force;
-                            p.alpha = Math.min(1, p.baseAlpha + 0.5);
-                            
-                            // Draw connection lines to mouse
-                            if (dist < 150) {
-                                this.ctx.beginPath();
-                                this.ctx.moveTo(p.x, p.y);
-                                this.ctx.lineTo(this.mouseX, this.mouseY);
-                                this.ctx.strokeStyle = `rgba(0, 255, 65, ${0.1 * (1 - dist / 150)})`;
-                                this.ctx.lineWidth = 0.5;
-                                this.ctx.stroke();
-                            }
-                        } else {
-                            p.alpha += (p.baseAlpha - p.alpha) * 0.02;
-                        }
-                    }
-                    
-                    // Pulse effect
-                    const pulseSize = 1 + Math.sin(p.pulse) * 0.3;
-                    const currentRadius = p.radius * pulseSize;
-                    
-                    // Glow
-                    const gradient = this.ctx.createRadialGradient(
-                        p.x, p.y, 0,
-                        p.x, p.y, currentRadius * 4
-                    );
-                    gradient.addColorStop(0, p.color.replace(')', `, ${p.alpha * 0.3})`).replace('rgb', 'rgba'));
-                    gradient.addColorStop(1, p.color.replace(')', ', 0)').replace('rgb', 'rgba'));
-                    this.ctx.fillStyle = gradient;
-                    this.ctx.beginPath();
-                    this.ctx.arc(p.x, p.y, currentRadius * 4, 0, Math.PI * 2);
-                    this.ctx.fill();
-                    
-                    // Particle
-                    this.ctx.beginPath();
-                    this.ctx.arc(p.x, p.y, currentRadius, 0, Math.PI * 2);
-                    this.ctx.fillStyle = p.color.replace(')', `, ${p.alpha})`).replace('rgb', 'rgba');
-                    this.ctx.fill();
-                    
-                    // Inner glow
-                    const innerGlow = this.ctx.createRadialGradient(
-                        p.x, p.y, 0,
-                        p.x, p.y, currentRadius * 2
-                    );
-                    innerGlow.addColorStop(0, `rgba(255, 255, 255, ${p.alpha * 0.3})`);
-                    innerGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                    this.ctx.fillStyle = innerGlow;
-                    this.ctx.beginPath();
-                    this.ctx.arc(p.x, p.y, currentRadius * 2, 0, Math.PI * 2);
-                    this.ctx.fill();
-                });
-                
-                // Draw connections between particles
-                for (let i = 0; i < this.particles.length; i++) {
-                    for (let j = i + 1; j < this.particles.length; j++) {
-                        const dx = this.particles[i].x - this.particles[j].x;
-                        const dy = this.particles[i].y - this.particles[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (dist < 180) {
-                            const alpha = (1 - dist / 180) * 0.2;
-                            this.ctx.beginPath();
-                            this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-                            this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-                            this.ctx.strokeStyle = `rgba(0, 255, 65, ${alpha})`;
-                            this.ctx.lineWidth = 0.5;
-                            this.ctx.stroke();
-                        }
-                    }
-                }
-                
-                requestAnimationFrame(() => this.animate());
-            }
-        }
-
-        // ==============================================
-        // SPLIT SCROLL CONTROLLER - ENHANCED
+        // SPLIT SCROLL CONTROLLER
         // ==============================================
         class SplitScrollController {
             constructor() {
                 this.sections = document.querySelectorAll('.split-section');
                 this.prevScroll = window.scrollY;
-                this.isAnimating = false;
                 
                 this.sections.forEach((section) => {
                     section.classList.add('split-open');
@@ -2793,7 +2737,6 @@
             }
             
             initPortfolio() {
-                // Counter animations with easing
                 document.querySelectorAll('.stat-number[data-count]').forEach(el => {
                     const target = parseInt(el.dataset.count);
                     let current = 0;
@@ -2817,10 +2760,8 @@
                     requestAnimationFrame(updateCounter);
                 });
                 
-                // Split Scroll Controller
                 const splitController = new SplitScrollController();
                 
-                // Header scroll
                 const header = document.getElementById('header');
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 50) {
@@ -2830,7 +2771,6 @@
                     }
                 });
                 
-                // Hamburger menu
                 const hamburger = document.getElementById('hamburger');
                 const navMenu = document.getElementById('navMenu');
                 
@@ -2846,7 +2786,6 @@
                     });
                 });
                 
-                // Keyboard shortcuts
                 document.addEventListener('keydown', (e) => {
                     if (e.metaKey || e.ctrlKey) {
                         switch(e.key) {
@@ -2874,7 +2813,6 @@
                     }
                 });
                 
-                // AI Mode Toggle
                 const aiToggle = document.getElementById('aiToggle');
                 let aiMode = false;
                 
@@ -2893,17 +2831,16 @@
                     }
                 });
                 
-                // Scroll progress indicator
                 const progressBar = document.createElement('div');
                 progressBar.style.cssText = `
                     position: fixed;
                     top: 0;
                     left: 0;
                     height: 3px;
-                    background: linear-gradient(90deg, #00FF41, #FFD700);
+                    background: linear-gradient(90deg, #FFD700, #00FF41);
                     z-index: 10000;
                     transition: width 0.1s;
-                    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+                    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
                 `;
                 document.body.appendChild(progressBar);
                 
@@ -2914,16 +2851,13 @@
                     progressBar.style.width = progress + '%';
                     
                     if (progress > 95) {
-                        progressBar.style.background = 'linear-gradient(90deg, #FFD700, #FF00FF)';
-                    } else {
                         progressBar.style.background = 'linear-gradient(90deg, #00FF41, #FFD700)';
                     }
                 });
                 
-                console.log('🚀 Ultimate Animation Portfolio ready!');
-                console.log('🎬 50+ animations activated!');
-                console.log('⌨️  Keyboard shortcuts: ⌘+H (Home), ⌘+P (Projects), ⌘+C (Contact), ⌘+J (Journey), ⌘+S (Skills)');
-                console.log('🤖 Click the AI Mode toggle for a surprise!');
+                console.log('🌠 Shooting Stars Entry activated!');
+                console.log('🚀 Ultimate Portfolio ready!');
+                console.log('⌨️  Keyboard shortcuts: ⌘+H (Home), ⌘+P (Projects), ⌘+C (Contact)');
             }
         }
 
@@ -2931,9 +2865,8 @@
         // INITIALIZE
         // ==============================================
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize everything
+            const stars = new ShootingStarsBackground();
             const cursor = new AnimatedCursor();
-            const bg = new EntryBackground();
             const entry = new EntryManager();
         });
     </script>
