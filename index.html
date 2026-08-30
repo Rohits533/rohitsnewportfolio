@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
         /* ==============================================
-           RESET & BASE - SENIOR DEV LEVEL
+           RESET & BASE
            ============================================== */
         * {
             margin: 0;
@@ -60,7 +60,7 @@
         }
 
         /* ==============================================
-           ULTIMATE GLASS - SENIOR DEV EDITION
+           ULTIMATE GLASS - SENIOR UI EDITION
            ============================================== */
         .glass-ultimate {
             position: relative;
@@ -158,7 +158,7 @@
         }
 
         /* ==============================================
-           VIBE MUSIC PLAYER - SENIOR DEV EDITION
+           VIBE MUSIC PLAYER - FIXED AUTO-PLAY
            ============================================== */
         .music-player {
             position: fixed;
@@ -301,7 +301,7 @@
         }
 
         /* ==============================================
-           ANIMATED CURSOR - ENHANCED
+           ANIMATED CURSOR - FIXED (never vanishes)
            ============================================== */
         .custom-cursor {
             pointer-events: none;
@@ -310,6 +310,9 @@
             left: 0;
             z-index: 99999;
             mix-blend-mode: difference;
+        }
+        .custom-cursor * {
+            pointer-events: none !important;
         }
         .cursor-dot {
             width: 8px;
@@ -372,6 +375,33 @@
                 transform: translate(-50%, -50%) scale(1.5);
                 opacity: 1;
             }
+        }
+        /* FIX: Cursor stays visible on hover */
+        .custom-cursor.hover .cursor-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.8);
+        }
+        .custom-cursor.hover .cursor-ring {
+            width: 60px;
+            height: 60px;
+            border-color: var(--primary);
+            transform: translate(-50%, -50%) scale(1.2);
+            box-shadow: 0 0 50px rgba(0, 255, 65, 0.3);
+        }
+        .custom-cursor.click .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background: #FF00FF;
+        }
+        .custom-cursor.click .cursor-ring {
+            width: 80px;
+            height: 80px;
+            border-color: #FF00FF;
+            transform: translate(-50%, -50%) scale(1.5);
+            box-shadow: 0 0 60px rgba(255, 0, 255, 0.4);
+            animation: cursorRingRotate 1s linear infinite;
         }
 
         /* ==============================================
@@ -842,7 +872,7 @@
         }
 
         /* ==============================================
-           SPLIT SCROLL
+           SPLIT SCROLL - ENHANCED
            ============================================== */
         .split-section {
             position: relative;
@@ -1062,7 +1092,7 @@
         }
 
         /* ==============================================
-           NAVIGATION - SENIOR DEV
+           NAVIGATION
            ============================================== */
         .header {
             position: fixed;
@@ -1708,7 +1738,6 @@
             color: var(--secondary);
             margin-top: 4px;
         }
-        /* Highlight RAG, LangChain, LangGraph */
         .skill-tag.highlight {
             border-color: rgba(255, 215, 0, 0.3);
             background: rgba(255, 215, 0, 0.05);
@@ -2177,7 +2206,7 @@
             <i class="fas fa-music"></i>
         </div>
         <div class="music-info">
-            <span class="music-title">🌙 <span>Chill Vibe</span> · Lo-Fi</span>
+            <span class="music-title">🌙 <span>Lo-Fi Chill</span> · Vibe</span>
             <span class="music-status" id="musicStatus">● Playing</span>
         </div>
         <div class="music-wave" id="musicWave">
@@ -2254,8 +2283,8 @@
                     <div class="live-status"><span class="pulse"></span><span>🚀 Building </span><span class="status-text">RAG + LangChain Apps</span><span style="color:#4a4a4a;font-size:0.7rem;">| 2026</span></div>
                     <h1 class="hero-title">Welcome to<br><span class="highlight">Rohit Savan's</span><br>Portfolio</h1>
                     <div class="hero-description">
-                        <span class="highlight-text">✦ AI/ML Developer</span> · 
-                        <span class="highlight-text">✦ RAG Specialist</span> · 
+                        <span class="highlight-text">✦ AI/ML Developer</span> ·
+                        <span class="highlight-text">✦ RAG Specialist</span> ·
                         <span class="highlight-text">✦ LangChain & LangGraph Expert</span>
                     </div>
                     <div class="currently-working glass-ultimate">
@@ -2308,7 +2337,7 @@
             </div>
         </section>
 
-        <!-- ===== SKILLS - WITH RAG, LANGCHAIN, LANGGRAPH ===== -->
+        <!-- ===== SKILLS ===== -->
         <section id="skills" class="split-section" data-section="skills">
             <div class="split-line"></div>
             <div class="split-glow"></div>
@@ -2491,7 +2520,7 @@
     <!-- ============================================== -->
     <script>
         // ==============================================
-        // VIBE MUSIC PLAYER - SMOOTH LOFI BEATS
+        // VIBE MUSIC PLAYER - FIXED AUTO-PLAY
         // ==============================================
         class VibeMusicPlayer {
             constructor() {
@@ -2502,41 +2531,62 @@
                 this.toggleBtn = document.getElementById('musicToggle');
                 this.statusEl = document.getElementById('musicStatus');
                 this.waveEl = document.getElementById('musicWave');
-                
+                this.initialized = false;
+
                 this.init();
-                // Auto-start on user interaction
-                document.addEventListener('click', () => {
-                    if (!this.audioContext) this.startMusic();
-                }, { once: true });
-                document.addEventListener('keydown', () => {
-                    if (!this.audioContext) this.startMusic();
-                }, { once: true });
             }
-            
+
             init() {
                 this.toggleBtn.addEventListener('click', () => this.toggle());
+
+                // Auto-start on ANY user interaction (click, keydown, touch)
+                const startMusic = () => {
+                    if (!this.initialized) {
+                        this.startMusic();
+                        this.initialized = true;
+                    }
+                    // Remove listeners after first start
+                    document.removeEventListener('click', startMusic);
+                    document.removeEventListener('keydown', startMusic);
+                    document.removeEventListener('touchstart', startMusic);
+                };
+
+                document.addEventListener('click', startMusic);
+                document.addEventListener('keydown', startMusic);
+                document.addEventListener('touchstart', startMusic);
+
+                // Also start on enter button click specifically
+                document.getElementById('enterBtn').addEventListener('click', () => {
+                    if (!this.initialized) {
+                        this.startMusic();
+                        this.initialized = true;
+                    }
+                });
+
+                console.log('🎵 Music player ready - will start on interaction');
             }
-            
+
             startMusic() {
                 try {
                     this.audioContext = new(window.AudioContext || window.webkitAudioContext)();
                     this.isPlaying = true;
-                    
+
+                    // Resume context if suspended
+                    if (this.audioContext.state === 'suspended') {
+                        this.audioContext.resume();
+                    }
+
                     // Smooth lo-fi vibe layers
-                    this.createVibeLayer(0.2, 523.25, 'sine', 0.3); // C5 - main melody
-                    this.createVibeLayer(0.15, 659.25, 'sine', 0.2); // E5 - harmony
-                    this.createVibeLayer(0.12, 783.99, 'sine', 0.15); // G5 - sparkle
-                    this.createVibeLayer(0.18, 392.00, 'triangle', 0.2); // G4 - warmth
-                    this.createVibeLayer(0.25, 261.63, 'sine', 0.25); // C4 - bass
-                    this.createVibeLayer(0.1, 1046.50, 'sine', 0.08); // C6 - shimmer
-                    
-                    // Lo-fi vinyl crackle (subtle noise)
+                    this.createVibeLayer(0.2, 523.25, 'sine', 0.3);
+                    this.createVibeLayer(0.15, 659.25, 'sine', 0.2);
+                    this.createVibeLayer(0.12, 783.99, 'sine', 0.15);
+                    this.createVibeLayer(0.18, 392.00, 'triangle', 0.2);
+                    this.createVibeLayer(0.25, 261.63, 'sine', 0.25);
+                    this.createVibeLayer(0.1, 1046.50, 'sine', 0.08);
                     this.createCrackle();
-                    
-                    // Soft pad
                     this.createPad(0.1, 440, 'sine');
                     this.createPad(0.08, 550, 'sine');
-                    
+
                     this.updateUI(true);
                     console.log('🎵 Vibe Music started - Lo-Fi Chill');
                 } catch (e) {
@@ -2544,52 +2594,50 @@
                     this.updateUI(false);
                 }
             }
-            
+
             createVibeLayer(volume, frequency, type, panValue) {
                 try {
                     const osc = this.audioContext.createOscillator();
                     const gain = this.audioContext.createGain();
                     const panner = this.audioContext.createStereoPanner();
-                    
+
                     osc.type = type;
                     osc.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
-                    
-                    // Gentle vibrato
+
                     const vibrato = this.audioContext.createOscillator();
                     const vibratoGain = this.audioContext.createGain();
                     vibrato.frequency.setValueAtTime(4 + Math.random() * 2, this.audioContext.currentTime);
                     vibratoGain.gain.setValueAtTime(3, this.audioContext.currentTime);
                     vibrato.connect(vibratoGain);
                     vibratoGain.connect(osc.frequency);
-                    
+
                     gain.gain.setValueAtTime(0, this.audioContext.currentTime);
                     gain.gain.linearRampToValueAtTime(volume * 0.6, this.audioContext.currentTime + 2);
                     gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 4);
-                    
-                    // Slow LFO for organic feel
+
                     const lfo = this.audioContext.createOscillator();
                     const lfoGain = this.audioContext.createGain();
                     lfo.frequency.setValueAtTime(0.15 + Math.random() * 0.05, this.audioContext.currentTime);
                     lfoGain.gain.setValueAtTime(volume * 0.25, this.audioContext.currentTime);
                     lfo.connect(lfoGain);
                     lfoGain.connect(gain.gain);
-                    
+
                     panner.pan.setValueAtTime(panValue || 0, this.audioContext.currentTime);
-                    
+
                     osc.connect(gain);
                     gain.connect(panner);
                     panner.connect(this.audioContext.destination);
-                    
+
                     osc.start(this.audioContext.currentTime);
                     vibrato.start(this.audioContext.currentTime);
                     lfo.start(this.audioContext.currentTime);
-                    
+
                     this.oscillators.push({ osc, vibrato, lfo });
                     this.gains.push(gain);
-                    
+
                 } catch (e) { /* silent fail */ }
             }
-            
+
             createPad(volume, frequency, type) {
                 try {
                     const osc = this.audioContext.createOscillator();
@@ -2598,24 +2646,24 @@
                     osc.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
                     gain.gain.setValueAtTime(0, this.audioContext.currentTime);
                     gain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 6);
-                    
+
                     const mod = this.audioContext.createOscillator();
                     const modGain = this.audioContext.createGain();
                     mod.frequency.setValueAtTime(0.1, this.audioContext.currentTime);
                     modGain.gain.setValueAtTime(4, this.audioContext.currentTime);
                     mod.connect(modGain);
                     modGain.connect(osc.frequency);
-                    
+
                     osc.connect(gain);
                     gain.connect(this.audioContext.destination);
                     osc.start(this.audioContext.currentTime);
                     mod.start(this.audioContext.currentTime);
-                    
+
                     this.oscillators.push({ osc, mod });
                     this.gains.push(gain);
                 } catch (e) { /* silent fail */ }
             }
-            
+
             createCrackle() {
                 try {
                     const bufferSize = this.audioContext.sampleRate * 0.5;
@@ -2636,7 +2684,7 @@
                     this.gains.push(gain);
                 } catch (e) { /* silent fail */ }
             }
-            
+
             toggle() {
                 if (!this.audioContext) { this.startMusic(); return; }
                 this.isPlaying = !this.isPlaying;
@@ -2645,7 +2693,7 @@
                 });
                 this.updateUI(this.isPlaying);
             }
-            
+
             updateUI(playing) {
                 const icon = this.toggleBtn.querySelector('i');
                 if (playing) {
@@ -2731,7 +2779,7 @@
         }
 
         // ==============================================
-        // ANIMATED CURSOR
+        // ANIMATED CURSOR - FIXED
         // ==============================================
         class AnimatedCursor {
             constructor() {
